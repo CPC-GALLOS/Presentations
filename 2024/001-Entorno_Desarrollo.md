@@ -11,7 +11,7 @@ footer: CPC Γα=Ω5
 <!-- _class: cover_c -->
 <!-- _paginate: "" -->
 <!-- _footer: "" -->
-<!-- _header: ![](img/GALLOS_white_rectangle_transparent.png) -->
+<!-- _header: ![](./img/GALLOS_white_rectangle_transparent.png) -->
 
 
 # <!-- fit -->Entorno de Desarrollo
@@ -139,7 +139,7 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 
 Acepta presionando `Enter` 2 veces.
 
-![#c h:300](https://code.visualstudio.com/assets/docs/cpp/cpp/cpp-install-MSYS2-toolchain.png)
+![#c h:300](./img/001-toolchain.png)
 
 3. Ya terminada la instalación del compilador, procederemos a agregar el compilador al `path`. Para ello, buscamos alguna de estas palabras clave: "variables", "path", "variables del sistema" en el buscador de windows <i class="fa fa-magnifying-glass"></i> y abriremos la aplicación con icono de una computadora con una palomita ![h:30](./img/001_icono_path.png), allí abriremos las variables y editaremos el path agregando la dirección: `C:\msys64\ucrt64\bin`.
 
@@ -186,7 +186,9 @@ Para usarlas, ten tu sesion de codeforces activa y tambien ten abierto VScode, c
 
 <!-- SCM: Source code management -->
 
-Git (git-scm) es una herramienta de código abierto para el control de version distribuido mientras que GitHub es una plataforma y servicio basado en la nube, propiedad de Microsoft, para el desarrollo de software y el control de versiones utilizando Git, básicamente un servidor donde almacenas tus proyectos y los controlas con Git. 
+Git (git-scm) es una herramienta de código abierto para el control de version distribuido mientras que GitHub es una plataforma y servicio basado en la nube, propiedad de Microsoft, para el desarrollo de software y el control de versiones utilizando Git, básicamente un servidor donde almacenas tus proyectos y los controlas con Git.
+
+En el club recomendamos usar git para guardar tus códigos en GitHub, esto es útil no solo para las actividades del club, sino que podrás usar estas habilidades para tus próximos proyectos escolares o profesionales.
 
 
 ### Para conectar Git ![h:40](https://avatars.githubusercontent.com/u/18133?s=280&v=4) con Github ![h:40](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/180px-GitHub_Invertocat_Logo.svg.png)

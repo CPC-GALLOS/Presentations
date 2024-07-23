@@ -10,9 +10,8 @@ footer: CPC Γα=Ω5
 
 <!-- _class: cover_e -->
 <!-- _paginate: "" -->
-<!-- _footer: ![](img/GALLOS_black_rectangle_transparent.png) -->
-<!-- _header: ![](img/GALLOS_white_square_transparent.png) -->
-
+<!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
+<!-- _header: ![](./img/GALLOS_white_square_transparent.png) -->
 
 # <!-- fit -->Introducción al Curso
 
@@ -104,7 +103,7 @@ graph LR;
 
 Aquí encontraras mucha información acerca la programación competitiva como libros, cursos de otras universidades, comunidades en discord y también sobre temas distintos a la programación competitiva como lo es el desarrollo profesional, internships, oportunidades de empleo y mucho más. 
 
-![#c](img/000-GALLOS_website.png)
+![#c](./img/000-GALLOS_website.png)
 
 
 
