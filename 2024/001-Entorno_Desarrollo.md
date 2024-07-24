@@ -119,7 +119,7 @@ winget install -e --id  Microsoft.VisualStudioCode --override '/SILENT /mergetas
 ![h:30](https://pkief.gallerycdn.vsassets.io/extensions/pkief/material-icon-theme/5.7.0/1721659637204/Microsoft.VisualStudio.Services.Icons.Default) [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme), ![h:30](https://arcticicestudio.gallerycdn.vsassets.io/extensions/arcticicestudio/nord-visual-studio-code/0.19.0/1632602657822/Microsoft.VisualStudio.Services.Icons.Default)[nord](https://marketplace.visualstudio.com/items?itemName=arcticicestudio.nord-visual-studio-code), ![h:30](https://catppuccin.gallerycdn.vsassets.io/extensions/catppuccin/catppuccin-vsc/3.15.0/1721283061832/Microsoft.VisualStudio.Services.Icons.Default) [catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc), ![h:30](https://jdinhlife.gallerycdn.vsassets.io/extensions/jdinhlife/gruvbox/1.19.0/1715219748445/Microsoft.VisualStudio.Services.Icons.Default) [GruvBox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox), ![h:30](https://monokai.gallerycdn.vsassets.io/extensions/monokai/theme-monokai-pro-vscode/1.3.2/1713687166653/Microsoft.VisualStudio.Services.Icons.Default) [Monokai Pro](https://marketplace.visualstudio.com/items?itemName=monokai.theme-monokai-pro-vscode) o ![h:30](https://dracula-theme.gallerycdn.vsassets.io/extensions/dracula-theme/theme-dracula/2.25.1/1721220788613/Microsoft.VisualStudio.Services.Icons.Default) [dracula](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula) 
 
 
-## Instalar el compilador de C++ en Windows ![h:35](./img/Microsoft%20.png)
+## Instalar el compilador de C++ en Windows ![h:35](./img/Microsoft.png)
 
 <!-- _class:  bq-red -->
 
@@ -170,17 +170,17 @@ Acepta presionando `Enter` 2 veces.
     }
 
 ```
-7. Con esto ya podremos compilar y ejecutar el codigo dentro de VScode dandole click al simbolo de repdroducir  <i class="fa fa-play"></i>  en la parte superior derecha del editor o con la extension [code runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) presionando las teclas `ctrl + alt + N`.
+7. Con esto ya podremos compilar y ejecutar el codigo dentro de VScode dandole click al simbolo de repdroducir  <i class="fa fa-play"></i>  en la parte superior derecha del editor o con la extensión [code runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) presionando las teclas `ctrl + alt + N`.
 
 ## Integrar Codeforces ![](./img/codeforces.png)  con VScode ![h:35](https://code.visualstudio.com/favicon.ico) 
 
-1. Primero en VScode tenemos que tener la extension ![h:35](https://divyanshuagrawal.gallerycdn.vsassets.io/extensions/divyanshuagrawal/competitive-programming-helper/2024.7.1721655847/1721655861341/Microsoft.VisualStudio.Services.Icons.Default)[Competitive Programming Helper](https://marketplace.visualstudio.com/items?itemName=DivyanshuAgrawal.competitive-programming-helper)
+1. Primero en VScode tenemos que tener la extensión ![h:35](https://divyanshuagrawal.gallerycdn.vsassets.io/extensions/divyanshuagrawal/competitive-programming-helper/2024.7.1721655847/1721655861341/Microsoft.VisualStudio.Services.Icons.Default)[Competitive Programming Helper](https://marketplace.visualstudio.com/items?itemName=DivyanshuAgrawal.competitive-programming-helper)
 
-2. <mark>Para firefox</mark>: Agrega las extensiones: ![h:25](https://lh3.googleusercontent.com/qc0NqSS_kFjVWYRqyhvMzVl7dnQ0Zti1CsXuOkFSfClsraAOwWExKTTsylFkYGEoIWfD8XDwdWBU6mh6flA-3COEtA=s120)[competitive companion](https://addons.mozilla.org/en-US/firefox/addon/competitive-companion/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) y ![h:25](./img/codeforces.png)[CPH Submit](https://addons.mozilla.org/en-US/firefox/addon/cph-submit/)
+2. Para <i class="fa-brands fa-firefox-browser"></i> firefox: Agrega las extensiones: ![h:25](https://lh3.googleusercontent.com/qc0NqSS_kFjVWYRqyhvMzVl7dnQ0Zti1CsXuOkFSfClsraAOwWExKTTsylFkYGEoIWfD8XDwdWBU6mh6flA-3COEtA=s120)[competitive companion](https://addons.mozilla.org/en-US/firefox/addon/competitive-companion/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) y ![h:25](./img/codeforces.png)[CPH Submit](https://addons.mozilla.org/en-US/firefox/addon/cph-submit/)
 
-2. <mark>Para navegadores basados en chromium</mark> (google chrome, Microsft Edge, Opera, Brave, etc.): Agrega las extensiones: ![h:25](https://lh3.googleusercontent.com/qc0NqSS_kFjVWYRqyhvMzVl7dnQ0Zti1CsXuOkFSfClsraAOwWExKTTsylFkYGEoIWfD8XDwdWBU6mh6flA-3COEtA=s120)[competitive companion](https://chromewebstore.google.com/detail/competitive-companion/cjnmckjndlpiamhfimnnjmnckgghkjbl) y ![h:25](./img/codeforces.png)[CPH Submit](https://github.com/ArielParra/cph-submit-chromium)
+3. Para navegadores basados en <i class="fa-brands fa-chrome"></i> chromium (<i class="fa-brands fa-chrome"></i> Google Chrome, <i class="fa-brands fa-edge"></i> Microsft Edge, <i class="fa-brands fa-opera"></i> Opera, <i class="fa-brands fa-brave"></i> Brave, etc.): Agrega las extensiones: ![h:25](https://lh3.googleusercontent.com/qc0NqSS_kFjVWYRqyhvMzVl7dnQ0Zti1CsXuOkFSfClsraAOwWExKTTsylFkYGEoIWfD8XDwdWBU6mh6flA-3COEtA=s120)[competitive companion](https://chromewebstore.google.com/detail/competitive-companion/cjnmckjndlpiamhfimnnjmnckgghkjbl) y ![h:25](./img/codeforces.png)[CPH Submit](https://github.com/ArielParra/cph-submit-chromium)
 
-Para usarlas, ten tu sesion de codeforces activa y tambien ten abierto VScode, cuando abras un problema en codeforces haz click en ![h:25](https://lh3.googleusercontent.com/qc0NqSS_kFjVWYRqyhvMzVl7dnQ0Zti1CsXuOkFSfClsraAOwWExKTTsylFkYGEoIWfD8XDwdWBU6mh6flA-3COEtA=s120), cámbiate a VScode donde veras unas opciones donde eligieras cpp, y listo podrás pobrar y publicar tu código desde vscode. 
+Para usarlas, ten tu sesión de codeforces activa y también ten abierto VScode, cuando abras un problema en codeforces haz click en ![h:25](https://lh3.googleusercontent.com/qc0NqSS_kFjVWYRqyhvMzVl7dnQ0Zti1CsXuOkFSfClsraAOwWExKTTsylFkYGEoIWfD8XDwdWBU6mh6flA-3COEtA=s120), después cámbiate a VScode donde veras unas opciones donde eligieras cpp, y listo podrás pobrar y publicar tu código desde vscode. 
 
 ## Git ![h:40](https://avatars.githubusercontent.com/u/18133?s=280&v=4) y Github ![h:40](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/180px-GitHub_Invertocat_Logo.svg.png)
 
@@ -194,7 +194,7 @@ En el club recomendamos usar git para guardar tus códigos en GitHub, esto es ú
 ### Para conectar Git ![h:40](https://avatars.githubusercontent.com/u/18133?s=280&v=4) con Github ![h:40](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/180px-GitHub_Invertocat_Logo.svg.png)
 
 1. Primero crearemos una cuenta de github <https://github.com/signup> 
-1. Despues creamos un repositorio (proyecto) en  <https://github.com/new>
+1. Después creamos un repositorio (proyecto) en  <https://github.com/new>
 1. Luego descargamos git desde la pagina oficial <https://git-scm.com/downloads> o con el gestor de paquetes integrado en Windows `winget` a través de una terminal, con el comando: 
 ```powershell
 winget install -e --id Git.Git
