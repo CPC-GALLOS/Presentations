@@ -86,6 +86,7 @@ Los calificadores en C/C++ modifican el comportamiento de las variables.
 - **size_t**: es un tipo garantizado por el compilador para contener cualquier índice (en este caso: unsigned int).
 - **std::byte**: Introducido en C++17 y definido en `<cstddef>` es un tipo de dato de 8 bits que **no permite** operaciones aritméticas.
 - **__int128**: Es un tipo de dato especial que puede albergar 128 bits. Está disponible en compiladores GCC y Clang y puede manejar valores muy grandes, pero es más lento y requiere buffers para su uso práctico. Su rango con signo es de -1.70e38 a 1.70e38 y sin signo de 0 a aproximadamente 3.40e38.
+- **void**: Cuando se usa en la declaración de una función indica que la función no devuelve ningún valor. También se utiliza para declarar punteros genéricos (`void*`), que pueden apuntar a cualquier tipo de datos.
 - **NULL**: Representa una constante de puntero nulo en C.
 - **nullptr**: Introducido en C++11, representa una constante de puntero nulo de forma segura en C++.
 

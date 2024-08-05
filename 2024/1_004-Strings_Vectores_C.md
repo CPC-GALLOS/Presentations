@@ -16,9 +16,35 @@ footer: CPC Γα=Ω5
 
 Por Ariel Parra
 
+## caracteres
+
+
+## Strings 
+
+terminador de cadena `\0`
+
+## vectores en C
+ operador [ ]
+
 ## ASCII
 
+![#c h:640](https://www.asciitable.com/asciifull.gif)
+
+
 ## Matrices
+
+
+## Funciones de Caracteres y Strings en C
+
+\<cctype>      |\<cstdlib>                     |\<cstring>
+---------------|-------------------------------|----------
+isalpha(char)  |atoi(string)                   |strcpy(string-dest,string-origen)
+isdigit(char)  |atof(string)                   |strcat(string-dest,string-origen)
+isupper(char)  |atol(string)                   |strncat(string-dest,string-origen,int)
+islower(char)  |strtol(string,NULL,0)          |strcmp(string,string-comparar)
+tolower(char)  |<del>itoa(int,string,10)</del> |strncmp(string,string-comparar,int)
+toupper(char)  |sprintf(string,"%i",int)       |strlen(string)
+
 
 ## Problemas 
 
