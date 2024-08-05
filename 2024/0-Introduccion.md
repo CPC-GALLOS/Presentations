@@ -30,7 +30,7 @@ El club de Programación Competitiva Γα=Ω5 de la Universidad Autónoma de Agu
 
 <div class=rimg>
 
-![#c](https://img.freepik.com/vector-gratis/gallo-color_105738-383.jpg)
+![#c](./img/GALLO.png)
 </div>
 
 ## ¿Qué es la Programación Competitiva?
@@ -67,9 +67,18 @@ graph LR;
     A --> B
 </div>
 
-### Ejemplo de un problema
+## ¿Qué es la ley de Kidlin?
 
-¿Cual es la cantidad mínima de estos tetrominós en forma de 'L' necesaria para formar un cuadrado?  
+No nos referimos a la ley de Kidlin de protección de información confidencial en las firmas de abogados, sino al personaje ficticio de la novela King Rat escrita por James Clavell. Donde el enfoque de Kidlin para resolver los desafíos de su vida llevó al desarrollo de una ley que afirma: 
+> "Si escribes el problema claramente, entonces tienes la mitad de la solución"
+
+U originalmente en inglés la ley de Kidlin dice:
+
+> “If you write the problem down clearly, then the matter is half solved.”
+
+## Ejemplo de un problema
+
+¿Cuál es la cantidad mínima de estos tetrominós en forma de 'L' necesaria para formar un cuadrado?  
 
 ![#c](https://data.chpic.su/stickers/t/TetrisTetrisTetrisTetris/TetrisTetrisTetrisTetris_010.webp)
  
@@ -80,7 +89,7 @@ graph LR;
 
 <div class=ldiv>
 
-<mark>[ICPC](https://pda2024.icpcmexico.org/es)</mark> (International Collegiate Programming Contest). Esta es la competencia de programación competitiva más importante a nivel mundial esta auspiciada por la asociación ACM-IEEE, esta se realiza anualmente alrededor del mundo en 3233 universidades en 110 países de los 6 continentes. En México el ICPC tiene sede en la universidad ITESO. Participar en esta competencia es el objetivo principal del club. 
+<mark>[ICPC](https://pda2024.icpcmexico.org/es)</mark> (International Collegiate Programming Contest). está es la competencia de programación competitiva más importante a nivel mundial está auspiciada por la asociación ACM-IEEE, está se realiza anualmente alrededor del mundo en 3233 universidades en 110 países de los 6 continentes. En México el ICPC tiene sede en la universidad ITESO. Participar en está competencia es el objetivo principal del club. 
 <mark>[Facebook Hacker Cup](https://www.facebook.com/codingcompetitions/hacker-cup)</mark> es la competencia anual de Facebook.
 <mark>[CoderBloom](https://www.linkedin.com/company/coderbloom)</mark> es una competencia dirigida a mujeres.
 <mark>[RPC](https://www.facebook.com/RedProgramacionCompetitiva/)</mark> (Red de Programación Competitiva) son concursos enfocados a la comunidad de Latinoamérica, suelen tener espejos de otros concursos.
@@ -93,17 +102,17 @@ graph LR;
 
 ## Plataformas para la programación competitiva 
 
-<mark> [Codeforces](https://codeforces.com/)</mark> Es una plataforma desarrollada por programadores de la universidad ITMO en Rusia. Esta es la plataforma que usaremos en el curso debido a que es la más popular entre la comunidad del ICPC, donde después de cada concurso podemos acceder a un gimnasio con los problemas del concurso. Codeforces tiene una gran cantidad de problemas a resolver y tiene múltiples concursos cada mes.  
-<mark>[AtCoder](https://atcoder.jp/)</mark> esta plataforma es como el codeforces pero sin problemas y de Japón donde tienen lugar múltiples concursos semanales.
-<mark>[LeetCode](https://leetcode.com/contest/)</mark> Esta plataforma esta enfocada principalmente hacia las entrevistas técnicas de trabajo, por lo que los problemas ahi son más técnicos. Si quieres aplicar a una empresa como las 'FAANG', te recomiendo practicar aquí. Tienen múltiples concursos semanalmente.
+<mark> [Codeforces](https://codeforces.com/)</mark> Es una plataforma desarrollada por programadores de la universidad ITMO en Rusia. está es la plataforma que usaremos en el curso debido a que es la más popular entre la comunidad del ICPC, donde después de cada concurso podemos acceder a un gimnasio con los problemas del concurso. Codeforces tiene una gran cantidad de problemas a resolver y tiene múltiples concursos cada mes.  
+<mark>[AtCoder](https://atcoder.jp/)</mark> está plataforma es como el codeforces pero sin problemas y de Japón donde tienen lugar múltiples concursos semanales.
+<mark>[LeetCode](https://leetcode.com/contest/)</mark> está plataforma está enfocada principalmente hacia las entrevistas técnicas de trabajo, por lo que los problemas ahi son más técnicos. Si quieres aplicar a una empresa como las 'FAANG', te recomiendo practicar aquí. Tienen múltiples concursos semanalmente.
 <!-- Facebook Apple Amazón Netflix  Google -->
-<mark>[HackerRank](https://www.hackerrank.com/contests)</mark> Esta es una plataforma que tiene concursos semanales no necesariamente de programación competitiva, donde también cuentan con cursos y exámenes de distintas habilidades y tecnologías.
+<mark>[HackerRank](https://www.hackerrank.com/contests)</mark> está es una plataforma que tiene concursos semanales no necesariamente de programación competitiva, donde también cuentan con cursos y exámenes de distintas habilidades y tecnologías.
 
 ## Nuestra Página web: cpc-gallos.github.io
 
 Aquí encontraras mucha información acerca la programación competitiva como libros, cursos de otras universidades, comunidades en discord y también sobre temas distintos a la programación competitiva como lo es el desarrollo profesional, internships, oportunidades de empleo y mucho más. 
 
-![#c](./img/000-GALLOS_website.png)
+![#c](./img/0-GALLOS_website.png)
 
 
 
@@ -111,5 +120,5 @@ Aquí encontraras mucha información acerca la programación competitiva como li
 
 - Aprende Programación Competitiva. (2019). *Introducción a la Algoritmia (I): Eficiencia*. Recuperado de [https://aprende.olimpiada-informatica.org/algoritmia-introduccion-1-eficiencia](https://aprende.olimpiada-informatica.org/algoritmia-introduccion-1-eficiencia)
 - Code_Report. (2018). *Difference between HackerRank, LeetCode, topcoder and Codeforces* [video]. Recuperado de [https://www.youtube.com/watch?v=J267bz_G7xE](https://www.youtube.com/watch?v=J267bz_G7xE) 
-- Haro, C. (2021). *Algoritmia Razonar para crear*.Recuperado de [https://www.ediciones-eni.com/libro/algoritmia-razonar-para-crear-9782409031502/que-es-la-algoritmia](https://www.ediciones-eni.com/libro/algoritmia-razonar-para-crear-9782409031502/que-es-la-algoritmia)
+- Haro, C. (2021). *Algoritmia Razonar para crear*. Recuperado de [https://www.ediciones-eni.com/libro/algoritmia-razonar-para-crear-9782409031502/que-es-la-algoritmia](https://www.ediciones-eni.com/libro/algoritmia-razonar-para-crear-9782409031502/que-es-la-algoritmia)
 - REAL ACADEMIA ESPAÑOLA. (2024). *Diccionario de la lengua española, 23.ª ed*. Recuperado de [https://dle.rae.es/algoritmia](https://dle.rae.es/algoritmia) 

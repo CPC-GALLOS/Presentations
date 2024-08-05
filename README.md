@@ -5,11 +5,15 @@ Para editar las presentaciones ocupas de la extensión de [marp](https://marketp
 
 Para marp ocupas cualquier navegador basado en chrome instalado en tu computadora, también debes activar el html en la configuración de la extension en el apartado `markdown.marp.enableHtml` 
 
-para convertir las presentaciones a HTML de una manera más eficiente ocupamos descargar 'marp-cli', para windows se puede descargar a través de <https://github.com/marp-team/marp-cli/releases> o con el gestor de paquetes [scoop](https://scoop.sh/#/) `scoop install main/marp` y para MacOS con [homebrew](https://brew.sh/) `brew install marp-cli`
+para convertir las presentaciones a HTML de una manera más eficiente ocupamos descargar 'marp-cli', para Windows se puede descargar a través de <https://github.com/marp-team/marp-cli/releases> o con el gestor de paquetes [scoop](https://scoop.sh/#/) `scoop install main/marp` y para MacOS con [homebrew](https://brew.sh/) `brew install marp-cli`
  
 Y para compilar las presentaciones a HTML con marp-cli ejecutamos el siguiente comando dentro de la carpeta del proyecto y del año (2024): 
 ```powershell
 marp --allow-local-files --html --theme ../src/am_nord.scss ./presentacion.md
 ```
+O la otra opción es usar `make` (ya instalado por defecto en MacOs y Linux), en Windows se puede instalar con [scoop](https://scoop.sh/#/) con el comando `scoop install main/make`, con make es tan facil como acceder a la carpeta del proyecto y del año (2024) y ejecutar:
+```powershell
+make ./presentacion.md
+``` 
 
 muchas gracias a Chu Hong por la plantilla de marp [awesome](https://github.com/favourhong/Awesome-Marp/tree/main)

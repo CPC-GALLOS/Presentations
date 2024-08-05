@@ -37,6 +37,8 @@
   --font-size-code: 22px;
 }
 
+/* Custom am_nord scss*/
+
 mark {
   background-color: rgb(129 161 193 / 0.6)
 }
@@ -50,6 +52,8 @@ mark {
   color: var(--color-code-bg);
   width: fit-content !important; 
 }
+
+/* Original am scss*/
 
 section {
   font-family: var(--font-family-main);

@@ -38,7 +38,7 @@ Awesome-Marp：[GitHub](https://github.com/favourhong/Awesome-Marp)/[Gitee](http
 - [Barra de navegación](#45)
 - [Otros estilos personalizados](#48)
 - [Conceptos básicos ](#56)
-- [la ultima pagina](#59)
+- [la última pagina](#59)
 
 ## 1. Acerca de las plantillas
 
@@ -86,7 +86,7 @@ Awesome-Marp：[GitHub](https://github.com/favourhong/Awesome-Marp)/[Gitee](http
 ## 1. Acerca de las plantillas： registro de cambios
 
 - [Awesome  He desarrollado un conjunto completo de temas de Marp, ¡y el PPT convertido de Markdown también puede verse genial](https://mp.weixin.qq.com/s?__biz=MzkwOTE3NDExOQ==&mid=2247486787&idx=1&sn=2652ddae81f50240844cb652780912e1&chksm=c13ff94bf648705da1ba986b91265e3ff018acaffcfa60d7807a81be22176005e7a2b4483627&scene=178&cur_album_id=3132459596339757070#rd)
-- [Awesome Marp v1.1 La línea de título no flota con el texto, esta vez se parece más Beamer！](https://mp.weixin.qq.com/s?__biz=MzkwOTE3NDExOQ==&mid=2247486800&idx=1&sn=527348e242576079e4bd6cd1823c823a&chksm=c13ff958f648704e40a202db6ad5fa215ef4c189d66403e161d6ace9828406a8747ac755684f&scene=178&cur_album_id=3132459596339757070#rd)
+- [Awesome Marp v1.1 La línea de título no flota con el texto, está vez se parece más Beamer！](https://mp.weixin.qq.com/s?__biz=MzkwOTE3NDExOQ==&mid=2247486800&idx=1&sn=527348e242576079e4bd6cd1823c823a&chksm=c13ff958f648704e40a202db6ad5fa215ef4c189d66403e161d6ace9828406a8747ac755684f&scene=178&cur_album_id=3132459596339757070#rd)
 - [Awesome Marp v1.2：Agregue notas al pie, ajuste el tamaño de fuente y otros estilos](https://mp.weixin.qq.com/s?__biz=MzkwOTE3NDExOQ==&mid=2247486825&idx=1&sn=56d632ce164831438ec87c1b20ed4c4c&chksm=c13ff961f64870774f069ab816340783d8f54fd6b89363b8d9412c593efc640851ce9edd8833&scene=178&cur_album_id=3132459596339757070#rd) 
 
 
@@ -212,7 +212,7 @@ Awesome-Marp 地址：[GitHub 库](https://github.com/favourhong/Awesome-Marp)/[
 - [Barra de navegación](#45)
 - [Otros estilos personalizados](#48)
 - [Conceptos básicos ](#56)
-- [la ultima pagina](#59)
+- [la última pagina](#59)
 
 ---
 
@@ -229,7 +229,7 @@ Awesome-Marp 地址：[GitHub 库](https://github.com/favourhong/Awesome-Marp)/[
 - [Barra de navegación](#45)
 - [Otros estilos personalizados](#48)
 - [Conceptos básicos ](#56)
-- [la ultima pagina](#59)
+- [la última pagina](#59)
 
 
 ## 4. Columnas y listas de páginas
@@ -657,7 +657,7 @@ El estilo personalizado es: `<!-- _class: col1_ul_ci fglass -->`
 <!-- _header: \ ***@Awesome Marp*** *Acerca de las plantillas* *portada* *Página de contenido* **Barra de navegación**-->
 <!-- _class: navbar -->
 
-Parte del código fuente de Markdown de esta página:
+Parte del código fuente de Markdown de está página:
 
 ```markdown
 <!-- _class: navbar -->
@@ -738,7 +738,7 @@ Para ajustar el tamaño de fuente, debería ser muy conveniente modificar direct
 - Estilo personalizado 3: `<!-- _class: texto grande -->` (1,15 veces el tamaño de fuente predeterminado)
 - Estilo personalizado 4: `<!-- _class: hugetext -->` (1,3 veces el tamaño de fuente predeterminado)
 
-Por ejemplo, el estilo personalizado utilizado en esta página es "texto grande".
+Por ejemplo, el estilo personalizado utilizado en está página es "texto grande".
 
 ## 7.4 Estilo personalizado para el título del gráfico:`caption`
 
