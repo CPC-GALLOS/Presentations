@@ -47,15 +47,11 @@
 
 # Problemas por temas 
 
-# Faciles: 
-https://codeforces.com/contest/791/problem/A
-https://codeforces.com/contest/734/problem/A 
-https://codeforces.com/contest/1030/problem/A 
+
 # Truquillos simples (def cases):
 https://codeforces.com/contest/263/problem/A 
 https://codeforces.com/contest/1919/problem/A 
 https://codeforces.com/contest/1921/problem/A 
-https://codeforces.com/contest/4/problem/A 
 https://codeforces.com/contest/1968/problem/A 
 https://codeforces.com/contest/1566/problem/A
 # Vector:

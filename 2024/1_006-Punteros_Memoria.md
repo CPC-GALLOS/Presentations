@@ -35,7 +35,7 @@ for (int )
 ## El Heap
 
 ## Referencias (References)
-
+Constant Pointer VS. Pointer To A Constant 
 ## Punteros (Pointers)
 
 ## Aritmética de Punteros
@@ -71,15 +71,21 @@ for (int )
 - Low Level Lerning. (2022). *you will never ask about pointer arithmetic after watching this video* [video] . Recuperado de <https://youtu.be/q24-QTbKQS8?si=3N5Cy1G_AaObg_JO>
 - Low Level Lerning. (2022). *you will never ask about pointers again after watching this video* [video] . Recuperado de <https://youtu.be/2ybLD6_2gKM?si=WsGGHYCRYycqyHNR>
 - Low Level Lerning. (2023). *The Origins of Process Memory | Exploring the Use of Various Memory Allocators in Linux C* pointers even exist?* [video] . Recuperado de <https://youtu.be/c7xf5dvUb_Q?si=liTAHayttd4YWN93>
-- Low Level Lerning. (2023). *why do void* pointers even exist?* [video] . Recuperado de <https://youtu.be/t7CUti_7d7c?si=WNufRDLbkIPsSyzv>
+- Low Level Lerning. (2023). *why do void\* pointers even exist?* [video] . Recuperado de <https://youtu.be/t7CUti_7d7c?si=WNufRDLbkIPsSyzv>
 
 ---
 
 - Microsoft. (2021). *Pointers (C++)*. Recuperado de <https://learn.microsoft.com/en-us/cpp/cpp/pointers-cpp?view=msvc-170>
 - MIT. (2011). *Lecture 5 Notes: Pointers*. Recuperado de <https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/0240aeefb6d5fb9c0a20587ed98fa7ca_MIT6_096IAP11_lec05.pdf>
 - mycodeschool. (2013). *Pointers and dynamic memory - stack vs heap* [video]. Recuperado de <https://youtu.be/_8-ht2AKyH4?si=fbCY_IeJD_dIQgm9>
-- Portfolio Courses. (2021).*Introduction to Pointers | C Programming Tutorial* [video] . Recuperado de <https://youtu.be/2GDiXG5RfNE?si=qEWVhJ3cs--SsYkU> 
+- Portfolio Courses. (2021).*Introduction to Pointers | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/2GDiXG5RfNE?si=qEWVhJ3cs--SsYkU> 
+- Portfolio Courses. (2022). *Constant Pointer VS. Pointer To A Constant | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/egvGq3WSF9Y?si=EjCk9hBtGSK0zaLh>
+- Portfolio Courses. (2022). *int *p vs int* p Pointer Declarations | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/H5MlTh5cBOg?si=SSy-8eLBmbjGZ3Gj>
+
+---
+
 - The Cherno. (2017). *POINTERS in C++* [video] . Recuperado de <https://youtu.be/DTxHyVn0ODg?si=kdi8CpqxyL-ct6H_>
 - The Cherno. (2017). *Stack vs Heap Memory in C++* [video]. Recuperado de <https://youtu.be/wJ1L2nSIV1s?si=Zb7nvQelG4Jz6Tz1>
+- The Cherno. (2023). *Should I pass by const reference or by value?* [video]. Recuperado de <https://youtu.be/lj1O_GH7SGs?si=65CFz0ojo9JxNp9X>
 - Tortellini Soup. (2024). *Why This Works* [video] . Recuperado de <https://www.youtube.com/watch?v=lFRp0tZKosc>
-- W3Schools. (s.f.). *C++ Pointers*.<https://www.w3schools.com/cpp/cpp_pointers.asp>
+- W3Schools. (s.f.). *C++ Pointers*. Recuperado de <https://www.w3schools.com/cpp/cpp_pointers.asp>

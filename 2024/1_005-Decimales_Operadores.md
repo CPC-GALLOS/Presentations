@@ -17,12 +17,16 @@ footer: CPC Γα=Ω5
 
 Por Ariel Parra
 
-cmath operadores aritmeticos (modulo %), (const,vars, global vars
+---
+
+cmath operadores aritmeticos (modulo %),
+
+ (const,vars, global vars
 
 - NAN
 INFINITY
 
-isinf
+isinf()
 std::numeric_limits<double>::infinity();
 ## <cmath.h>
 

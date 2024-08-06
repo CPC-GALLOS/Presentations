@@ -34,6 +34,8 @@ terminador de cadena `\0`
 ## Matrices
 
 
+![**263A** Beautiful Matrix](https://codeforces.com/contest/263/problem/A)
+
 ## Funciones de Caracteres y Strings en C
 
 \<cctype>      |\<cstdlib>                     |\<cstring>
@@ -49,3 +51,5 @@ toupper(char)  |sprintf(string,"%i",int)       |strlen(string)
 ## Problemas 
 
 ## Referencias
+
+- Portfolio Courses. (2022). *String In Char Array VS. Pointer To String Literal | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/Qp3WatLL_Hc?si=ZClAvUhUhOqwFjNZ>

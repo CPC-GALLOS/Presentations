@@ -20,7 +20,7 @@ Por Ariel Parra
 
 ## Tipos Primitivos
 
-| Tipo        | librería         | Tamaño     | Rango      | Descripción                                    |
+| Tipo        | librería         | Tamaño     | Rango (GCC x64) | Descripción                                    |
 |-------------|------------------|------------|------------|------------------------------------------------|
 | `char`      | `<cstdint>`      | 8 bits     | -128 a 127 | Almacena un carácter en comillas simples ''                          |
 | `bool`      | `<cstdbool>`     | 8 bits     | true (1) o false (0) | Valor booleano (verdadero o falso).            |
@@ -30,14 +30,14 @@ Por Ariel Parra
 | `float`     | `<cfloat>`       | 32 bits    | Aprox ±3.4e38 | Número de punto flotante de precisión simple.  |
 | `double`    | `<cfloat>`       | 64 bits    | Aprox ±1.7e308 | Número de punto flotante de precisión doble.   |
 
-## Sinonimos / Alias     
+## Sinonimos / Alias en
 
 - **1 byte**: `uint8_t`, `unsigned char`, `int8_t`, `signed char`, `int_least8_t`, `uint_least8_t`, `int_fast8_t`, `uint_fast8_t`
 - **2 bytes**: `int16_t`, `short`, `short int`, `signed short int`, `uint16_t`, `unsigned short`, `unsigned short int`, `int_least16_t`, `uint_least16_t`
 - **4 bytes**: `int32_t`, `int`, `signed int`, `uint32_t`, `unsigned int`, `int_least32_t`, `uint_least32_t`, `int_fast16_t`, `uint_fast16_t`, `int_fast32_t`, `uint_fast32_t`
 - **8 bytes**: `int64_t`, `long long`, `signed long long`, `uint64_t`, `unsigned long long`, `int_least64_t`, `uint_least64_t`, `int_fast64_t`, `uint_fast64_t`, `intmax_t`, `uintmax_t`
 
-> Las conversiones de tipos de datos primitivos dependen de la implementación del compilador y de la arquitectura del procesador.
+> Las conversiones de tipos de datos primitivos dependen de la implementación del compilador (GCC, Clang, MSVC, etc.) como también de la arquitectura del procesador (x86, x64, ARM, etc.).
 
 <!-- _class:  bq-red -->
 
@@ -73,6 +73,10 @@ Los calificadores en C/C++ modifican el comportamiento de las variables.
     ```
 <!-- Preguntar por número máximo -->
 - **signed**: Indica que una variable puede almacenar valores tanto negativos como positivos (redundante al ser el calificador por defecto).
+
+- **inline**: Solo para funciones, sugiere al compilador que expanda la función en el lugar donde se llama, en lugar de realizar una llamada normal a la función. Esto puede mejorar el rendimiento en algunos casos.
+
+- **\***  El operador estrella (*) se utiliza para declarar punteros al ponerlo posterior a un tipo primitivo. por ejemlo `int *ptr;`
 
 - **volatile**: Indica que el valor de una variable puede cambiar en cualquier momento, sin que el programa la modifique explícitamente (no lo usaremos).
 
