@@ -47,7 +47,6 @@
 
 # Problemas por temas 
 
-
 # Truquillos simples (def cases):
 https://codeforces.com/contest/263/problem/A 
 https://codeforces.com/contest/1919/problem/A 
@@ -60,9 +59,7 @@ Array circulares:
 https://codeforces.com/contest/731/problem/A  
 https://codeforces.com/contest/1971/problem/C
 ## String ciruclar, permutaciones: https://codeforces.com/problemset/gymProblem/102890/L
-## Strings capitalization:
-https://codeforces.com/contest/59/problem/A 
-https://codeforces.com/contest/281/problem/A 
+
 # strings
 https://codeforces.com/contest/1971/problem/B
 https://codeforces.com/contest/71/problem/A 
@@ -70,9 +67,7 @@ https://codeforces.com/gym/102890/problem/D
 # Substrings: 
 Defcase facil https://codeforces.com/contest/766/problem/A
 https://codeforces.com/contest/1968/problem/B
-# Float:  
-https://codeforces.com/group/MWSDmqGsZm/contest/219158/problem/U 
-Answer = ceil(m/a) * ceil(n/a),https://codeforces.com/contest/1/problem/A 
+
 # Simulacion, juegos, brute force, implementation:
 https://codeforces.com/contest/1598/problem/A 
 https://codeforces.com/contest/268/problem/A 

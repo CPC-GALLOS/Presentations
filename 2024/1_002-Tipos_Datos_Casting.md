@@ -74,6 +74,8 @@ Los calificadores en C/C++ modifican el comportamiento de las variables.
 <!-- Preguntar por número máximo -->
 - **signed**: Indica que una variable puede almacenar valores tanto negativos como positivos (redundante al ser el calificador por defecto).
 
+- **long**: en si long es un tipo de dato, pero al ponerse antes de otro tipo se combierte en un type qualifier se suele usar en `long long` y `long double`.
+
 - **inline**: Solo para funciones, sugiere al compilador que expanda la función en el lugar donde se llama, en lugar de realizar una llamada normal a la función. Esto puede mejorar el rendimiento en algunos casos.
 
 - **\***  El operador estrella (*) se utiliza para declarar punteros al ponerlo posterior a un tipo primitivo. por ejemlo `int *ptr;`

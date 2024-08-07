@@ -15,9 +15,7 @@ footer: CPC Γα=Ω5
 
 # <!-- fit -->Iteradores
 
-Por Ariel Parra
-
-    1.9 Iteradores STL que devuelven iteradores
+Iteradores STL que devuelven iteradores
 
 ## 
 

@@ -6,6 +6,7 @@ paginate: true
 headingDivider: [2,3]
 author: Ariel Parra
 footer: CPC Γα=Ω5
+math: mathjax
 ---
 
 <!-- _class: cover_b -->
@@ -69,7 +70,7 @@ pre {
 }
 </style>
 
-- Sin identacion
+- if single-line
 
 ```c++
 bool programo, estudio = true;
@@ -78,7 +79,7 @@ else
     cout << "falso";
 ```
 
-- Con identacion
+- if tradicional
 
 ```c++
 if( programo == true ) {
@@ -132,11 +133,22 @@ switch(a) {
 
 ### for 
 
+<style scoped>
+pre {
+    margin: 0;
+    padding: 16px;
+}
+</style>
+
 - for tradicional
 ```c++
 for (size_t i=0; i < n; ++i) {
     cout << n << " ";
 }
+```
+- for single-line
+```c++
+for (size_t i=0; i < n; ++i) cout << n << " ";
 ```
 - for de rango
 ```c++
@@ -168,11 +180,13 @@ do {
 <style scoped>
 pre {
     margin: 0;
-    padding: 16px;
+    padding: 3px;
 }
 </style>
 
 #### Progresiones aritméticas
+
+Por ejemplo: 5,8,11,14,...
 
 ```c++
 int a = 5, d = 3, n = 10;
@@ -181,6 +195,9 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 #### Progresiones geometricas
+
+Por ejemplo: 5,15,45,135,...
+
 ```c++
 int a = 5, r = 3, n = 10;
 for (int i = 0; i < n; ++i) {
@@ -385,7 +402,9 @@ inline void foo() {
 }
 ```
 
-## Inversión
+Existen dos métodos para evitar el nesting y ser un never-nester: **inversión** y **extracción**.
+
+## 1.Inversión
 <style scoped>
 pre {
     margin: 0;
@@ -413,7 +432,7 @@ inline void foo() {
 }
 ```
 
-## Extracción
+## 2.Extracción
 <style scoped>
 pre {
     margin: 0;
