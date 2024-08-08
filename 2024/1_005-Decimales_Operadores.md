@@ -12,7 +12,7 @@ math: mathjax
 <!-- _class: cover_e -->
 <!-- _paginate: "" -->
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
-<!-- _header: ![](./img/GALLOS_white_square_transparent.png) -->
+<!-- _header: ![](./img/GALLO.png) -->
 
 # <!-- fit -->Numeros decimales y operadores
 
@@ -20,18 +20,21 @@ Por Ariel Parra
 
 ## Números Decimales 
 
-Las computadoras utilizan representaciones binarias para almacenar y procesar datos, lo que significa que todos los números, incluidos los decimales, se deben convertir a una forma binaria. Esto se debe a que los bits solo tienen dos estados posibles: 0 y 1.
+Los números decimales en C se representan mediante tipos de datos de punto flotante. Los tipos más comunes son:
 
+- **float**: Precisión simple (4 bytes).
+- **double**: Precisión doble (8 bytes).
+- **long double**: Precisión extendida ( 10 bytes (x86) o 16 bytes (x64) ).
 
-#### Representación Binaria
+#### Representación Binaria 
 
-- **Enteros**: Se representan directamente en binario, usando potencias de 2. Por ejemplo, el número decimal 13 se representa en binario como `1101`, que es igual a 
+Los números enteros se representan directamente en binario, usando potencias de 2. Por ejemplo, el número decimal 13 se representa en binario como `1101`, que es igual a 
 
 $$ 2^3 + 2^2 + 2^0 $$
 
-#### Representación de Números Decimales
+Los números decimales se representan en binario, usando potencias de 2 para los enteros y potencias negativas de 2 para la parte decimal. Por ejemplo, el número 13.25 se representa en binario como `1101.01`, que es igual a 
 
-Para representar números decimales fraccionarios (como 0.1 o 3.14) en binario, se utiliza una técnica similar pero con exponentes negativos de 2. Esto se debe a que los números decimales no se pueden representar exactamente en binario con una cantidad finita de bits debido a la naturaleza de la base binaria.
+$$ 2^3 + 2^2 + 2^0 + 2^{-2} $$
 
 ### Conversión de Números Decimales a Binario
 
@@ -70,9 +73,7 @@ Entonces, el número 5.75 se representa en IEEE 754 como:
 |-------|-----------|---------------|
 | 0     | 10000001  | 01110000000000000000000 |
 
-
 ##  Operadores aritméticos
-
 
 ```c++
 int a = 10, b = 3;
@@ -83,46 +84,76 @@ cout << "División: " << a / b << endl; // División (entera: redondea hacia aba
 cout << "Módulo: " << a % b << endl; // Módulo
 ```
 
----
+<!-- mencionar que en problemas piden entregar resultados con modulo: const int MOD = 1e9 + 7; -->
 
-Los números decimales en C se representan mediante tipos de datos de punto flotante. Los tipos más comunes son:
-
-- **float**: Precisión simple (4 bytes).
-- **double**: Precisión doble (8 bytes).
-- **long double**: Precisión extendida ( 10 bytes (x86) o 16 bytes (x64) ).
-Ejemplo de declaración y uso de números decimales:
-
-graph TD;
-    A[32 bits] --> B[Signo: 1 bit];
-    A[32 bits] --> C[Exponente: 8 bits];
-    A[32 bits] --> D[Mantisa: 23 bits];
-```
----
+## Funciones en `<cmath>`
 
 ```c++
-min({a, b, c, d});  max({a, b, c, d});
-
-cout << fixed << setprecision(digits)<< var;// digits == 0 ? (round)
-
-round(num);//1.45 -> 1 , 1.5 -> 2
-trunc(num);//1.5 -> 1 
-ceil(num);//1.5 -> 2 
-floor(num);//1.5 -> 1
-abs(num);// -1.5 -> 1.5, 1.5 -> 1.5
-sqrt(num);  sqrtl(num); 
-
-pow(base, exp); powl(base,exp); 
-
-pow(p, 1.0 / n);// nth root of p
-
-
+min(a, b); min({a, b, c, d});
+max(a, b); max({a, b, c, d});
+pow(base, exp); powl(base, exp);
+pow(p, 1.0 / n); // raíz n-ésima de `p`
 ```
 
-- NAN
-INFINITY
+```c++
+fmin();
+fmax(a.b,c.d);
+log(num)l //LN
+log10(num);
+cos(num);   // 
+sin(num);
+tan(num);
+sqrt(num);
+sqrtl(num);
+``` 
 
-isinf()
-std::numeric_limits<double>::infinity();
+## Funciones de manipulación de decimales
+```c++
+#include <iomanip> // Para usar fixed y setprecision
+cout << fixed << setprecision(digits) << var; // Si digits == 0 -> redondea.
+```
+
+```c++
+round(num); // 1.45 -> 1 , 1.5 -> 2
+trunc(num); // 1.5 -> 1 
+ceil(num);  // 1.5 -> 2 
+floor(num); // 1.5 -> 1
+abs(num);   // -1.5 -> 1.5, 1.5 -> 1.5
+```
+
+Aquí te dejo una versión completa de tu presentación sobre el manejo de valores especiales como `NaN` e `INFINITY` en C++:
+
+
+## Not A Number
+
+Cuando intentamos calcular la raíz cuadrada de un número negativo en C++, el resultado no es un número real, por lo que la función `sqrt(-1)` devuelve un valor especial llamado `NAN` (el cual es una cosntante de C).
+
+#### ¿Qué tipo de `NAN`?
+
+Existen dos tipos de `NAN` en C++:
+
+1. **Quiet NaN (`quiet_NaN`)**: 
+   - Se utiliza para representar cálculos que no tienen un resultado válido, pero que no generan una excepción. 
+   - Se puede obtener utilizando `std::numeric_limits<double>::quiet_NaN();`.
+
+2. **Signaling NaN (`signaling_NaN`)**: 
+   - Representa un valor que, cuando se utiliza en una operación, debería generar una excepción o señal. 
+   - Se puede obtener con `std::numeric_limits<double>::signaling_NaN();`.
+
+Puedes verificar si un valor es `NAN` utilizando la función `isnan()`.
+
+
+### Infinito 
+
+El infinito en C se maneja de manera similar con la constante `INFINITY`. Este valor es devuelto por operaciones matemáticas que resultan en un valor infinito, como una división entre cero. `1.0 / 0.0  = INFINITY` 
+
+#### Verificación y obtención de `INFINITY`
+
+- Para verificar si un valor es infinito, se utiliza la función `isinf()`.
+- El valor de infinito se puede obtener con los limtes de double en c++ `std::numeric_limits<double>::infinity();`.
+
+
+
 
 ## Problemas
 <!-- Answer = ceil(m/a) * ceil(n/a) -->

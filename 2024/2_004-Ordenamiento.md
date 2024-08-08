@@ -19,3 +19,6 @@ Por Ariel Parra
 
 ---
         2.4 divide and conquer  quick sort 
+
+
+usar swap() para bubble o asi tambien el 
