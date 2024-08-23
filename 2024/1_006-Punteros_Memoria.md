@@ -33,6 +33,10 @@ cout << *p; //accedemos a su valor con el operador de desrreferencia '*'
 cout << p; // mostrara su dirección de memoria
 ```
 
+<!-- 
+usar la página: https://pythontutor.com/cpp.html#mode=edit
+-->
+
 ---
 
 ![bg fit](https://media.geeksforgeeks.org/wp-content/uploads/pointers-in-c.png)
@@ -161,9 +165,9 @@ Y ahora un ejemplo con matrices:
 
 ```c++
 const int REN=3, COL=3;
-int mat[REN][COL]={{ 10, 20, 30 },
-                   { 40, 50, 60 },
-                   { 70, 80, 90 }};
+int mat[REN][COL]={ { 10, 20, 30 },
+                    { 40, 50, 60 },
+                    { 70, 80, 90 } };
 int* ptr = &mat[0][0]; 
 for(int i=0; i< REN ;i++){
     for(int j=0; j< COL ;j++){
