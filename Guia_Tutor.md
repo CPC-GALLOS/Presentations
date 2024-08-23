@@ -48,7 +48,6 @@
 # Problemas por temas 
 
 # Truquillos simples (def cases):
-https://codeforces.com/contest/263/problem/A 
 https://codeforces.com/contest/1919/problem/A 
 https://codeforces.com/contest/1921/problem/A 
 https://codeforces.com/contest/1968/problem/A 

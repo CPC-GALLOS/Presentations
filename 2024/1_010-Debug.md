@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Introduccion
+title: Debug (Depuración)
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -16,7 +16,6 @@ footer: CPC Γα=Ω5
 # <!-- fit -->Debug (Depuración)
 
 Por Ariel Parra
-
 
         https://www.youtube.com/watch?v=GsQM0nJhXws
         https://github.com/GustavoMeza/icpc-notebook/blob/master/Pendejario.txt

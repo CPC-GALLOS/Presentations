@@ -80,7 +80,7 @@ U originalmente en inglés la ley de Kidlin dice:
 
 ¿Cuál es la cantidad mínima de estos tetrominós en forma de 'L' necesaria para formar un cuadrado?  
 
-![#c](https://data.chpic.su/stickers/t/TetrisTetrisTetrisTetris/TetrisTetrisTetrisTetris_010.webp)
+![#c](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa86nJwyzB_NztSud-Db4hMkqUZnQYeSGqCw&s)
  
 
 ## Concursos

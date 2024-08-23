@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Introduccion
+title: Algoritmos de Ordenamiento
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -13,8 +13,7 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLOS_white_square_transparent.png) -->
 
-# <!-- fit -->Tipos de Problemas
-
+# <!-- fit -->Algoritmos de Ordenamiento
 Por Ariel Parra
 
 ---

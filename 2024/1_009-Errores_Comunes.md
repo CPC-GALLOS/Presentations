@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Introduccion
+title: Errores Comunes
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -22,6 +22,7 @@ Por Ariel Parra
 
 debug a base de preguntas  
 
+inicio de var sin 0
 
 #### Cristian Israel Donato Flores
 

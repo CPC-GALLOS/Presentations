@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Introduccion
+title: Numeros decimales y operadores
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -93,26 +93,30 @@ min(a, b); min({a, b, c, d});
 max(a, b); max({a, b, c, d});
 pow(base, exp); powl(base, exp);
 pow(p, 1.0 / n); // raíz n-ésima de `p`
-```
-
-```c++
-fmin();
+fmin(a.b,c.d);
 fmax(a.b,c.d);
-log(num)l //LN
+log(num); //logaritmo natural ln
 log10(num);
-cos(num);   // 
+cos(num);   
 sin(num);
 tan(num);
-sqrt(num);
+sqrt(num); 
 sqrtl(num);
+inverseSqrt(n);// raíz inversa de `n`
 ``` 
 
+constantes de `<cmath>`:  `M_PI`, `M_E`,`M_SQRT2`, etc. 
+
+
 ## Funciones de manipulación de decimales
+
+imprimir `n` cantidad de decimales:
 ```c++
 #include <iomanip> // Para usar fixed y setprecision
 cout << fixed << setprecision(digits) << var; // Si digits == 0 -> redondea.
 ```
 
+manipulación de decimales en `<cmath>`:
 ```c++
 round(num); // 1.45 -> 1 , 1.5 -> 2
 trunc(num); // 1.5 -> 1 
@@ -120,9 +124,6 @@ ceil(num);  // 1.5 -> 2
 floor(num); // 1.5 -> 1
 abs(num);   // -1.5 -> 1.5, 1.5 -> 1.5
 ```
-
-Aquí te dejo una versión completa de tu presentación sobre el manejo de valores especiales como `NaN` e `INFINITY` en C++:
-
 
 ## Not A Number
 
@@ -153,8 +154,6 @@ El infinito en C se maneja de manera similar con la constante `INFINITY`. Este v
 - El valor de infinito se puede obtener con los limtes de double en c++ `std::numeric_limits<double>::infinity();`.
 
 
-
-
 ## Problemas
 <!-- Answer = ceil(m/a) * ceil(n/a) -->
 
@@ -167,8 +166,8 @@ El infinito en C se maneja de manera similar con la constante `INFINITY`. Este v
 - Nemean. (2020). *Fast Inverse Square Root — A Quake III Algorithm* [video]. Recuperado de <https://youtu.be/p8u_k2LIZyo?si=4mprBbVnW_ANZqNF>
 - Creel. (2012) *Floating Point Bit Hacks Every Programmer Should Know (Including Fast Inverse Square Root - Quake)* [video]. Recuperado de <https://youtu.be/ReTetN51r7A?si=lB7LSkmvFdlfvq16>
 - Wiffin, E. (2023). *Floating Point Math*. Recuperado de <https://0.30000000000000004.com/>
+- Wikipedia. (2024). *IEEE 754*. Recuperado de <https://es.wikipedia.org/wiki/IEEE_754/>
 
 
-https://es.wikipedia.org/wiki/IEEE_754
 
 

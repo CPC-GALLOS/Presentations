@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Introduccion
+title: Tipos de Datos y Casting
 theme: am_nord
 paginate: true
 headingDivider: [2,3]

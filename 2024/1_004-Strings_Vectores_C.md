@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Introduccion
+title: Strings y vectores de C
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -43,6 +43,13 @@ En C, un vector (o arreglo) es una colección de elementos del mismo tipo, almac
 ```c++
 int arr[5]; // Declara un vector con capacidad para 5 enteros
 arr[0] = 1; // Asigna el valor 1 al primer elemento
+```
+Recorrer un vector en C:
+
+```c++
+for (int i = 0; i < 5; i++) {
+    cout<<("Elemento en arr[" << i << "] = " << arr[i]);
+}
 ```
 
 ## Strings en C
@@ -135,8 +142,13 @@ th, td {
 
 ## Problemas 
 
+Strings:
+
 - [**59A** Word](https://codeforces.com/contest/59/problem/A)
 - [**281A** Word Capitalization](https://codeforces.com/contest/281/problem/A)
+
+Vectores: 
+
 - [**734A** Anton and Danik](https://codeforces.com/problemset/problem/734/A)
 - [**263A** Beautiful Matrix](https://codeforces.com/contest/263/problem/A)
 
