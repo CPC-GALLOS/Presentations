@@ -4,7 +4,7 @@ title: Errores Comunes
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
-author: Ariel Parra
+author: Ariel Parra & Cristian Donato
 footer: CPC Γα=Ω5
 ---
 
@@ -15,233 +15,326 @@ footer: CPC Γα=Ω5
 
 # <!-- fit -->Errores Comunes
 
-Por Ariel Parra
+Por Ariel Parra & Cristian Donato
 
+## Tipos de Errores
 
-## 
+En teória solo existen dos tipos de errores, errores de lógicos y errores de código, pero para una mejor distinción elegimos estos tipos de errores:
 
-debug a base de preguntas  
+- Errores de Acceso a Memoria
+- Errores de Precisión y Cálculo
+- Errores de Lógica y Algoritmo
+- Errores de Entrada/Salida
+- Errores de Formato y Requerimientos
 
-inicio de var sin 0
+## Errores de Acceso a Memoria
 
-#### Cristian Israel Donato Flores
+![bg left h:500](https://images7.memedroid.com/images/UPLOADED976/6026c1dc9b3a1.jpeg)
 
 ---
 
-## Errores de sintaxis
+1. **Acceso Fuera de los Límites de un Arreglo**:
+   - Acceder a elementos fuera del rango declarado de un arreglo puede resultar en valores basura.
+   ```cpp
+   int arr[5] = {1, 2, 3, 4, 5};
+   int out_of_bounds = arr[10]; // Error: acceso fuera de los límites
+   ```
 
-Revisa cuidadosamente el código en busca de errores tipográficos y verifica que todos los paréntesis, llaves y puntos y comas estén en su lugar.
+2. **Variables No Inicializadas**:
+   - Las variables no inicializadas pueden contener valores basura y causar comportamiento indefinido.
+   ```cpp
+   int x; // No inicializado
+   int y = x + 10; // Error: uso de variable no inicializada
+   ```
 
-```cpp
-int x = 5
-cout << "Hello, world!: " << x << endl;
+---
+
+3. **Fallo al Reiniciar Variables Globales**:
+   - Las variables globales pueden retener valores entre casos de prueba, causando errores.
+   ```cpp
+   int global_var = 0;
+   void reset_global() {
+       global_var = 0; // Reinicia la variable global entre casos
+   }
+   ```
+
+4. **Desbordamiento de la Pila con Recursión**:
+   - La recursión profunda puede consumir demasiada memoria en la pila.
+   ```cpp
+   void recursive_function(int n) {
+       if (n == 0) return;
+       recursive_function(n - 1); // Puede causar desbordamiento de la pila si n es muy grande
+   }
+   ```
+
+---
+
+5. **Múltiples Llamadas a una Función**:
+   - Por ejemplo, llamar a la función `strlen()` o `.size()` en lugar de declarar una variable constante que albergue dicho valor.
+   ```cpp
+   string str = "example";
+   size_t len = str.size(); // Mejor declarar una variable que llamar a str.size() múltiples veces
+   ```
+
+6. **En el Heap de C++, el Padre es Mayor a sus Hijos**:
+   - Recuerda esta propiedad al manipular el heap para evitar errores de memoria.
+   ```cpp
+   priority_queue<int> max_heap;
+   max_heap.push(5);
+   max_heap.push(10);
+   max_heap.push(3);
+   // En un heap máximo, el padre siempre es mayor que sus hijos
+   ```
+
+## Errores de Precisión y Cálculo
+
+![bg right fit](https://i.redd.it/x8mozjb993s61.png)
+
+---
+
+1. **Errores de Precisión con Números de Punto Flotante**:
+   - Los números de punto flotante pueden introducir errores de precisión, especialmente con números extremos.
+   ```cpp
+   float a = 1.0000001f;
+   float b = 1.0000002f;
+   if (a == b) {
+       // Error: los números de punto flotante pueden no ser exactamente iguales
+   }
+   ```
+
+2. **Problemas con la Aritmética Modular**:
+   - Manejar incorrectamente los números negativos con operaciones modulares puede llevar a resultados inesperados.
+   ```cpp
+   int a = -5 % 3; // Resultado puede ser inesperado
+   ```
+
+---
+
+3. **Uso de `sqrt` y Conversión a Entero**:
+   - La conversión incorrecta de valores `double` a enteros puede causar errores.
+   ```cpp
+   double x = 8.0;
+   int y = sqrt(x); // Puede perder precisión al convertir a int
+   ```
+
+4. **Overflow y Underflow de Enteros**:
+   - Realizar operaciones que exceden el rango de un entero puede causar resultados incorrectos o comportamiento indefinido.
+   ```cpp
+   int a = INT_MAX;
+   int b = a + 1; // Overflow: comportamiento indefinido
+   ```
+
+---
+
+5. **Underflow de Enteros Sin Signo**:
+   - Restar de un entero sin signo puede llevar a desbordamientos inesperados.
+   ```cpp
+   unsigned int a = 0;
+   unsigned int b = a - 1; // Underflow: resultado inesperado
+   ```
+
+6. **Diferencias entre `floor` y `trunc` en Divisiones**:
+   - Esto es importante al manejar números negativos: `floor(-4.5)` es `-5`, mientras que `trunc(-4.5)` es `-4`.
+   ```cpp
+   double a = -5.5;
+   int result1 = floor(a / 2); // -3
+   int result2 = trunc(a / 2); // -2
+   ```
+
+## Errores de Lógica y Algoritmo
+
+![bg right:70% fit](https://cdn.eldeforma.com/wp-content/uploads/2020/07/captura-de-pantalla-2020-07-10-a-las-153456-e1605304674122.png)
+
+---
+
+1. **Existencia de casos base**:
+   - Considerar los casos 0, 1, y casos máximos para asegurar una solución optima.
+   ```cpp
+   void solve(int n) {
+       if (n == 0) { /* manejar caso 0 */ }
+       if (n == 1) { /* manejar caso 1 */ }
+       if (n == INT_MAX) { /* manejar el caso máximo */ }
+   }
+   ```
+
+2. **Errores de Sintaxis**:
+   - Errores básicos como olvidarse de un punto y coma o usar el tipo de datos incorrecto pueden causar fallos de compilación.
+   ```cpp
+   int x = 10 // Error de sintaxis: falta el punto y coma
+   ```
+
+---
+
+3. **Sombreado de Variables (Variable Shadowing)**:
+   - Declarar una variable en un ámbito interno con el mismo nombre que una externa puede causar comportamiento inesperado.
+   ```cpp
+   int x = 5;
+   void func() {
+       int x = 10; // Sombrea la variable global x
+   }
+   ```
+
+4. **Orden de Operaciones (Precedencia de Operadores)**:
+   - No entender el orden de las operaciones puede llevar a errores lógicos.
+   ```cpp
+   int x = 2 + 3 * 4; // El resultado es 14, no 20
+   ```
+
+5. **Errores en Comparadores Personalizados para Ordenamiento**:
+   - Usar comparadores personalizados incorrectamente puede llevar a una ordenación errónea.
+   ```cpp
+   sort(vec.begin(), vec.end(), [](int a, int b) { return a > b; });
+   ```
+
+---
+
+6. **En Caso de TLE, Checa que Todos los Ciclos Terminen**:
+   - Asegúrate de que todos los ciclos en tu programa terminen para evitar tiempos de ejecución largos.
+   ```cpp
+   while (true) {
+       // Error: bucle infinito que puede causar TLE
+   }
+   ```
+
+7. **Si una DP Multicaso Da TLE, Intenta Precalcular Todo**:
+   - Precalcular datos para evitar recalcular en cada caso de prueba.
+   ```cpp
+   int dp[1000];
+   void precalculate() {
+       for (int i = 0; i < 1000; ++i) {
+           dp[i] = /* algún cálculo */;
+       }
+   }
+   ```
+
+### Errores de Entrada/Salida
+
+![bg left fit](https://content.imageresizer.com/images/memes/mouse-entering-and-leaving-meme-2.jpg)
+
+---
+
+1. **Manejo Incompleto de la Entrada**:
+   - No leer toda la entrada puede llevar a procesar datos sobrantes de casos anteriores.
+   ```cpp
+   int x;
+   while (cin >> x) {
+       // Procesar x, pero podría quedar entrada sin procesar
+   }
+   ```
+
+2. **No Usar `endl` (a Menos que Quieras Hacer `flush`)**:
+   - Usa `\n` en lugar de `endl` para evitar flushing innecesario.
+   ```cpp
+   cout << "Hello\n"; // Mejor que usar cout << "Hello" << endl;
+   ```
+
+---
+
+3. **Recordar Usar la Implementación de `cout` y `cin` Rápidos**:
+   - Añadir configuraciones al inicio del `main` para optimizar el rendimiento de `cin` y `cout`.
+   ```cpp
+   ios::sync_with_stdio(0);
+   cin.tie(0);
+   ```
+
+4. **No Mezclar `cin`/`cout` con `scanf`/`printf`**:
+   - Mezclar diferentes métodos de entrada/salida puede causar problemas de sincronización.
+   ```cpp
+   int x;
+   scanf("%d", &x);
+   cout << x; // Error: mezclar scanf con cout puede causar problemas
+   ```
+
+5. **Lectura de Espacios**:
+   - Usar `getline` para leer cadenas con espacios.
+   ```cpp
+   string str;
+   getline(cin, str);
+   ```
+
+### Errores de Formato y Requerimientos
+
+![bg right fit](https://images7.memedroid.com/images/UPLOADED986/63bd3172c8eee.jpeg)
+
+---
+
+1. **¿Alguna Variable Necesita Ser `long long` o `unsigned long long`?**:
+   - Verifica si necesitas usar tipos más grandes como `long long` para evitar desbordamientos.
+   ```cpp
+   long long large_num = 1000000000000LL;
+   unsigned long long huge_num = 1000000000000000ULL;
+   ```
+
+2. **Si el Programa es Multicaso, Limpia las Variables**:
+   - Asegúrate de reiniciar variables globales o estáticas entre casos de prueba.
+   ```cpp
+   int t; // Número de casos
+   while (t--) {
+       // Reinicia variables aquí
+       global_var = 0;
+   }
+   ```
+
+---
+
+3. **¿El Formato de Salida es Fuera de lo Común?**:
+   - Asegúrate de que
+
+ tu salida sigue el formato específico requerido.
+```c++
+cout << setfill('0') << setw(2) << hours << ":"<< setfill('0') << setw(2) << minutes ;
 ```
 
----
-
-## Índices fuera de rango
-
-Asegúrate de que los índices utilizados estén dentro de los límites válidos. Utiliza bucles for con los límites correctos para evitar esto.
-
-```cpp
-int arr[3] = {1, 2, 3};
-int value = arr[5];  // Acceso a un índice fuera de rango
-cout << value << endl;
-```
+4. **¿El Límite es Más Chico de lo que Parece?**:
+   - Revisa los límites del problema para evitar asumir un rango mayor.
+   ```cpp
+   int n = 1000; // Verifica que el límite es correcto
+   ```
 
 ---
 
-## Declaración de variables
+5. **¿El Problema Requiere de un Módulo en la Respuesta?**:
+   - Asegúrate de aplicar el módulo a todos los cálculos relevantes.
+   ```cpp
+   int result = (a + b) % 1000000007; // Aplicar el módulo en la respuesta
+   ```
 
-Declara todas las variables antes de usarlas y en el ámbito adecuado. Utiliza nombres de variables descriptivos para evitar confusiones.
-
-```cpp
-if (true) {
-    int x = 10;
-}
-cout << x << endl;  // x no está en el ámbito correcto
-return 0;
-```
-
----
-
-## Desbordamiento o truncamiento
-
-Utiliza tipos de datos apropiados para las operaciones. Si se esperan números grandes, considera el uso de tipos de datos de mayor capacidad.
-
-```cpp
-short int num = 32767;
-num = num + 1;  // Desbordamiento en short int
-cout << num << endl;
-```
+6. **Si una Función Debe Devolver un Valor, ¿Estás Devolviéndolo en Todos los Casos?**:
+   - Asegúrate de que todas las rutas de código devuelvan un valor si se espera.
+   ```cpp
+   int func(int x) {
+       if (x > 0) return x;
+       // Error: no se devuelve ningún valor si x <= 0
+   }
+   ```
 
 ---
 
-## Comparaciones incorrectas
-
-Verifica que estás utilizando los operadores de comparación (==, !=, <, >, <=, >=) en lugar de operadores de asignación (=).
-
-## Olvidar incluir librerías
-
-Asegúrate de incluir todas las librerías necesarias para las funciones y operaciones utilizadas en tu código.
-
----
-
-## Orden incorrecto de argumentos
-
-Revisa las firmas de las funciones y los operadores que estás utilizando para asegurarte de que los argumentos estén en el orden correcto.
-
----
-
-## Errores de lógica
-
-Comprende completamente el problema antes de empezar a codificar. Realiza pruebas en papel o en tu mente para verificar la lógica antes de implementarla.
-
-```cpp
-int x = 10;
-if (x > 5 && x < 8) {  // Condición lógica incorrecta
-    cout << "x is between 5 and 8" << endl;
-} else {
-    cout << "x is not between 5 and 8" << endl;
-}
-```
-
----
-
-## Cálculos con punto flotante
-
-Utiliza funciones y técnicas específicas para minimizar los errores de punto flotante, como redondeo y comparaciones aproximadas.
-
-## Cadena de formato incorrecta
-
-Asegúrate de usar las cadenas de formato correctas para las funciones de entrada/salida, como cout y cin.
-
----
-
-## Uso incorrecto de estructuras de datos
-
-Aprende cómo funcionan y cómo se utilizan las estructuras de datos antes de aplicarlas en tu código. Practica su uso en ejemplos simples.
-
-```cpp
-int[] v = {1, 2, 3};
-cout << v[0].size() << endl;  // Uso incorrecto de vector
-```
-
----
-
-## Falta de optimización
-
-Optimiza tu código mediante técnicas como la poda en algoritmos de búsqueda, uso eficiente de estructuras de datos y minimización de bucles anidados.
-
-## No leer las restricciones
-
-Lee detenidamente las restricciones del problema y considera cómo afectarán tu enfoque y solución. Asegúrate de cumplir con los límites de tiempo y memoria.
-
----
-
-## Copiar y pegar errores
-
-Si copias código de internet, asegúrate de entenderlo por completo y modifícalo según las necesidades de tu problema. Evita el copiar y pegar ciegamente.
-
-## Uso de variables no inicializadas
-
-Siempre asegúrate de inicializar tus variables antes de utilizarlas para evitar comportamientos indefinidos.
-
-```cpp
-int x;
-cout << x << endl;  // Uso de variable no inicializada
-```
-
----
-
-## Operaciones entre tipos incompatibles
-
-Verifica que los tipos de datos involucrados en operaciones sean compatibles, por ejemplo, no realizar operaciones aritméticas con punteros.
-
-```cpp
- int x = 5;
-    char c = 'A';
-    int result = x + c;  // Operación entre tipos incompatibles
-    cout << result << endl;
-```
-
----
-
-## Falta de manejo de errores
-
-No verificar si las operaciones como la apertura de archivos o asignación de memoria han tenido éxito puede llevar a problemas difíciles de depurar.
-
-## Manipulación incorrecta de cadenas
-
-Las cadenas en C++ son matrices de caracteres, por lo que asegúrate de trabajar dentro de los límites válidos y utilizar funciones de manejo de cadenas adecuadas.
-
----
-
-## Conversiones incorrectas de tipos de datos
-
-Realizar conversiones entre tipos de datos de manera incorrecta puede llevar a pérdida de información o resultados incorrectos.
-
-## Falta de control de flujo
-
-No usar declaraciones break o return correctamente en bucles o funciones puede causar un comportamiento inesperado.
-
----
-
-## Errores en expresiones booleanas
-
-Verifica las condiciones en tus declaraciones if, while y for para asegurarte de que estén evaluando las condiciones de manera adecuada.
-
----
-
-## Uso incorrecto de funciones recursivas
-
-Asegúrate de que las funciones recursivas tengan casos base y condiciones de término para evitar bucles infinitos.
-
-```cpp
-int factorial(int n) {
-    return n * factorial(n - 1);  // Falta caso base
-}
-
-int main() {
-    int n = 5;
-    int result = factorial(n);
-    cout << "Factorial of " << n << " is " << result << endl;
-    return 0;
-}
-
-```
-
----
-
-## Ignorar advertencias del compilador
-
-Presta atención a las advertencias del compilador, ya que pueden señalar problemas potenciales en tu código.
-
----
-
-## Uso incorrecto de constantes y variables globales
-
-Evita la sobreutilización de variables globales, ya que pueden dificultar el seguimiento y la depuración del código.
-
-```cpp
-int globalVar = 10;  // Variable global
-
-int main() {
-    const int constVar = 5;  // Constante local
-    globalVar = 20;  // Modificación de variable global
-    constVar = 10;   // Error: No se puede modificar constante
-    cout << globalVar << " " << constVar << endl;
-    return 0;
-}
-```
-
----
-
-## No limpiar el estado del flujo de entrada/salida
-
-Después de leer o escribir en flujos de entrada/salida, asegúrate de restablecer su estado para evitar problemas en operaciones posteriores.
-
-
+7. **Si el Problema Tiene Grafos, ¿Éstos Deben Ser Conexos?**:
+   - Verifica la conectividad (de todos los nodos) si es un requisito del problema.
+   ```cpp
+   vector<int> graph[100];
+   bool visited[100] = {false};
+   void dfs(int node) {
+       visited[node] = true;
+       for (int neighbor : graph[node]) {
+           if (!visited[neighbor]) {
+               dfs(neighbor);
+           }
+       }
+   }   // 
+   ```
+
+## Los errores te hacen más fuerte, mi compa que puso `cout >>`:
+
+![#c h:500](https://i.pinimg.com/474x/e6/4d/2f/e64d2f640b07a61f3dbbc1431abe3190.jpg)
+
+
+## Problemas
+
+- [**268A** Games](https://codeforces.com/contest/268/problem/A)
+- [**1919A** Wallet Exchange](https://codeforces.com/contest/1919/problem/A)
 ## Referencias
 
+- Colin Galen. (2021). *C++ Mistakes Noobs Make (and how to prevent them)* [video]. Recuperado de <https://www.youtube.com/watch?v=GsQM0nJhXws>
 - Meza, G. (2021). *Pendejario.txt*. Recuperado de <https://github.com/GustavoMeza/icpc-notebook/blob/master/Pendejario.txt>

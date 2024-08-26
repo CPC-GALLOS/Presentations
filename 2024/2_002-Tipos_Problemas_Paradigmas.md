@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Tipos de Problemas
+title: Tipos de Problemas y Paradigmas
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -11,9 +11,9 @@ footer: CPC Γα=Ω5
 <!-- _class: cover_e -->
 <!-- _paginate: "" -->
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
-<!-- _header: ![](./img/GALLOS_white_square_transparent.png) -->
+<!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit -->Tipos de Problemas
+# <!-- fit -->Tipos de Problemas y Paradigmas
 
 Por Ariel Parra
 

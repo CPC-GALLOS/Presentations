@@ -158,10 +158,9 @@ for(int i=0; i < 3;++i)
     cout << *(ptr+i); // ptr[i];
 ```
 
-
 --- 
 
-Y ahora un ejemplo con matrices:
+Aritmética de Punteros en **matrices**:
 
 ```c++
 const int REN=3, COL=3;
@@ -176,12 +175,19 @@ for(int i=0; i< REN ;i++){
 }
 ```
 
+¿Creen que este código funcione?
+```c++
+int vec[] = {10, 20, 30}; int *ptr = vec;
+for(int i=0; i < 3; ++i) cout << i[ptr];
+```
+
+
 ## Distribución de la memoria
 
 - **stack**: almacena variables locales
 - **heap**: memoria dinámica para que la asigne el programador
 - **data**: almacena variables globales, separadas en inicializadas y no inicializadas
-- **texto**: almacena el código que se está ejecutando
+- **text**: almacena las funciones y el código que se está ejecutando
 
 ![bg fit right](https://courses.grainger.illinois.edu/cs225/fa2022/assets/notes/stack_heap_memory/memory_layout.png)
 
@@ -201,7 +207,7 @@ A diferencia de la memoria de stack, la memoria del heap es asignada explícitam
 
 **Usa el stack cuando:**
 
-- No desea desasignar variables usted mismo.
+- No deseas desasignar variables usted mismo.
 - Necesitas velocidad (la CPU gestiona eficientemente el espacio).
 - El tamaño variable es estático.
 
@@ -217,6 +223,28 @@ A diferencia de la memoria de stack, la memoria del heap es asignada explícitam
 ## Complicaciones
 
 ![bg right:64%](https://i.pinimg.com/474x/d2/08/9c/d2089c476be3dc3305b51057f8da1c78.jpg)
+
+### Colisión entre Heap y Stack 
+
+```c++
+void recursion(int depth) {
+    int largeArray[10000];  // Asignación grande en el stack
+    recursiveFunction(depth + 1);
+}
+
+int main() {
+    // Asignación de un bloque grande de memoria en el heap
+    int *heapMemory = (int*)malloc(100000000 * sizeof(int));
+
+    // Iniciar la función recursiva que consumirá el stack
+    recursiveFunction(1);
+
+    // Liberar la memoria en el heap (aunque no se alcanzará si ocurre una colisión)
+    free(heapMemory);
+    return 0;
+}
+```
+<!-- mostrar mi código: https://github.com/ArielParra/Proyecto_Estructuras  donde tengo goto para solucionar el problema  -->
 
 ### Pointer to a Constant (const int* ptr)
 
@@ -268,28 +296,6 @@ int main() {
 ```
 
 <!-- Preguntar que falta en memory leak -->
-
-### Colisión entre Heap y Stack 
-
-```c++
-void recursion(int depth) {
-    int largeArray[10000];  // Asignación grande en el stack
-    recursiveFunction(depth + 1);
-}
-
-int main() {
-    // Asignación de un bloque grande de memoria en el heap
-    int *heapMemory = (int*)malloc(100000000 * sizeof(int));
-
-    // Iniciar la función recursiva que consumirá el stack
-    recursiveFunction(1);
-
-    // Liberar la memoria en el heap (aunque no se alcanzará si ocurre una colisión)
-    free(heapMemory);
-    return 0;
-}
-
-```
 
 
 ## Conclusión

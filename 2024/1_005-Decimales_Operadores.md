@@ -27,7 +27,6 @@ Los números decimales en C se representan mediante tipos de datos de punto flot
 - **long double**: Precisión extendida ( 10 bytes (x86) o 16 bytes (x64) ).
 
 #### Representación Binaria 
-
 Los números enteros se representan directamente en binario, usando potencias de 2. Por ejemplo, el número decimal 13 se representa en binario como `1101`, que es igual a 
 
 $$ 2^3 + 2^2 + 2^0 $$
@@ -58,7 +57,7 @@ $$ 0.101_2 $$
 
 ### Representación en IEEE 754
 
-Supongamos que queremos representar el número decimal 5.75 en precisión simple (32 bits):
+Supongamos que queremos representar el número decimal 5.75 en precisión simple (32 bits (tipo `float`) ):
 
 1. **Convertir a Binario**: 5.75 en binario es 101.11
 2. **Normalizar**: La representación normalizada es 1.0111 × 2^2.
@@ -76,15 +75,21 @@ Entonces, el número 5.75 se representa en IEEE 754 como:
 ##  Operadores aritméticos
 
 ```c++
-int a = 10, b = 3;
 cout << "Suma: " << a + b << endl; // Suma
 cout << "Resta: " << a - b << endl; // Resta
 cout << "Multiplicación: " << a * b << endl; // Multiplicación
 cout << "División: " << a / b << endl; // División (entera: redondea hacia abajo)
 cout << "Módulo: " << a % b << endl; // Módulo
 ```
-
-<!-- mencionar que en problemas piden entregar resultados con modulo: const int MOD = 1e9 + 7; -->
+Operaciones simples con **módulo** `%`:
+```c++
+const int MOD = 1e9 + 7; //limite de salida
+cout << (a + b ) % MOD;
+cout << (a - b + MOD) % MOD; // resta
+cout << (a * b ) % MOD;
+cout << (a / b ) % MOD; // INCORRECTO uso del modular inverso, ocupa el teorema de Fermat
+cout << ( min + rand() % (max - min + 1) ); // número aleatorio limitado en mínimo y máximo
+```
 
 ## Funciones en `<cmath>`
 
@@ -120,10 +125,11 @@ manipulación de decimales en `<cmath>`:
 ```c++
 round(num); // 1.45 -> 1 , 1.5 -> 2
 trunc(num); // 1.5 -> 1 
-ceil(num);  // 1.5 -> 2 
-floor(num); // 1.5 -> 1
+ceil(num);  // 1.5 -> 2, con int ceil de `a/b` es: `(a + b - 1) / a`
+floor(num); // 1.5 -> 1, con int `a/b` siempre sera floor 
 abs(num);   // -1.5 -> 1.5, 1.5 -> 1.5
 ```
+
 
 ## Not A Number
 

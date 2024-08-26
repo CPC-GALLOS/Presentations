@@ -63,6 +63,8 @@ char c[] = {'v', 'a', 'l', 'o', 'r', '\0'};
 char c[6] = {'v', 'a', 'l', 'o', 'r', '\0'};
 ```
 
+<!-- Preguntarles porqué es c[6] porqué 6 si son 5 caracteres ? -->
+
 ## Matrices
 
 Las matrices en C son arreglos multidimensionales, lo que significa que son arreglos de arreglos. La más común es la matriz bidimensional, que se puede imaginar como una tabla de filas y columnas.
@@ -139,6 +141,8 @@ th, td {
 [islower(char)](https://en.cppreference.com/w/c/string/byte/islower)  | [strtol(cstring, NULL, 0)](https://en.cppreference.com/w/c/string/byte/strtol)      | [strcmp(string, string-comparar)](https://en.cppreference.com/w/c/string/byte/strcmp)
 [tolower(char)](https://en.cppreference.com/w/c/string/byte/tolower)  | <del>[itoa(int, cstring, 10)](https://cplusplus.com/reference/cstdlib/itoa/)</del> | [strncmp(string, string-comparar, int)](https://en.cppreference.com/w/c/string/byte/strn0cmp)
 [toupper(char)](https://en.cppreference.com/w/c/string/byte/toupper)  | [sprintf(cstring,"%i",int)](https://en.cppreference.com/w/c/io/fprintf) | [strlen(string)](https://en.cppreference.com/w/c/string/byte/strlen)
+
+<!-- abrir algunos de estos links para que vean su uso, también explicar que nunca se deberia usar itoa() debido a que es una función exclusiva de Windows y deperian usar sprintf() en su lugar-->
 
 ## Problemas 
 
