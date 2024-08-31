@@ -82,7 +82,7 @@ int main() {
 
 # funciones STL que devuelven iteradores
 
-
+```c++
     auto [minIt, maxIt] = std::minmax_element(vec.begin(), vec.end());
 
     if (minIt != vec.end() && maxIt != vec.end()) {
@@ -97,6 +97,7 @@ std::vector<int> vec(another_vector.begin(), another_vector.begin() + n);
 
 .begin
 .end
+```
 
 ## Referencias
 

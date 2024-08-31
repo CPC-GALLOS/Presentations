@@ -17,14 +17,13 @@ footer: CPC Γα=Ω5
 Por Ariel Parra
 
 ---
-        2.4 divide and conquer  quick sort 
 
+2.4 divide and conquer  quick sort 
+
+
+```c++
 
 usar swap() para bubble 
-
-
-
-
 
 sort(vec.begin(), vec.end());//ascending
 sort(vec.begin(), vec.end(), greater<int>());//non ascending
@@ -36,7 +35,7 @@ vector<pair<int, int>> vec = {{3, 1}, {2, 5}, {1, 4}};
 sort(vec.begin(), vec.end(), myOrder);
 for(auto elem : vec)
     cout << "(" << elem.first << ", " << elem.second << ") ";
-
+```
 
 
     ## Anagramas
