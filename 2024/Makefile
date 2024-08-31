@@ -6,16 +6,17 @@ else  	  #*NIX usando GNU make
 	FixPath = $1
 endif
 
-FLAGS :=--allow-local-files --html --theme
+FLAGS =--allow-local-files --html 
+#FLAGS += --pdf
 THEME :=../src/am_nord.scss
 FILE :=  $(word 1, $(MAKECMDGOALS))
 
 $(FILE): 
-	$(CPL) $(FLAGS) $(call FixPath,$(THEME)) $(call FixPath,$@)
+	$(CPL) $(FLAGS) --theme $(call FixPath,$(THEME)) $(call FixPath,$@)
 
 all: $(FILE)
 
 clean:
 	rm -f *.html
 
-.PHONY: all clean
+.PHONY: all clean pdf
