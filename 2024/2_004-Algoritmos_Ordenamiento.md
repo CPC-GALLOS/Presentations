@@ -31,7 +31,7 @@ sort(vec.begin(), vec.end(), greater<int>());//non ascending
 inline bool myOrder(pair<int, int> p1, pair<int, int> p2) {
     return p1.first < p2.first;
 }
-vector<pair<int, int>> vec = {{3, 1}, {2, 5}, {1, 4}};
+vector<pair<int, int>> vec = { {3, 1}, {2, 5}, {1, 4} };
 sort(vec.begin(), vec.end(), myOrder);
 for(auto elem : vec)
     cout << "(" << elem.first << ", " << elem.second << ") ";
