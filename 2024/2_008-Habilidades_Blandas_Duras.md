@@ -13,7 +13,7 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit -->
+# <!-- fit --> Habilidades Blandas y Duras (Teamwork)
 
 
     2.8 Habilidades blandas/duras (softskills/hardskills),  trabajo en equipo teamwork

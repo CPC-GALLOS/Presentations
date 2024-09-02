@@ -15,3 +15,7 @@ footer: CPC Γα=Ω5
 
 # <!-- fit -->
 
+
+# Two pointer:
+https://codeforces.com/contest/448/submission/228960388
+

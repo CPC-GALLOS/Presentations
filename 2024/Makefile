@@ -7,7 +7,7 @@ else  	  #*NIX usando GNU make
 endif
 
 FLAGS =--allow-local-files --html 
-#FLAGS += --pdf
+FLAGS += --pdf
 THEME :=../src/am_nord.scss
 FILE :=  $(word 1, $(MAKECMDGOALS))
 

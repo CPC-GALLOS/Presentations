@@ -40,8 +40,10 @@ vector<int> vec{1, 2, 3, 4, 5}; // Similar al anterior
 vector<int> vec (n);// vector de tamaño n
 vector<int> vec (n,0);// vector de tamaño n y llenado con puros ceros
 vector<vector<int>> matriz;
-
+vec.empty(); //true (1) si esta vacia, false (0) sino
 vec.push_back(6); // Agregar un elemento al final
+vec.pb(6); // push_back acortado de la plantilla
+vec.emplace_back(valor); // como push_back, pero más veloz
 vec.size(); // tamaño
 vec.empty(); // limpia los contenidos del vector
 int a = vec.pop_back(); //elimina el elemento del final
@@ -126,7 +128,7 @@ str.size();
 str.lenght(); // lo mismo que .size(), pero exclusivo para strings
 if (str == "Alan Martínez") cout << "Yey!";
 if (str.compare("Alan Martínez")) cout << "Yey!";
-
+str.empty(); //true (1) si esta vacia, false (0) sino
 str = "Hello, world!";
 // Reemplaza "world" (empezando en la posición 7) con "C++"
 str.replace(7, 5, "C++");// 5 es la longitud de "world"
@@ -228,15 +230,31 @@ En C++, tanto `pair` como `tuple` son estructuras de datos útiles para agrupar 
 
 `pair` es una estructura de datos que almacena dos elementos de posiblemente diferentes tipos. Es parte de la biblioteca estándar de C++ y se define en el header `<utility>`.
 ```c++
-pair<string, int> nombre
+pair<string, int> p1;
 auto p2 = make_pair("Hello", 42);
+p1.first = "Hello";
+p1.second  = 42;
+cout << p2.F << p2.S; // con el define de la plantilla
+
+if (p1 == p2) cout << "Son iguales";
+
 ```
 
-`tuple` es una estructura de datos que puede almacenar un número arbitrario de elementos de diferentes tipos:
+---
+
+la tupla o `tuple` es una estructura de datos que puede almacenar un número arbitrario de elementos de diferentes tipos:
 
 ```c++
+#include <utility>  // Para std::tie
 tuple <int,double,string> t1;
 auto t2 = make_tuple(10, 20.5, "World");
+
+
+int entero = get<0>(t1);
+double decimal = get<1>(t1); 
+string texto = get<2>(t1);
+
+tie(entero, decimal, texto) = t2; // obtener valores con tie
 ```
 
 
@@ -245,23 +263,39 @@ auto t2 = make_tuple(10, 20.5, "World");
 ```c++
 int minimo = min(a,b);
 minimo = min({a,b,c,d})
-
 int maximo = max(a,b);
 maximo = max({a,b,c,d})
-
 auto [minVal, maxVal] = minmax(a, b);
+cout << minVal << maxVal;
 
-int sum = accumulate(v.begin(), v.end(), sumStart); //sumatoria notación sigma ( Σ )
+//sumatoria notación sigma ( Σ )
+int i = 0; // inicio de la suma
+int sum = accumulate(v.begin(), v.end(), i); 
+// multiplicatoria, notación pi ( Π )
+int i = 1; // valor multiplicativo inicial
+int product = accumulate(v.begin(), v.end(), i, multiplies<int>()); 
+// acumulación personalizada con lamda
+int result = std::accumulate(v.begin(), v.end(),i, [](int a, int b) {
+  return a+b;//operación
+});
+```
 
-int product = accumulate(v.begin(), v.end(), 1,multiplies<int>());  // multiplicatoria, notación pi ( Π )
+---
+
+```c++
 
 merge(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(vecR));
-merge(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), vecR.begin());// recuerda declarar a vecR con la suma de ambos tamaños
+// en este segundo caso declarar a vecR con la suma de ambos tamaños
+merge(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), vecR.begin());
 
-fill(v.begin(), v.end(), value); // Llena todos los elementos del vector con el valor `value`
+// Llena todos los elementos del vector con el valor `value`
+fill(v.begin(), v.end(), value); 
 
-iota(vec.begin(), vec.end(),start); // Llena el vector con valores secuenciales empezando en `start`
+// Llena el vector con valores secuenciales empezando en `start`
+iota(vec.begin(), vec.end(),start); 
 ```
+
+<!-- Mencionar que no ocupan memorizar todas las funciones ya que pueden crear un Notebook de equipo y anotar las sintaxis, solo ocupan saber que dichas funciones existen -->
 
 ## Problemas
 
@@ -280,6 +314,9 @@ iota(vec.begin(), vec.end(),start); // Llena el vector con valores secuenciales 
 - GeeksforGeeks. (2024). *Substring in C++*. Recuperado de <https://www.geeksforgeeks.org/substring-in-cpp/>
 - GeeksforGeeks. (2024). *Vector in C++ STL*. Recuperado de <https://www.geeksforgeeks.org/vector-in-cpp-stl/>
 - Imam, M. (2023). *Pair in C++ Standard Template Library (STL)*. Recuperado de <https://www.geeksforgeeks.org/pair-in-cpp-stl/>
+
+---
+
 - Kumar, H. (2024). *String | Palindrome*. Recuperado de <https://www.geeksforgeeks.org/string-palindrome/>
 - mrityuanjay8vae. (2024). *String Guide for Competitive Programming*. Recuperado de <https://www.geeksforgeeks.org/strings-for-competitive-programming/>
 - Pal, S. (2019). *What are some tips for code (C++) optimization to get a better time in competitive programming?*. Recuperado de <https://www.quora.com/What-are-some-tips-for-code-C-optimization-to-get-a-better-time-in-competitive-programming?lang=www>

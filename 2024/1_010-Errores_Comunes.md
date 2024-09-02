@@ -11,7 +11,7 @@ footer: CPC Γα=Ω5
 <!-- _class: cover_e -->
 <!-- _paginate: "" -->
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
-<!-- _header: ![](./img/GALLOS_white_square_transparent.png) -->
+<!-- _header: ![](./img/GALLO.png) -->
 
 # <!-- fit -->Errores Comunes
 
@@ -76,15 +76,16 @@ En teória solo existen dos tipos de errores, errores de lógicos y errores de c
    size_t len = str.size(); // Mejor declarar una variable que llamar a str.size() múltiples veces
    ```
 
-6. **En el Heap de C++, el Padre es Mayor a sus Hijos**:
-   - Recuerda esta propiedad al manipular el heap para evitar errores de memoria.
-   ```cpp
-   priority_queue<int> max_heap;
-   max_heap.push(5);
-   max_heap.push(10);
-   max_heap.push(3);
-   // En un heap máximo, el padre siempre es mayor que sus hijos
-   ```
+6. **Error al iterar en un vector**:
+   - Recuerda que se recorrera desde `n-1` hasta `0`
+   ```c++
+   for (int i = n; i >= 0; --i) 
+      cout << vec[i] << " ";// vec[n] no existe!, vec[n-1] si
+   for (int i = 0; i < n ; ++i) 
+      cout << vec[i+1] << " ";// vec[i+1] sobrepasa el limite!, limita a n-1
+    ```
+
+
 
 ## Errores de Precisión y Cálculo
 
@@ -335,6 +336,7 @@ cout << setfill('0') << setw(2) << hours << ":"<< setfill('0') << setw(2) << min
 - [**268A** Games](https://codeforces.com/contest/268/problem/A)
 - [**1919A** Wallet Exchange](https://codeforces.com/contest/1919/problem/A)
 
+<!-- Mencionar el pendejario.txt de Gustavo Meza, ex competidor de Aguascalientes -->
 
 ## Referencias
 

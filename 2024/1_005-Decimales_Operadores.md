@@ -75,11 +75,11 @@ Entonces, el número 5.75 se representa en IEEE 754 como:
 ##  Operadores aritméticos
 
 ```c++
-cout << "Suma: " << a + b << endl; // Suma
-cout << "Resta: " << a - b << endl; // Resta
-cout << "Multiplicación: " << a * b << endl; // Multiplicación
-cout << "División: " << a / b << endl; // División (entera: redondea hacia abajo)
-cout << "Módulo: " << a % b << endl; // Módulo
+cout << "Suma: " << (a + b) << endl; // Suma
+cout << "Resta: " << (a - b) << endl; // Resta
+cout << "Multiplicación: " << (a * b) << endl; // Multiplicación
+cout << "División: " << (a / b) << endl; // División (entera: redondea hacia abajo)
+cout << "Módulo: " << (a % b) << endl; // Módulo
 ```
 Operaciones simples con **módulo** `%`:
 ```c++
@@ -90,6 +90,8 @@ cout << (a * b ) % MOD;
 cout << (a / b ) % MOD; // INCORRECTO uso del modular inverso, ocupa el teorema de Fermat
 cout << ( min + rand() % (max - min + 1) ); // número aleatorio limitado en mínimo y máximo
 ```
+
+<!-- Mencionar que es importante el uso del parentesis () -->
 
 ## Funciones en `<cmath>`
 
