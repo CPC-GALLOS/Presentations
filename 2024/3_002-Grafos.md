@@ -16,8 +16,10 @@ footer: CPC Γα=Ω5
 # <!-- fit -->
 
     3.5 grafos y nodos
-        3.5.1 DFS y BFS
+        3.5.1 DFS y BFS (recursion goto y iterativo)
         3.5.2 bipartitas
         3.5.3 Ajedrez
-        3.5.4  Flood Fill
+        3.5.4 Flood Fill
         3.5.5 backtracking 
+
+

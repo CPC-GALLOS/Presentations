@@ -124,8 +124,8 @@ los strings en c son solo arrays de `char`, pero en c++ son un contenedor de la 
 #include <string>
 string str = "Alan";           
 str += " Martínez";
-str.size();
-str.lenght(); // lo mismo que .size(), pero exclusivo para strings
+str.size(); str.lenght(); // lo mismo que .size(), pero exclusivo para strings
+strlen( str.c_str() ); // string de C para funciones de <cstring> o <ctype>  
 if (str == "Alan Martínez") cout << "Yey!";
 if (str.compare("Alan Martínez")) cout << "Yey!";
 str.empty(); //true (1) si esta vacia, false (0) sino
@@ -158,6 +158,7 @@ En C++, stringstream es una clase de la biblioteca estándar (STL) que permite r
 string nombre = "Alan";
 stringstream ss;
 ss << "Hola, " << nombre << "!";
+string resultado = ss.str(); //convertir de nuevo en string
 ```
 <!-- Menciona que la concatenación de strings es más rapido asi, es mejor `ss << str1;` que `str += str1`; -->
 

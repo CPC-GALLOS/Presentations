@@ -32,12 +32,14 @@ Por Ariel Parra
 
 ## Sinonimos / Alias en
 
-- **1 byte**: `uint8_t`, `unsigned char`, `int8_t`, `signed char`, `int_least8_t`, `uint_least8_t`, `int_fast8_t`, `uint_fast8_t`
-- **2 bytes**: `int16_t`, `short`, `short int`, `signed short int`, `uint16_t`, `unsigned short`, `unsigned short int`, `int_least16_t`, `uint_least16_t`
-- **4 bytes**: `int32_t`, `int`, `signed int`, `uint32_t`, `unsigned int`, `int_least32_t`, `uint_least32_t`, `int_fast16_t`, `uint_fast16_t`, `int_fast32_t`, `uint_fast32_t`
-- **8 bytes**: `int64_t`, `long long`, `signed long long`, `uint64_t`, `unsigned long long`, `int_least64_t`, `uint_least64_t`, `int_fast64_t`, `uint_fast64_t`, `intmax_t`, `uintmax_t`
+- **1 byte/8 bits**: `uint8_t`, `unsigned char`, `int8_t`, `signed char`, `int_least8_t`, `uint_least8_t`, `int_fast8_t`, `uint_fast8_t`
+- **2 byte/16 bits**: `int16_t`, `short`, `short int`, `signed short int`, `uint16_t`, `unsigned short`, `unsigned short int`, `int_least16_t`, `uint_least16_t`
+- **4 bytes/32 bits**: `int32_t`, `int`,`long int` `signed int`, `uint32_t`, `unsigned int`, `unsigned long int`,`long`, `int_least32_t`, `uint_least32_t`, `int_fast16_t`, `uint_fast16_t`, `int_fast32_t`, `uint_fast32_t`
+- **8 bytes/64 bits**: `int64_t`, `long long`, `signed long long`, `uint64_t`, `unsigned long long`, `int_least64_t`, `uint_least64_t`, `int_fast64_t`, `uint_fast64_t`, `intmax_t`, `uintmax_t`
 
-> Las conversiones de tipos de datos primitivos dependen de la implementación del compilador (GCC, Clang, MSVC, etc.) como también de la arquitectura del procesador (x86, x64, ARM, etc.).
+> Las conversiones de tipos de datos primitivos dependen de la implementación del compilador (GCC, Clang, MSVC, etc.) como también de la arquitectura del procesador (x86, x64, ARM, etc.). 
+>
+> Por ejemplo en procesadores x86 del 2002, un `int` valia 16 bits y el `long long` valia 32 bits, pero un `int32_t` siempre tendra 32 bits.
 
 <!-- _class:  bq-red -->
 

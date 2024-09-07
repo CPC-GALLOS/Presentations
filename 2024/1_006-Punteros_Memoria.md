@@ -351,7 +351,7 @@ Resuelve los siguientes problemas usando aritmetica de punteros, memoria dinámi
 - mycodeschool. (2013). *Pointers and dynamic memory - stack vs heap* [video]. Recuperado de <https://youtu.be/_8-ht2AKyH4?si=fbCY_IeJD_dIQgm9>
 - Portfolio Courses. (2021).*Introduction to Pointers | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/2GDiXG5RfNE?si=qEWVhJ3cs--SsYkU> 
 - Portfolio Courses. (2022). *Constant Pointer VS. Pointer To A Constant | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/egvGq3WSF9Y?si=EjCk9hBtGSK0zaLh>
-- Portfolio Courses. (2022). *int *p vs int* p Pointer Declarations | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/H5MlTh5cBOg?si=SSy-8eLBmbjGZ3Gj>
+- Portfolio Courses. (2022). *int \*p vs int\* p Pointer Declarations | C Programming Tutorial* [video]. Recuperado de <https://youtu.be/H5MlTh5cBOg?si=SSy-8eLBmbjGZ3Gj>
 
 ---
 

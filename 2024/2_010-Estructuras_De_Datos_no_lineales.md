@@ -30,5 +30,11 @@ footer: CPC Γα=Ω5
 
 ![](https://raw.githubusercontent.com/CPC-GALLOS/Notebook/main/src/containers.png)
 
-        # Mapas:
-https://codeforces.com/contest/1730/problem/A 
+## Problemas
+
+[**469A** I Wanna Be the Guy](https://codeforces.com/contest/469/problem/A)
+
+
+[**1730A** Planets](https://codeforces.com/contest/1730/problem/A)
+
+<!-- Uno usa maps y el otro sets -->

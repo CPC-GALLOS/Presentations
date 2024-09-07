@@ -66,3 +66,10 @@ bool sonAnagramas(const string& str1, const string& str2) {
 }
 ```
 <!-- los anagramas tambien son problemas comunes en competencias y en entrevistas de trabajo -->
+
+
+inverse sort
+
+
+
+merge sort es divide y venceras

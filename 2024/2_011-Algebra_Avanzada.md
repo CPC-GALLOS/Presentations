@@ -21,6 +21,11 @@ footer: CPC Γα=Ω5
     2.12 algebra modular
     2.12.1 Modular multiplicative inverse
     2.12.2 Exponenciación modula
-    2.13 mCM, MCD, fibonacci (gcd,lcm From C++17, )
-    2.13.1 euclidian algfrithm
     3.3	algebra matricial
+
+
+
+https://edisciplinas.usp.br/pluginfile.php/7933913/course/section/6549987/Antti%20Laaksonen%20-%20Guide%20to%20Competitive%20Programming_%20Learning_Version2.pdf
+
+
+<https://i.cs.hku.hk/~provinci/files/b2-programming_challenges.pdf>

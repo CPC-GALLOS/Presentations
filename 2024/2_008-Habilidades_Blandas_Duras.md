@@ -18,3 +18,5 @@ footer: CPC Γα=Ω5
 
     2.8 Habilidades blandas/duras (softskills/hardskills),  trabajo en equipo teamwork
         https://drive.google.com/drive/folders/1dQyK3OTgdh_HJ7WdZGKrURcMBmeXKDL1
+
+        

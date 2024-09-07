@@ -13,9 +13,5 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit -->
-
-
-# Two pointer:
-https://codeforces.com/contest/448/submission/228960388
+# <!-- fit --> Knapsack
 

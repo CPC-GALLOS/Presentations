@@ -3,7 +3,7 @@
 # Truquillos simples (def cases):
 https://codeforces.com/contest/1921/problem/A 
 https://codeforces.com/contest/1968/problem/A 
-https://codeforces.com/contest/1566/problem/A
+
 # Vector:
 Array circulares:
 https://codeforces.com/contest/731/problem/A  
@@ -23,7 +23,6 @@ https://codeforces.com/contest/1968/problem/B
 
 # Simulacion, juegos, brute force, implementation:
 https://codeforces.com/contest/294/problem/A 
-https://codeforces.com/contest/799/problem/A 
 
 
 
