@@ -116,7 +116,7 @@ bitset<N> boolarr; // Donde N es el número de bits, por defecto se inicializan 
 
 ---
 
-los strings en c son solo arrays de `char`, pero en c++ son un contenedor de la Biblioteca Estándar (STL). A diferencia de los strings de c, estos permiten realizar operaciónes de asignación o evaluación booleana de una forma más fácil.
+los strings en c son solo arrays de `char`, pero en c++ son un contenedor de la Biblioteca Estándar (STL). A diferencia de los strings de c, estos permiten realizar operaciónes de asignación o booleana fácilmente.
 
 **Ejemplo:**
 
@@ -132,7 +132,8 @@ str.empty(); //true (1) si esta vacia, false (0) sino
 str = "Hello, world!";
 // Reemplaza "world" (empezando en la posición 7) con "C++"
 str.replace(7, 5, "C++");// 5 es la longitud de "world"
-cout << str;
+int a= stoi(str);ull b= stoull(str); //string `str` a nums `a` y `b`
+str = to_string(a); //num `a` a string
 ```
 
 ## Getline
@@ -288,6 +289,8 @@ int result = std::accumulate(v.begin(), v.end(),i, [](int a, int b) {
 merge(v1.begin(), v1.end(), v2.begin(), v2.end(), back_inserter(vecR));
 // en este segundo caso declarar a vecR con la suma de ambos tamaños
 merge(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), vecR.begin());
+
+reverse(v.begin(), v.end());
 
 // Llena todos los elementos del vector con el valor `value`
 fill(v.begin(), v.end(), value); 

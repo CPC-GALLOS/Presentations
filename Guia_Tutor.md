@@ -3,11 +3,13 @@
 # Truquillos simples (def cases):
 https://codeforces.com/contest/1921/problem/A 
 https://codeforces.com/contest/1968/problem/A 
+https://codeforces.com/contest/2009/problem/A
 
 # Vector:
 Array circulares:
 https://codeforces.com/contest/731/problem/A  
 https://codeforces.com/contest/1971/problem/C
+https://codeforces.com/contest/2009/problem/B
 
 ## String ciruclar, permutaciones:
  https://codeforces.com/problemset/gymProblem/102890/L
@@ -21,12 +23,9 @@ https://codeforces.com/gym/102890/problem/D
 Defcase facil https://codeforces.com/contest/766/problem/A
 https://codeforces.com/contest/1968/problem/B
 
-# Simulacion, juegos, brute force, implementation:
-https://codeforces.com/contest/294/problem/A 
+# medio canijos
+https://codeforces.com/contest/2009/problem/C
+https://codeforces.com/contest/1999/problem/B
 
-
-
-- [**268A** Games](https://codeforces.com/contest/268/problem/A)
-
-
-
+## bsearch 
+https://codeforces.com/contest/448/problem/D

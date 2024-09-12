@@ -52,7 +52,7 @@ Por Ariel Parra
 
 13. **BigNums**: Problemas que involucran cálculos con números de gran tamaño que no pueden ser representados por los tipos de datos estándar, requiriendo el uso de bibliotecas especializadas para aritmética de precisión arbitraria.
 
-14. **Heuristic Search**: Algoritmos que buscan soluciones basadas en métodos aproximados en lugar de exactos, utilizando heurísticas para guiar la búsqueda hacia una solución buena en un tiempo razonable.
+14. **Heuristic Search**: Algoritmos que buscan soluciones basadas en métodos aproximados en lugar de exactos, utilizando heurísticas para guiar la búsqueda hacia una solución buena en un tiempo razonable. 
 
 15. **Approximate Search**: Técnicas para encontrar soluciones aproximadas a problemas complejos donde la solución exacta es impracticable debido a limitaciones de tiempo o espacio.
 
@@ -62,6 +62,10 @@ Por Ariel Parra
         
 
 ## Paradigmas de Resolución de algoritmos
+
+No hay una fuente que diga de manera clara cuantos tipos de paradigmas existen, pero varias fuentes nombran hasta 12 paradigmas: Divide and Conquer, Dynamic Programming, Greedy Algorithms, Complete Search (Brute Force), Heuristic Search, Graph Search, Approximation Algorithms, Probabilistic Algorithms, Backtracking, Meet-in-the-Middle, Simulation & Game Theory.
+
+Pero nostros nos enfocaramos principalmente en estos cuatro paradigmas:
 
 - **Complete Search**: La Búsqueda Completa son métodos que implican una búsqueda exhaustiva a través de todas las posibilidades, como el backtracking y la **fuerza bruta** (brute force).
 - **Divide and Conquer**: Dividir y Conquistar son técnicas que descomponen problemas en subproblemas más pequeños, los resuelven de manera independiente y combinan sus soluciones.
@@ -110,60 +114,62 @@ Por Ariel Parra
 
 5. **Identifica patrones en las soluciones**: Con el tiempo, reconoce patrones comunes en las soluciones de problemas. En programación competitiva, ciertos idioms y técnicas se repiten; guarda estos patrones en un archivo de encabezado para facilitar su uso futuro.
 
-## Etiquetas de problemas en codeforces
-
 ## Etiquetas de problemas en Codeforces
 
-1. **implementation**: Problemas que requieren soluciones directas y lógicas sin algoritmos avanzados.
-2. **math**: Problemas con fórmulas y cálculos matemáticos.
-3. **greedy**: Algoritmos que eligen soluciones locales óptimas esperando que sean globales.
-4. **programación dinámica**: Resolución dividiendo en subproblemas y evitando cálculos repetidos.
-5. **data structures**: Uso eficiente de estructuras de datos.
-6. **brute force**: Exploración exhaustiva de todas las soluciones posibles.
-7. **constructive algorithms**: Construcción explícita y paso a paso de la solución.
-8. **graphs**: Problemas sobre caminos y estructuras de grafos.
-9. **sortings**: Ordenamiento eficiente de datos.
-10. **binary search**: Búsqueda eficiente en conjuntos ordenados.
-11. **dfs**: Algoritmos de búsqueda en profundidad y similares.
-12. **trees**: Problemas que involucran árboles jerárquicos.
-13. **strings**: Manipulación de cadenas de caracteres.
-14. **number theory**: Propiedades numéricas como divisibilidad.
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Codeforces_logo.svg/2560px-Codeforces_logo.svg.png)
 
 ---
 
-15. **combinatorics**: Cálculo de combinaciones y permutaciones.
-16. **special**: Problemas fuera de otras categorías.
-17. **geometry**: Problemas con figuras geométricas.
-18. **bitmasks**: Uso de operaciones a nivel de bits.
-19. **two pointers**: Recorridos eficientes con dos punteros.
-20. **dsu**: Estructura para particiones dinámicas.
+1. **implementation**: Problemas que requieren soluciones directas y lógicas. (Ad Hoc)
+2. **math**: Problemas con fórmulas y cálculos matemáticos. (Knapsack, BigNums, Computational Geometry)
+3. **greedy**: Algoritmos que eligen soluciones locales óptimas esperando que sean globales. 
+4. **Dynamic Programming**: Resolución dividiendo en subproblemas y evitando cálculos repetidos.
+5. **data structures**: Uso eficiente de estructuras de datos. (Complete Search, Ad Hoc)
+6. **brute force**: Exploración exhaustiva de todas las soluciones posibles. (Complete Search)
+7. **constructive algorithms**: Construcción explícita y paso a paso de la solución. (Ad Hoc)
+8. **graphs**: Problemas sobre caminos y estructuras de grafos. (Flood Fill, Shortest Path, Recursive Search Techniques, Eulerian Path, Minimum Spanning Tree),  (Network Flow)
+9. **sortings**: Ordenamiento eficiente de datos. (Ad Hoc)
+10. **binary search**: Búsqueda eficiente en conjuntos ordenados.(Complete Search, Greedy)
+11. **dfs**: Algoritmos de búsqueda en profundidad y similares. (Recursive Search Techniques, Flood Fill)
+12. **trees**: Problemas que involucran árboles jerárquicos. (Minimum Spanning Tree, Recursive Search Techniques)
+13. **strings**: Manipulación de cadenas de caracteres. (Ad Hoc)
+14. **number theory**: Propiedades numéricas como divisibilidad. (BigNums, Knapsack)
+
+---
+
+15. **combinatorics**: Cálculo de combinaciones y permutaciones. (Knapsack)
+16. **special**: Problemas fuera de otras categorías. (Ad Hoc)
+17. **geometry**: Problemas con figuras geométricas. (Computational Geometry , Two-Dimensional Convex Hull)
+18. **bitmasks**: Uso de operaciones a nivel de bits. (Ad Hoc)
+19. **two pointers**: Recorridos eficientes con dos punteros. (Greedy)
+20. **dsu**: Estructura para particiones dinámicas. (Minimum Spanning Tree)
 21. **shortest paths**: Encontrar caminos más cortos en grafos.
-22. **probabilities**: Cálculo de probabilidades.
+22. **probabilities**: Cálculo de probabilidades (Ad Hoc).
 23. **divide and conquer**: División de problemas en partes más pequeñas.
-24. **hashing**: Uso de funciones hash para mapeo eficiente.
-25. **games**: Problemas de teoría de juegos.
-26. **flows**: Encontrar flujos máximos en redes.
-27. **interactive**: Problemas con interacción dinámica.
-28. **matrices**: Manipulación de matrices.
+24. **hashing**: Uso de funciones hash para mapeo eficiente. (Ad Hoc)
+25. **games**: Problemas de teoría de juegos. (Ad Hoc)
+26. **flows**: Encontrar flujos máximos en redes. (Network Flow)
+27. **interactive**: Problemas con interacción dinámica. (Heuristic Search)
+28. **matrices**: Manipulación de matrices. (Ad Hoc)
 
 ---
 
-29. **string suffix structures**: Estructuras para procesar sufijos de cadenas.
-30. **fft**: Transformación rápida de Fourier.
-31. **graph matchings**: Emparejamientos máximos en grafos bipartitos.
-32. **ternary search**: Búsqueda en funciones unimodales.
-33. **expression parsing**: Análisis y evaluación de expresiones.
-34. **meet-in-the-middle**: Dividir el problema en dos partes y combinar soluciones.
-35. **2-sat**: Resolver problemas de satisfacibilidad con 2 variables.
-36. **chinese remainder theorem**: Resolver sistemas de congruencias.
-37. **schedules**: Optimización de secuencias y horarios.
+29. **string suffix structures**: Estructuras para procesar sufijos de cadenas. (Ad Hoc)
+30. **fft**: Transformación rápida de Fourier. (BigNums)
+31. **graph matchings**: Emparejamientos máximos en grafos bipartitos. (Network Flow, Minimum Spanning Tree)
+32. **ternary search**: Búsqueda en funciones unimodales. (Greedy, Complete Search)
+33. **expression parsing**: Análisis y evaluación de expresiones. (Ad Hoc)
+34. **meet-in-the-middle**: Dividir el problema en dos partes y combinar soluciones. (Complete Search, Dynamic Programming)
+35. **2-sat**: Resolver problemas de satisfacibilidad con 2 variables. (Ad Hoc)
+36. **chinese remainder theorem**: Resolver sistemas de congruencias. (Ad Hoc, BigNums)
+37. **schedules**: Optimización de secuencias y horarios. (Knapsack, Greedy)
 
 
-## Junior Training sheet & SuperVision Problems
+## Problems por tema en el Junior Training  & SuperVision Sheet
 
-> El Junior Training Sheet es un documento de Google sheets creado por Mostafa Saad con muchos links
+> Junior Training & SuperVision son documentos de Google sheets creado por Mostafa Saad con multiples links.
 
-- Consulte la página de la hoja (Topics1). Tiene las mismas hojas de problemas (CF-A a CF-D3) ordenados por categoría y nivel, son alrededor de 950 problemas.
+- Para el Junior Training Consulte la página de la hoja (Topics1). Tiene las mismas hojas de problemas (CF-A a CF-D3) ordenados por categoría y nivel, son alrededor de 950 problemas.
 - Columna Calidad de ideas: P5 (importante), P4 (muy interesante), P3 (interesante), P2 (mejor), P1 (bien), Vacío (normal)
 - Puedes entrenar usando el orden ciego y usar la página de Temas como guía para saltarte algunos problemas.
 - **Ventaja:** dominar el algoritmo hasta resolver algunos problemas difíciles en poco tiempo.
@@ -172,7 +178,7 @@ Por Ariel Parra
 
 <!-- esto es para hacer problemas por tipo de problemas -->
 
-- [Junior Training Sheet](https://docs.google.com/spreadsheets/d/1iJZWP2nS_OB3kCTjq8L6TrJJ4o-5lhxDOyTaocSYc-k/edit?gid=84654839#gid=84654839) & [Supervision Problems Lists](https://docs.google.com/spreadsheets/d/1-n9Fnvhsnvsqh-IerE_yyIshw5RUNer_7EjwF_GW-TA/edit?gid=2057729227#gid=2057729227)
+- Links para el: [Junior Training Sheet](https://docs.google.com/spreadsheets/d/1iJZWP2nS_OB3kCTjq8L6TrJJ4o-5lhxDOyTaocSYc-k/edit?gid=84654839#gid=84654839) y el [Supervision Problems Lists](https://docs.google.com/spreadsheets/d/1-n9Fnvhsnvsqh-IerE_yyIshw5RUNer_7EjwF_GW-TA/edit?gid=2057729227#gid=2057729227)
 
 
 
@@ -180,7 +186,7 @@ Por Ariel Parra
     
 
 - [**799A** Carrot Cakes](https://codeforces.com/contest/799/problem/A)
-- [**1598A** Computer Game](https://codeforces.com/contest/1598/problem/A)
+- [**268A** Games](https://codeforces.com/contest/268/problem/A)
 
 <!-- Ambos son problemas AD HOC, son los que nos interesan en los concursos -->
 

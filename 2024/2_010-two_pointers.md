@@ -60,5 +60,5 @@ O(n) steps during the algorithm, because it only moves to the right.
 Since both the left and right pointer move O(n) steps during the algorithm,
 the algorithm works in O(n) time
 
+https://cses.fi/book/book.pdf
 # Two pointer:
-https://codeforces.com/contest/448/problem/D

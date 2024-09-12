@@ -20,6 +20,7 @@ footer: CPC Γα=Ω5
     2.11 Logarithms, powers
     2.12 algebra modular
     2.12.1 Modular multiplicative inverse
+    teorema chino
     2.12.2 Exponenciación modula
     3.3	algebra matricial
 

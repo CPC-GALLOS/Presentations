@@ -42,7 +42,7 @@ determina qué opción se considera más óptima
 
 
 ## Scheduling ()
-
+https://codeforces.com/problemset/problem/1999/C
 
 ## Referencias
 - Ankur. (2024). *Euclidean algorithms (Basic and Extended)*. Recuperado de <https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/>
