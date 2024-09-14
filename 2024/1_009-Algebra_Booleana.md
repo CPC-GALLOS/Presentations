@@ -266,12 +266,15 @@ En c++: ` !( ( a || b ) && !( a && b ) ) `
 
 ## Prolemas de simplificación de expresiones
 
-¡Claro! Aquí tienes los problemas y sus soluciones en formato Markdown utilizando MathJax para la notación matemática:
+![#c](https://st.depositphotos.com/1003593/1930/i/450/depositphotos_19300633-stock-photo-from-point-a-to-point.jpg)
 
 ### Problema 1
 
-**Expresión:** 
-$$ F = (A + \overline{B}) \cdot (A + B) $$
+#### Expresión a simplificar: 
+
+$$
+ F = (A + \overline{B}) \cdot (A + B) 
+$$
 
 ---
 
@@ -320,7 +323,7 @@ $$ F = (A + \overline{B}) \cdot (A + B) $$
 
 #### Problema 2
 
-**Expresión:**
+**Expresión a simplificar:**
 $$ F = (A \cdot B) + (\overline{A} \cdot C) + (B \cdot \overline{C}) $$
 
 ---
@@ -328,7 +331,11 @@ $$ F = (A \cdot B) + (\overline{A} \cdot C) + (B \cdot \overline{C}) $$
 **Solución:**
 
 1. **Simplificar por agrupación**:
-   - Agrupa \( (A \cdot B) \) y \( (\overline{A} \cdot C) \) con la Ley de Distributiva:
+   - Agrupa 
+      $$
+      ( (A \cdot B) )  ( (\overline{A} \cdot C) ) 
+      $$
+   con la Ley de Distributiva:
      $$
      (A \cdot B) + (\overline{A} \cdot C) = (A \cdot B) + (\overline{A} \cdot C)
      $$

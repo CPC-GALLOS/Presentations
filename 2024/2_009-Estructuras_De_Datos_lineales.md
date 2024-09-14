@@ -50,3 +50,5 @@ int dequeue() {
     return data;
 }
 ```
+
+incluir bigO de cada funcion si se puede, en tabla para no aglomerar quizas 

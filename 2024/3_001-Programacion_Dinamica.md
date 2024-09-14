@@ -18,3 +18,7 @@ footer: CPC Γα=Ω5
 
 
       3.2 Recursion (gotos para recursion) y Programacion dinamica (memoización, tabulación)
+
+https://usaco.guide/gold/dp-bitmasks
+https://usaco.guide/gold/intro-dp?lang=cpp
+https://usaco.guide/gold/knapsack?lang=cpp
