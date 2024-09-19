@@ -22,7 +22,7 @@ Por Ariel Parra
 
 En los numeros conformados por bits el termino de hasta la derecha se le conoce como el bit menos significativo (Least Significant Bit, "LSB") y el de hasta la izquierda es el bit más significativo (Most Significant Bit, "MSB").
 
-También existen números negativos donde el MSB dicta el signo 1 para negativo y 0 para positivo, aunque esto solo significa que el MSB sera un némero negativo al que se le suman los demas números, por ejemplo en la serie de 8 bits "10000000" el 1 significa que esta negativo y esta en la octava posición por lo que este seria 2^8 = -128, con un byte con signo se puede ir desde -128 a 127 ya que pasamos por el cero. la forma de tener un valor sin signo en c es usando el tipo de dato `unsigned` el cual descarta el bit de signo, dandonos obteninendo una mayot maginutud del dato.
+También existen **números negativos** donde el MSB dicta el signo 1 para negativo y 0 para positivo, aunque esto solo significa que el MSB sera un némero negativo al que se le suman los demas números, por ejemplo en la serie de 8 bits "10000000" el 1 significa que esta negativo y esta en la octava posición por lo que este seria 2^8 = -128, con un byte con signo se puede ir desde -128 a 127 ya que pasamos por el cero. la forma de tener un valor sin signo en c es usando el tipo de dato `unsigned` el cual descarta el bit de signo, dandonos obteninendo una mayot maginutud del dato.
 
 ## ¿Qué es el Bit Masking?
 
@@ -142,6 +142,29 @@ int bit_min(int &a, int &b) { // O(1) & Space: O(1)
 ```
 <!-- mencionar que en el caso de estas funciones, ya estan implementados con estas versiones en el compilador de c++,asi que son solo para saber -->
 
+## Trucos con bits
+
+| Código                    | Función                                                                 |
+|---------------------------|-------------------------------------------------------------------------|
+| `x & 1`                   | Evalúa a 1 si el número es impar, de lo contrario, evalúa a 0           |
+| `x >> n`                  | Divide `x` entre 2 ^ n                                                  |
+| `x << n`                  | Multiplica `x` por 2 ^ n                                                |
+| `x & (x-1)`               | Borra el bit más bajo que esté en 1 de `x`                              |
+| `x & ~(x-1)`              | Extrae el bit más bajo que esté en 1 de `x` (los demás son borrados)    |
+
+---
+
+| Código                    | Función                                                                 |
+|---------------------------|-------------------------------------------------------------------------|
+| `x & ~((1 << i+1 ) – 1)`  | Borra todos los bits de `x` desde el LSB hasta el bit `i`               |
+| `x & ((1 << i) – 1)`      | Borra todos los bits de `x` desde el MSB hasta el bit `i`               |
+| `ch \| ‘ ‘`                | Convierte el carácter alfabético `ch` de mayúscula a minúscula         |
+| `ch & ‘_’`                | Convierte el carácter alfabético `ch` de minúscula a mayúscula          |
+| `x && !(x & x-1)`         | Verifica si el número entero de 32 bits es potencia de 2                |
+| `log2(n & -n)+1`          | Encuentra el último bit en 1                                            |
+
+<!-- estas no son tan necesarias, nadamas que sepan que existan -->
+
 ## `num&1` VS `num%2!=0`
 
 Verificar si un número es impar usando `num & 1` suele ser más eficiente que usar num `% 2 != 0` debido a la diferencia en cómo se realizan estas operaciones a nivel del CPU, aunque ambas tengan una complejidad O(1).
@@ -162,6 +185,24 @@ JNE EsImpar    ; Si no es igual a 0, es impar (1 ciclos CPU)
 
 <!-- Mencionar que algo similar pasa con los ifs anidados que aunque sean O(1), la complejidad de estos va más a la cantidad de ciclos de CPU -->
 
+## Underflow y Overflow
+
+
+#### Overflow
+
+```c++
+    unsigned int x = numeric_limits<unsigned int>::max(); // Valor máximo de unsigned int
+    x = x << 1; // multiplicación
+```
+
+#### Underflow
+
+```c++
+    unsigned int x = 1; // Un valor pequeño
+    x = x >> 1; // división
+```
+
+
 ## Ejercicio de Clase
 
 <!-- si esta debajo de los 40 minutos dales 10 min para hacerlo, sino dales 5 minutos para realizarlo o hasta que la primera persona lo resuelva -->
@@ -178,7 +219,7 @@ int xTen(int &n) {
 
 ```c++
 int xTen(int &n) {
-    return n<<3 + n<<1; // n*(2^3) + n*(2^1) = n*8 + n*2 = n*(8+2) = n*10
+    return (n << 3) + (n << 1); // n*(2^3) + n*(2^1) = n*8 + n*2 = n*(8+2) = n*10
 }
 ```
 <!-- Tambien comentar que las operaciones de multiplicación, división y operaciones de punto flotante usan muchos ciclos a diferencia de los operadores bitwise -->
@@ -188,11 +229,11 @@ int xTen(int &n) {
 
 
 | Operación    | Notación de Conjuntos | Notación de Bits |
-|--------------|------------------------|------------------|
-| Intersección |  a ∩ b          | a & b      |
-| Unión        |  a ∪ b          | a ∣ b   |
-| Complemento   | ā     | ∼a     |
-| Diferencia   |  a ∖ b     | a&(∼b) |
+|--------------|-----------------------|------------------|
+| Intersección |  a ∩ b                | a & b            |
+| Unión        |  a ∪ b                | a ∣ b            |
+| Complemento  |  ā                    | ∼a               |
+| Diferencia   |  a ∖ b                | a&(∼b)           |
 
 El código construye los conjuntos `x = {1, 3, 4, 8}` y `y = {3, 6, 8, 9}`, y luego construye el conjunto `z = x ∪ y = {1, 3, 4, 6, 8, 9}`:
 

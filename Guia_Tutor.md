@@ -29,3 +29,10 @@ https://codeforces.com/contest/1999/problem/B
 
 ## bsearch 
 https://codeforces.com/contest/448/problem/D
+
+
+
+
+
+
+
