@@ -22,7 +22,7 @@ footer: CPC Γα=Ω5
 
 
 ```c++
-void enqueue(int value) {
+void enqueue(int value) {/
     if (isFull()) {
         cout << "El array circular está lleno\n";
         return;
