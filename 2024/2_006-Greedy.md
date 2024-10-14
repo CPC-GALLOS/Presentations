@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Tipos de Datos y Casting
+title: Greedy
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -13,24 +13,20 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![h:100](./img/GALLO.png) -->
 <!-- _header: ![](./img/GALLOS_white_square_transparent.png) -->
 
-# <!-- fit -->Tipos de Datos y Casting
+# <!-- fit -->Paradigma Greedy
 
 Por Alan Martinez
 
----
+## ¿Qué es un Algoritmo Greedy?
 
-# ¿Qué es un Algoritmo Greedy?
-
----
 
 Un algoritmo Greedy es una estrategia para resolver problemas eligiendo en cada paso la opción que parece ser la mejor o más óptima en ese momento, sin preocuparse por el futuro. Es como tomar decisiones "codiciosas" basadas solo en lo que parece mejor en el momento.
 
 Sin embargo, este enfoque no siempre garantiza la solución óptima global, pero funciona muy bien para ciertos problemas
 
-![bg opacity:.3](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwkP0DkdNHq-jx69GcuzXfSWB16nPvZgOaeg&usqp=CAU)
+![bg opacity:.2](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwkP0DkdNHq-jx69GcuzXfSWB16nPvZgOaeg&usqp=CAU)
 
 ## Características Principales
-#
 
 - **Decisiones locales:** En cada paso, se elige la opción que parece mejor.
 - **No reconsidera decisiones pasadas:** Una vez tomada una decisión, no se vuelve atrás.
@@ -134,9 +130,15 @@ int main() {
 | Implementación directa                  | Puede necesitar validación o ajustes       |
 | Funciona bien en ciertos problemas óptimos | Limitado a problemas específicos           |
 
-## Problemas
-#
+## ¿Cuando aplicar greedy?
+Un problema puede ser resuelto de manera greedy si cumple las siguientes dos condiciones:
+- Tiene sub-estructuras óptimas
+- Cumple la propiedad de selección: Eligiendo la solución óptima para cada subproblema resultante, llegamos a la solución óptima general. **NUNCA** es necesario reconsiderar las soluciones anteriores.
+- Cuando el problema tengo una forma similar a problemas del viajero, el problema de la mochila (Knapsack), codificación de Huffman, y algoritmos como Prim, Kruskal y Dijkstra.
 
+> Recordar que un problema greedy se pude confundir con busqueda binaria o two pointers, por eso hay que recordar estas condiciones.
+
+## Problemas
 
 - [**1353B** Two Arrays And Swaps](https://codeforces.com/problemset/problem/1353/B)
 - [**1676B** Equal Candies](https://codeforces.com/problemset/problem/1676/B)
@@ -145,14 +147,9 @@ int main() {
 
 ## Referencias
 
-- GeeksforGeeks. (n.d.). Greedy Algorithms. GeeksforGeeks. https://www.geeksforgeeks.org/greedy-algorithms/
-
-- GeeksforGeeks. (n.d.). Introduction to Greedy Algorithm - Data Structures and Algorithm Tutorials. GeeksforGeeks. https://www.geeksforgeeks.org/introduction-to-greedy-algorithm-data-structures-and-algorithm-tutorials/
-
-- GeeksforGeeks. (n.d.). C Program for Greedy Algorithm to Find Minimum Number of Coins. GeeksforGeeks. https://www.geeksforgeeks.org/c-program-for-greedy-algorithm-to-find-minimum-number-of-coins/
-
-- Apna College. (2021, March 25). Greedy Algorithm | Minimum Coins Problem | DSA | Apna College [Video]. YouTube. https://www.youtube.com/watch?v=ALtJncFD8N8
-
-- University of Granada. (n.d.). Greedy Algorithms. University of Granada. https://elvex.ugr.es/decsai/algorithms/slides/4%20greedy.pdf
-
-- CPCFI. (n.d.). Greedy Algorithm Lectures. GitHub. https://github.com/CPCFI-org/lectures/tree/main/3-CS-DQ-Greedy
+- Apna College. (2021). *Greedy Algorithm | Minimum Coins Problem | DSA | Apna College* [Video]. Recuperado de https://www.youtube.com/watch?v=ALtJncFD8N8
+- CPCFI. (s.f.). *Greedy Algorithm Lectures*. Recuperado de https://github.com/CPCFI-org/lectures/tree/main/3-CS-DQ-Greedy
+- GeeksforGeeks. (s.f.). *C Program for Greedy Algorithm to Find Minimum Number of Coins*. Recuperado de https://www.geeksforgeeks.org/c-program-for-greedy-algorithm-to-find-minimum-number-of-coins/
+- GeeksforGeeks. (s.f.). *Greedy Algorithms*. Recuperado de https://www.geeksforgeeks.org/greedy-algorithms/
+- GeeksforGeeks. (s.f.). *Introduction to Greedy Algorithm - Data Structures and Algorithm Tutorials*. Recuperado de https://www.geeksforgeeks.org/introduction-to-greedy-algorithm-data-structures-and-algorithm-tutorials/
+- University of Granada. (s.f.). *Greedy Algorithms*. Recuperado de https://elvex.ugr.es/decsai/algorithms/slides/4%20greedy.pdf
