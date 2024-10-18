@@ -84,7 +84,7 @@ int main() {
 
 ```cpp
 int main() {
-    Persona personas[3] = {{"Ana", 20}, {"Luis", 22}, {"Carlos", 24}};
+    Persona personas[3] = { {"Ana", 20}, {"Luis", 22}, {"Carlos", 24} };
     
     for(int i = 0; i < 3; i++) {
         cout << "Nombre: " << personas[i].nombre << ", Edad: " << personas[i].edad << endl;
