@@ -1,6 +1,6 @@
 ---
 marp: true
-title: 
+title: Two Pointers
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -13,7 +13,7 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit --> Two Pointers problem
+# <!-- fit --> Two Pointers problems
 
 Por Alan Martinez
 
@@ -21,25 +21,18 @@ Por Alan Martinez
 Un apuntador también conocido como punteros, son la **representación de una dirección**, estos son sirven para **ahorrar memoria**, **crear vectores y matrices con memoria dinamica** y como **paso de parametros**.
 Este se declara con el operador `*`, y se le asignan direcciones de memoria con el operador `&`.
 
-![centro](https://preview.redd.it/u7j1d3bwdut71.png?auto=webp&s=7fab5ef30e69dafd359e7e946cf509d9e207991c)
+![#c h:400](https://preview.redd.it/u7j1d3bwdut71.png?auto=webp&s=7fab5ef30e69dafd359e7e946cf509d9e207991c)
 
-<style>
-img[alt="centro"] {
-    height: 400px;
-    width: auto;
-  display: block;
-  margin: 0 auto;
-}
-</style>
 
-## ¿Que es el Metodo 2 Punteros?
-El método de **dos punteros** utiliza dos punteros para iterar a través de los valores de un arreglo. Ambos punteros se mueven en una sola dirección, lo que garantiza la eficiencia del algoritmo.
+## ¿Qué es el Método 2 Punteros?
 
-Su objetivo principal es optimizar la solución de problemas en los que se requiere explorar relaciones entre elementos de un arreglo o secuencia, reduciendo el tiempo de ejecución que normalmente sería más costoso en una solución ingenua. Este enfoque se utiliza para resolver problemas de búsqueda, suma, o comparación que suelen involucrar pares de elementos o subarreglos.
+El método de **dos punteros** utiliza **dos punteros** para iterar a través de los valores de un arreglo. Ambos punteros se mueven en una sola dirección, lo que garantiza la **eficiencia** del algoritmo.
 
-![bg opacity:.4](https://imgs.search.brave.com/ARTqMnAmXuc6Amud_LbbSCWzQmJvYh-ldF3v_zHaeqg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2htZy1wcm9k/L2ltYWdlcy9zcGlk/ZXJtYW4tbWVtZS0x/NjMwMzE5NDQ0Lmpw/Zz9yZXNpemU9OTgw/Oio)
+Su objetivo principal es **optimizar** la solución de problemas en los que se requiere explorar relaciones entre elementos de un arreglo o secuencia, reduciendo el **tiempo de ejecución** que normalmente sería más costoso en una solución ingenua. Este enfoque se utiliza para resolver problemas de **búsqueda**, **suma**, o **comparación** que suelen involucrar pares de elementos o subarreglos.
 
-El objetivo principal del **método de dos punteros** (two pointers) es optimizar la solución de problemas en los que se requiere explorar relaciones entre elementos de un arreglo o secuencia, reduciendo el tiempo de ejecución que normalmente sería más costoso en una solución ingenua. Este enfoque se utiliza para resolver problemas de búsqueda, suma, o comparación que suelen involucrar pares de elementos o subarreglos.
+![bg opacity:.2](https://imgs.search.brave.com/ARTqMnAmXuc6Amud_LbbSCWzQmJvYh-ldF3v_zHaeqg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2htZy1wcm9k/L2ltYWdlcy9zcGlk/ZXJtYW4tbWVtZS0x/NjMwMzE5NDQ0Lmpw/Zz9yZXNpemU9OTgw/Oio)
+
+
 
 ## Casos comunes donde se aplica:
 1. **Búsqueda de pares con ciertas propiedades**:
@@ -53,7 +46,7 @@ El objetivo principal del **método de dos punteros** (two pointers) es optimiza
 
 ## Problema: Encontrar un subarreglo cuya suma sea igual a un valor objetivo \(x\).
 
-![centro](https://cdn-icons-png.flaticon.com/512/7400/7400651.png)
+![#c](https://cdn-icons-png.flaticon.com/512/7400/7400651.png)
 
 ---
 
@@ -72,12 +65,11 @@ Dado un arreglo de enteros positivos y un objetivo **x**, queremos encontrar un 
   - Avanzamos el puntero izquierdo para reducir la suma.
   - Avanzamos el puntero derecho para aumentar la suma hasta encontrar la suma objetivo.
 
-## Código en C++ usando punteros
+## Código en C++ 
 
 ```cpp
 int main() {
-    int arr[] = {1, 3, 2, 5, 1, 1, 2, 3};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    vector<int> arr = {1, 3, 2, 5, 1, 1, 2, 3};   
     int x = 8;
 
     if (subarraySum(arr, n, x)) {
@@ -91,17 +83,17 @@ int main() {
 ```
 ---
 ```cpp
-bool subarraySum(int* arr, int n, int x) {
-    int* left = arr; // puntero izquierdo
-    int* right = arr; // puntero derecho
+bool subarraySum(vector<int>& arr, int n, int x) {
+    int left = 0, right = 0;
     int current_sum = 0;
-
-    while (right < arr + n) {
-        current_sum += *right; // sumamos el valor de *right
+    while (right < arr.size()) {
+        current_sum += arr[right]; // sumamos el valor de arr[right]
+        
         while (current_sum > x && left <= right) {
-            current_sum -= *left; // reducimos el valor de *left
+            current_sum -= arr[left]; // reducimos el valor de arr[left]
             left++; // movemos el puntero izquierdo
         }
+        
         if (current_sum == x) {
             return true; // Se encontró el subarreglo con suma x
         }
@@ -114,7 +106,7 @@ bool subarraySum(int* arr, int n, int x) {
 
 ## Explicación del Código
 
-- **Punteros**: Los punteros `left` y `right` se utilizan para definir el inicio y el final del subarreglo.
+- **Punteros**: Los punteros serian `left` y `right`, estos se utilizan para definir el inicio y el final del subarreglo.
 - **Movimiento de punteros**:
   - El puntero derecho avanza cuando la suma es menor o igual que `x`.
   - El puntero izquierdo avanza cuando la suma supera `x`.
@@ -222,8 +214,6 @@ El subarreglo encontrado es `[2, 5, 1]`, que suma exactamente `8`.
 - [**6A** Triangle](https://codeforces.com/problemset/problem/6/A)
 
 ## Referencias
-1. GeeksforGeeks. (n.d.). *Two pointers technique*. GeeksforGeeks. https://www.geeksforgeeks.org/two-pointers-technique/
-
-2. Halldórsson, M. M., & Laaksonen, A. (n.d.). *Competitive programmer's handbook*. CSES. https://cses.fi/book/book.pdf
-
-3. Nazzal, F. (2023, August 24). *Intro to algorithms: Two pointers technique*. Medium. https://medium.com/geekculture/intro-to-algorithms-two-pointers-technique-b37f962eab5
+- GeeksforGeeks. (n.d.). *Two pointers technique*. GeeksforGeeks. https://www.geeksforgeeks.org/two-pointers-technique/
+- Halldórsson, M. M., & Laaksonen, A. (n.d.). *Competitive programmer's handbook*. CSES. https://cses.fi/book/book.pdf
+- Nazzal, F. (2023, August 24). *Intro to algorithms: Two pointers technique*. Medium. https://medium.com/geekculture/intro-to-algorithms-two-pointers-technique-b37f962eab5
