@@ -14,7 +14,7 @@ math: mathjax
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit --> Programación Dynamica (DP)
+# <!-- fit --> Programación Dinamica (DP)
 
 Por Ariel Parra.
 
@@ -150,7 +150,21 @@ int main() {
 10. **Longest Common Subsequence (LCS)**: Hallar la subsecuencia más larga que sea común a dos secuencias, manteniendo el orden pero no la contigüidad.
 
 
+## Los 5 pasos para resolver problemas de DP según Reducible 
+
+1. **Visualizar ejemplos**: Es crucial para identificar patrones y restricciones en el problema. Utilizar modelos como grafos acíclicos dirigidos puede ser útil para representar soluciones de manera más clara.
+
+2. **Definir subproblemas**: Encontrar una versión más simple del problema original que pueda ser resuelta. En el ejemplo de la subsecuencia creciente más larga, un subproblema podría ser encontrar la longitud de la subsecuencia terminando en un índice específico.
+
+3. **Encontrar relaciones entre subproblemas**: Determinar cómo se conectan los subproblemas y cómo las soluciones de subproblemas pueden usarse para resolver el problema completo.
+
+4. **Generalizar la relación**: Crear una fórmula o regla general para resolver cualquier instancia del subproblema basándose en la relación que se haya encontrado.
+
+5. **Implementar la solución**: Resolver los subproblemas en el orden correcto, asegurándose de que los subproblemas necesarios para resolver un problema mayor ya hayan sido resueltos antes.
+
 ## Problema en clase: "Dice Combinations" (Knapsack)
+
+![bg opacity:.2](https://i.pinimg.com/736x/8f/88/7d/8f887dc8b33f3523a15317304f3378e4.jpg)
 
 Tu tarea consiste en contar la cantidad de formas de construir la suma `n` lanzando un dado una o más veces. Cada lanzamiento produce un resultado entre 1 y 6.
 Por ejemplo, si n=3, hay 4 formas:
@@ -165,38 +179,44 @@ Por ejemplo, si n=3, hay 4 formas:
 
 ---
 
-Para seguir con la analogía de Knapsack, significa que tenemos una cantidad infinita de elementos con pesos de 1 a 6 y queremos contar cuántas **secuencias** de elementos existen de manera que, si colocamos elementos en el contenedor mientras seguimos la secuencia, el contenedor se llena por completo. El orden de los elementos si importa en este problema.
+#### 1. **Definición del problema en términos de DP**
+   - **Problema**: Queremos contar cuántas secuencias de tiradas de dados suman exactamente `n`, donde cada tirada produce un número entre `1` y `6`.
+   - **Estado DP (`dp[x]`)**: `dp[x]` representa la cantidad de formas de obtener la suma `x` usando secuencias de tiradas de dados. El valor final deseado es `dp[n]`.
 
+#### 2. **Identificación de la relación de recurrencia**
+   - La relación entre los estados se basa en considerar la última tirada de dado que pudo haberse lanzado para obtener una suma de `x`.
+   - La relación de recurrencia es:
 
-Por conveniencia, sea `dp[x]` el número de secuencias de tiradas de dados que suman `x`. Para contar cuántas secuencias suman `N`, o en otras palabras, para encontrar `dp[n]`, observemos la última tirada de dados que nos lleva a una suma total de `N`.
+     $$ \text{dp}[x] = \sum_{i=1}^{6} \text{dp}[x - i] $$
 
-Si la última tirada fue $1$, entonces sabemos que hay `dp[n-1]` maneras de lograr la suma `N` cuando la última tirada es `1`. Si la última tirada fue `2`, entonces sabemos que hay `dp[n-2]` maneras de lograr la suma `N` cuando la última tirada es `2`. Continúe esta lógica para todos los números de dados hasta `6`. Considerando todos esos casos juntos, demostrando que 
-```
-                    dp[N] = dp[N−1]+dp[N−2]+dp[N−3]+dp[N−4]+dp[N−5]+dp[N−6].
-```
+     Esto significa que para obtener `x`, podemos sumar todas las formas de obtener `x-1`, `x-2`, ..., `x-6`, asumiendo que se puede hacer una última tirada de 1 a 6.
 
----
+### 3. **Inicialización de la solución**
+   - Inicializar el vector `dp` con `dp[0] = 1`, ya que hay exactamente 1 forma de sumar 0: no hacer ninguna tirada.
+   - El vector `dp` se utiliza como "memo" para almacenar los resultados de subproblemas ya resueltos.
 
-O formulando de manera matemática:
+#### 4. **Recorrer los subproblemas**
+   - Iterar para calcular `dp[i]` para cada valor de `i` desde `1` hasta `n`, siguiendo la relación de recurrencia. Esto asegura que cada subproblema (suma menor que `n`) sea resuelto antes de resolver el subproblema final `dp[n]`.
 
-$$
-\text{dp}[x] = \sum_{i=1}^{6} \text{dp}[x - i]
-$$
+#### 5. **Optimización modular**
+   - Dado que los números pueden ser grandes, es necesario tomar el resultado módulo `10^9 + 7` después de cada operación de suma para evitar desbordamientos y cumplir con las restricciones del problema.
 
+### 6. **Resultado final**
+   - El valor de `dp[n]` contiene la cantidad de formas de obtener la suma `n` y se imprime como la solución final.
 ```c++
-    vector<ull> dp(1e6+1);// tambien suelen llamar a este vector como "memo"
-	int n; cin >> n;
-	dp[0] = 1;
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 1; j <= 6; ++j) {
-			if (i - j >= 0)  dp[i] += dp[i - j]; 
-		}
-		dp[i] %= 1e9+7; // el problema pide imprimir con modulo 10^9+7
-	}
-	cout << dp[n];
+    vector<unsigned long long> dp(1e6+1); // también suelen llamar a este vector "memo"
+    int n;
+    cin >> n;
+    dp[0] = 1; // Base del DP: hay una manera de sumar 0 (no hacer nada)
+    
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= 6; ++j) {
+            if (i - j >= 0)  dp[i] += dp[i - j]; 
+        }
+        dp[i] %= 1e9+7; // El problema pide imprimir con módulo 10^9+7
+    }
+    cout << dp[n];// O(n) tiempo & espacio
 ```
-
-
 
 
 ## Problemas
@@ -213,3 +233,4 @@ $$
 - Cao, M. et al. (s.f.). *Introduction to DP*. Recuperado de <https://usaco.guide/gold/intro-dp>
 - Chen, N. et al. (s.f.). *Knapsack DP*. Recuperado de <https://usaco.guide/gold/knapsack?lang=cpp>
 - kapoor, K. (2016). *Everything About Dynamic Programming*. Recuperado de <https://codeforces.com/blog/entry/43256>
+- Reducible. (2020). *5 Simple Steps for Solving Dynamic Programming Problems*. Recuperado de <https://www.youtube.com/watch?v=aPQY__2H3tE>
