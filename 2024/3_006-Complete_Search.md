@@ -16,3 +16,5 @@ footer: CPC Γα=Ω5
 # <!-- fit -->
 https://usaco.guide/bronze/complete-rec?lang=cpp
         3.5.3 Ajedrez
+
+permutaciones
