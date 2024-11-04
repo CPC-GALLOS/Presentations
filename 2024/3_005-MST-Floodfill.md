@@ -1,6 +1,6 @@
 ---
 marp: true
-title: 
+title: MST & Floodfill
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
