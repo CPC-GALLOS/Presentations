@@ -13,16 +13,24 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit -->
+# <!-- fit --> Teoria de numeros
 
 
 
-    2.11 Logarithms, powers
-    2.12 algebra modular
-    2.12.1 Modular multiplicative inverse
-    teorema chino
-    2.12.2 Exponenciación modula
-    3.3	algebra matricial
+prime factorization
+GCD and LCM
+algebra modular
+
+(a + b) % m = (a % m + b % m) % m
+(a  b) % m = (a % m  b % m) % m
+(a · b) (% m) = ((a % m) · (b % m)) % m
+(a ^ b) % m = (a % m) b % m
+
+Modular multiplicative inverse
+teorema chino
+algebra matricial
+matrix exponensiation
+
 
 
 

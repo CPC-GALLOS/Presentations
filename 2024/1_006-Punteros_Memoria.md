@@ -300,7 +300,7 @@ int main() {
 
 ## Conclusión
 
-<iframe height="480" src="https://www.youtube.com/embed/bLHL75H_VEM?si=upMaTVbf733Sx9-s" frameborder="0" allowfullscreen></iframe>
+<iframe height="480" src="https://www.youtube-nocookie.com/embed/bLHL75H_VEM?si=upMaTVbf733Sx9-s" frameborder="0" allowfullscreen></iframe>
 
 ## Problemas
 

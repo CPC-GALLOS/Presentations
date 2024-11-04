@@ -15,6 +15,10 @@ footer: CPC Γα=Ω5
 
 # <!-- fit -->
 https://usaco.guide/bronze/complete-rec?lang=cpp
-        3.5.3 Ajedrez
 
-permutaciones
+Generating subsets 
+Generating permutations 
+Backtracking 
+Pruning the search 
+Meet in the middle
+- Laaksonen, A. (2018). *Competitive Programmer’s Handbook*. Recuperado de <https://cses.fi/book/book.pdf>

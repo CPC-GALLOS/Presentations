@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en-US"><head><title>Grafos</title><meta property="og:title" content="Grafos"><meta name="author" content="Ariel Parra"><meta property="article:author" content="Ariel Parra"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{view-transition-name:__bespoke_marp_transition_osc__;background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:rgba(0,0,0,.65);border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';@import url(https://fonts.bunny.net/css?family=charm:700);div#\:\$p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#\:\$p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#\:\$p>svg>foreignObject>section :is(h1,marp-h1){font-size:2em;margin:0.67em 0}div#\:\$p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p>svg>foreignObject>section{page-break-before:always;break-before:page}div#\:\$p>svg>foreignObject>section,div#\:\$p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#\:\$p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}
+<!DOCTYPE html><html lang="en-US"><head><meta name="author" content="Ariel Parra"><meta property="article:author" content="Ariel Parra"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNNDAgNzBIMjBWNTBtMjAgMEwyMCA3MG00MC00MGgyMHYyMG0tMjAgMCAyMC0yMCIgY2xhc3M9ImEiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgeD0iMTAiIHk9IjIwIiBjbGFzcz0iYSIgcng9IjUuNjciLz48cGF0aCBkPSJNMjAgNTBoMjB2MjBtLTIwIDAgMjAtMjBtNDAgMEg2MFYzMG0yMCAwTDYwIDUwIiBjbGFzcz0iYSIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODBNNTIgOTBWMTAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMTIgNTBoODAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}@keyframes __bespoke_marp_transition_reduced_outgoing__{0%{opacity:1}to{opacity:0}}@keyframes __bespoke_marp_transition_reduced_incoming__{0%{mix-blend-mode:plus-lighter;opacity:0}to{mix-blend-mode:plus-lighter;opacity:1}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{::view-transition-group(*){animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-timing-function:ease}::view-transition-new(*),::view-transition-old(*){animation-delay:0s;animation-direction:var(--marp-bespoke-transition-animation-direction,normal);animation-duration:var(--marp-bespoke-transition-animation-duration,.5s);animation-fill-mode:both;animation-name:var(--marp-bespoke-transition-animation-name,var(--marp-bespoke-transition-animation-name-fallback,__bespoke_marp_transition_no_animation__));mix-blend-mode:normal}::view-transition-old(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_outgoing__;animation-timing-function:ease}::view-transition-new(*){--marp-bespoke-transition-animation-name-fallback:__bespoke_marp_transition_reduced_incoming__;animation-timing-function:ease}::view-transition-new(root),::view-transition-old(root){animation-timing-function:linear}::view-transition-new(__bespoke_marp_transition_osc__),::view-transition-old(__bespoke_marp_transition_osc__){animation-duration:0s!important;animation-name:__bespoke_marp_transition_osc__!important}::view-transition-new(__bespoke_marp_transition_osc__){opacity:0!important}.bespoke-marp-transition-warming-up::view-transition-group(*),.bespoke-marp-transition-warming-up::view-transition-new(*),.bespoke-marp-transition-warming-up::view-transition-old(*){animation-play-state:paused!important}body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide:not(.bespoke-marp-active) *{view-transition-name:none!important}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}}@media screen and (prefers-reduced-motion:reduce){svg.bespoke-marp-slide *{view-transition-name:none!important}}@media screen{[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{inset:0;position:absolute}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{view-transition-name:__bespoke_marp_transition_osc__;background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{display:block;inset:0;position:absolute}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:rgba(0,0,0,.65);border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';@import url(https://fonts.bunny.net/css?family=charm:700);div#\:\$p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#\:\$p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#\:\$p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#\:\$p>svg>foreignObject>section :is(h1,marp-h1){font-size:2em;margin:0.67em 0}div#\:\$p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#\:\$p>svg>foreignObject>section{page-break-before:always;break-before:page}div#\:\$p>svg>foreignObject>section,div#\:\$p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#\:\$p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}
 
 /*!
  * Marp default theme.
@@ -25,502 +25,283 @@
   /* top: 13%;
   position: absolute; */margin-left:-2%}div#\:\$p>svg>foreignObject>section.cols2_ul_ci p{padding-bottom:1%;margin-left:-1.5%}div#\:\$p>svg>foreignObject>section.cols2_ul_ci ul{left:1%;
   /* margin-left: -2%; */width:98%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.7em;list-style-type:none;column-gap:3em}div#\:\$p>svg>foreignObject>section.cols2_ul_ci ul li{display:block;position:relative}div#\:\$p>svg>foreignObject>section.cols2_ul_ci ul li:before{content:"";display:inline-flex;position:absolute;top:1.2em;left:-30px;margin-top:-0.9em;align-items:center;justify-content:center;font-family:var(--font-family-title);background-color:var(--color-much);height:10px;width:10px;border-radius:50%}div#\:\$p>svg>foreignObject>section.cols-2{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1.5);grid-template-columns:50% 50%;grid-template-rows:10% 90%;grid-template-areas:"slideheading slideheading" "leftpanel    rightpanel"}div#\:\$p>svg>foreignObject>section.cols-2 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.cols-2 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.cols-2 .ldiv{grid-area:leftpanel;margin-top:-5%}div#\:\$p>svg>foreignObject>section.cols-2 .rdiv{grid-area:rightpanel;margin-top:-5%}div#\:\$p>svg>foreignObject>section.cols-2 .limg{grid-area:leftpanel;margin-top:-5%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2 .rimg{grid-area:rightpanel;margin-top:-5%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-3{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-columns:1fr 1fr 1fr;grid-template-rows:10% 90%;grid-template-areas:"slideheading slideheading slideheading" "leftpanel    middlepanel  rightpanel"}div#\:\$p>svg>foreignObject>section.cols-3 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.cols-3 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.cols-3 .ldiv{grid-area:leftpanel;margin-top:-5%}div#\:\$p>svg>foreignObject>section.cols-3 .mdiv{grid-area:middlepanel;margin-top:-5%}div#\:\$p>svg>foreignObject>section.cols-3 .rdiv{grid-area:rightpanel;margin-top:-5%}div#\:\$p>svg>foreignObject>section.cols-3 .limg{grid-area:leftpanel;margin-top:-5%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-3 .mimg{grid-area:middlepanel;margin-top:-5%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-3 .rimg{grid-area:rightpanel;margin-top:-5%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-73{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-columns:70% 30%;grid-template-rows:10% 90%;grid-template-areas:"slideheading slideheading" "leftpanel    rightpanel"}div#\:\$p>svg>foreignObject>section.cols-2-73 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.cols-2-73 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.cols-2-73 .ldiv{grid-area:leftpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-73 .rdiv{grid-area:rightpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-73 .limg{grid-area:leftpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-73 .rimg{grid-area:rightpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-64{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-columns:60% 40%;grid-template-rows:10% 90%;grid-template-areas:"slideheading slideheading" "leftpanel    rightpanel"}div#\:\$p>svg>foreignObject>section.cols-2-64 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.cols-2-64 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.cols-2-64 .ldiv{grid-area:leftpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-64 .rdiv{grid-area:rightpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-64 .limg{grid-area:leftpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-64 .rimg{grid-area:rightpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-37{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-columns:30% 70%;grid-template-rows:10% 90%;grid-template-areas:"slideheading slideheading" "leftpanel    rightpanel"}div#\:\$p>svg>foreignObject>section.cols-2-37 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.cols-2-37 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.cols-2-37 .ldiv{grid-area:leftpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-37 .rdiv{grid-area:rightpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-37 .limg{grid-area:leftpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-37 .rimg{grid-area:rightpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-46{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-columns:40% 60%;grid-template-rows:10% 90%;grid-template-areas:"slideheading slideheading" "leftpanel    rightpanel"}div#\:\$p>svg>foreignObject>section.cols-2-46 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.cols-2-46 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.cols-2-46 .ldiv{grid-area:leftpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-46 .rdiv{grid-area:rightpanel;margin-top:-2%}div#\:\$p>svg>foreignObject>section.cols-2-46 .limg{grid-area:leftpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.cols-2-46 .rimg{grid-area:rightpanel;margin-top:-2%;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.rows-2{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-rows:7% 45% 45%;grid-template-columns:100%;grid-template-areas:"slideheading" "toppanel" "bottompanel"}div#\:\$p>svg>foreignObject>section.rows-2 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.rows-2 :is(h3,marp-h3){grid-area:slideheading}div#\:\$p>svg>foreignObject>section.rows-2 .tdiv{grid-area:toppanel}div#\:\$p>svg>foreignObject>section.rows-2 .bdiv{grid-area:bottompanel}div#\:\$p>svg>foreignObject>section.rows-2 .timg{grid-area:toppanel;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.rows-2 .bimg{grid-area:bottompanel;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.pin-3{overflow:visible;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1);grid-template-rows:7% 42% 48%;grid-template-columns:50% 50%;grid-template-areas:"slideheading slideheading" "toppanel  toppanel" "leftpanel rightpanel"}div#\:\$p>svg>foreignObject>section.pin-3 :is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.pin-3 :is(h3,marp-h3){grid-area:slideheading;font-size:var(--font-size-2-3)}div#\:\$p>svg>foreignObject>section.pin-3 .tdiv{grid-area:toppanel}div#\:\$p>svg>foreignObject>section.pin-3 .ldiv{grid-area:leftpanel}div#\:\$p>svg>foreignObject>section.pin-3 .rdiv{grid-area:rightpanel}div#\:\$p>svg>foreignObject>section.pin-3 .timg{grid-area:toppanel;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.pin-3 .limg{grid-area:leftpanel;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.pin-3 .rimg{grid-area:rightpanel;display:flex;align-items:center;justify-content:center}div#\:\$p>svg>foreignObject>section.bq-black blockquote,div#\:\$p>svg>foreignObject>section.bq-blue blockquote,div#\:\$p>svg>foreignObject>section.bq-green blockquote,div#\:\$p>svg>foreignObject>section.bq-purple blockquote,div#\:\$p>svg>foreignObject>section.bq-red blockquote{padding:1%;letter-spacing:0px;border-left:none;background-color:white}div#\:\$p>svg>foreignObject>section.bq-purple blockquote p>strong{color:var(--color-main);font-size:calc(var(--marpit-root-font-size, 1rem) * 0.9)}div#\:\$p>svg>foreignObject>section.bq-black blockquote>p:before,div#\:\$p>svg>foreignObject>section.bq-blue blockquote>p:before,div#\:\$p>svg>foreignObject>section.bq-green blockquote>p:before,div#\:\$p>svg>foreignObject>section.bq-purple blockquote>p:before,div#\:\$p>svg>foreignObject>section.bq-red blockquote>p:before{padding-right:0px;content:"";color:white}div#\:\$p>svg>foreignObject>section.bq-black blockquote>p:first-child,div#\:\$p>svg>foreignObject>section.bq-blue blockquote>p:first-child,div#\:\$p>svg>foreignObject>section.bq-green blockquote>p:first-child,div#\:\$p>svg>foreignObject>section.bq-purple blockquote>p:first-child,div#\:\$p>svg>foreignObject>section.bq-red blockquote>p:first-child{margin-bottom:-1px;line-height:calc(var(--marpit-root-font-size, 1rem) * 2);padding:0.5% 0.5% 0.5% 1.5%;color:white;font-size:calc(var(--marpit-root-font-size, 1rem) * 1.03)}div#\:\$p>svg>foreignObject>section.bq-black blockquote>p:not(:first-child),div#\:\$p>svg>foreignObject>section.bq-blue blockquote>p:not(:first-child),div#\:\$p>svg>foreignObject>section.bq-green blockquote>p:not(:first-child),div#\:\$p>svg>foreignObject>section.bq-purple blockquote>p:not(:first-child),div#\:\$p>svg>foreignObject>section.bq-red blockquote>p:not(:first-child){padding:1% 2%;background-color:rgb(228,234,246)}div#\:\$p>svg>foreignObject>section.bq-blue blockquote>p:first-child{background-color:rgb(129,161,193)}div#\:\$p>svg>foreignObject>section.bq-red blockquote>p:first-child{background-color:rgb(191,97,106)}div#\:\$p>svg>foreignObject>section.bq-green blockquote>p:first-child{background-color:rgb(172,206,141)}div#\:\$p>svg>foreignObject>section.bq-purple blockquote>p:first-child{background-color:rgb(180,142,173)}div#\:\$p>svg>foreignObject>section.bq-black blockquote>p:first-child{background-color:rgb(67,76,94)}div#\:\$p>svg>foreignObject>section.bq-blue blockquote>p:first-child:before{content:"\f518";padding-right:2%;font-family:"FontAwesome"}div#\:\$p>svg>foreignObject>section.bq-red blockquote>p:first-child:before{content:"\f0eb";padding-right:2%;font-family:"FontAwesome"}div#\:\$p>svg>foreignObject>section.bq-green blockquote>p:first-child:before{content:"\e0bb";padding-right:2%;font-family:"FontAwesome"}div#\:\$p>svg>foreignObject>section.bq-purple blockquote>p:first-child:before{content:"\f7e4";padding-right:2%;font-family:"FontAwesome"}div#\:\$p>svg>foreignObject>section.bq-black blockquote>p:first-child:before{content:"\f5ad";padding-right:2%;font-family:"FontAwesome"}div#\:\$p>svg>foreignObject>section.lastpage{background:linear-gradient(to bottom,white 20%,var(--color-coverbg) 20% 60%,white 55%);padding:0;display:grid;grid-template-rows:80% 20%;grid-template-columns:auto;grid-template-areas:"heading" "icons"}div#\:\$p>svg>foreignObject>section.lastpage :is(h6,marp-h6){height:80px;margin-bottom:10px;text-align:center;vertical-align:middle;font-family:var(--font-family-title);font-size:var(--font-size-1);color:var(--color-title);display:grid;padding:0;height:100%;width:100%;align-content:center;justify-content:center}div#\:\$p>svg>foreignObject>section.lastpage :is(h6,marp-h6){grid-area:heading}div#\:\$p>svg>foreignObject>section.lastpage .icons{grid-area:icons}div#\:\$p>svg>foreignObject>section.lastpage div>ul{font-family:var(--font-family-main);width:100%;display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:5em;align-content:center;list-style:none}div#\:\$p>svg>foreignObject>section.lastpage ul>li>ul>li{margin-left:-120px}div#\:\$p>svg>foreignObject>section.lastpage div>ul>li>ul>li{list-style:none}div#\:\$p>svg>foreignObject>section .fa-envelope,div#\:\$p>svg>foreignObject>section .fa-house,div#\:\$p>svg>foreignObject>section .fa-phone-volume,div#\:\$p>svg>foreignObject>section .fa-weixin{border:2px solid;padding:10px;border-radius:50%;font-size:calc(var(--marpit-root-font-size, 1rem) * 1.2)}div#\:\$p>svg>foreignObject>section section.fa-envelope,div#\:\$p>svg>foreignObject>section section.fa-house,div#\:\$p>svg>foreignObject>section section.fa-phone-volume,div#\:\$p>svg>foreignObject>section section.fa-weixin{--marpit-root-font-size:calc(var(--marpit-root-font-size, 1rem) * 1.2)}div#\:\$p>svg>foreignObject>section.lastpage a{font-size:var(--font-size-main)}div#\:\$p>svg>foreignObject>section.lastpage a:after,div#\:\$p>svg>foreignObject>section.lastpage:after{position:relative;
-  /* content: ""; */border:none;color:white}div#\:\$p>svg>foreignObject>section.navbar header{background-color:var(--color-navbar-bg);width:100%;height:5%;padding:6px 0px 3px 0px;left:0px;top:0px;display:flex;justify-content:space-between;color:var(--color-navbar-font);white-space:pre}div#\:\$p>svg>foreignObject>section.navbar header>em,div#\:\$p>svg>foreignObject>section.navbar header>em>strong,div#\:\$p>svg>foreignObject>section.navbar header>strong{font-style:normal;font-size:calc(var(--marpit-root-font-size, 1rem) * 0.9);font-weight:normal;color:var(--color-navbar-font)}div#\:\$p>svg>foreignObject>section.navbar header>strong{border:1px solid white;border-radius:12px;padding:0px 15px 5px 15px;background-color:white}div#\:\$p>svg>foreignObject>section.navbar header:after,div#\:\$p>svg>foreignObject>section.navbar header:before{content:""}div#\:\$p>svg>foreignObject>section.navbar header>em>strong{display:block;width:400px;text-align:left;margin-left:-20px}div#\:\$p>svg>foreignObject>section.trans{background-color:var(--color-trans)}div#\:\$p>svg>foreignObject>section.trans :is(h2,marp-h2){text-align:center;color:var(--color-title);font-size:calc(var(--marpit-root-font-size, 1rem) * 2)}div#\:\$p>svg>foreignObject>section.caption .caption{padding-top:20px;text-align:center;font-size:smaller;color:var(--color-footer)}div#\:\$p>svg>foreignObject>section.caption div#\:\$p>svg>foreignObject>section section.caption{--marpit-root-font-size:smaller}div#\:\$p>svg>foreignObject>section table{border-collapse:collapse;text-align:center;word-break:initial;font-size:calc(var(--marpit-root-font-size, 1rem) * 0.8);margin:0 auto}div#\:\$p>svg>foreignObject>section table code{font-size:calc(var(--marpit-root-font-size, 1rem) * 0.7)}div#\:\$p>svg>foreignObject>section th,div#\:\$p>svg>foreignObject>section thead{height:40px;border-top:3px solid var(--color-main);font-size:105%;padding:6px}div#\:\$p>svg>foreignObject>section th,div#\:\$p>svg>foreignObject>section thead:first-child{border-bottom:3px solid var(--color-main)}div#\:\$p>svg>foreignObject>section table tr:nth-child(2n){background-color:white}div#\:\$p>svg>foreignObject>section tbody:last-child{border-bottom:3px solid var(--color-main)}div#\:\$p>svg>foreignObject>section table>tbody>tr>td,div#\:\$p>svg>foreignObject>section table>tbody>tr>th,div#\:\$p>svg>foreignObject>section table>tfoot>tr>td,div#\:\$p>svg>foreignObject>section table>tfoot>tr>th,div#\:\$p>svg>foreignObject>section table>thead>tr>td,div#\:\$p>svg>foreignObject>section table>thead>tr>th{border:0px solid white}div#\:\$p>svg>foreignObject>section .hljs{display:block;overflow-x:auto;padding:0.5em;font-size:small}div#\:\$p>svg>foreignObject>section section.hljs{--marpit-root-font-size:small}div#\:\$p>svg>foreignObject>section .hljs-comment{color:#28a828}div#\:\$p>svg>foreignObject>section .hljs-string{color:#fd8f3f}div#\:\$p>svg>foreignObject>section .hljs-number{color:rgb(158,158,62)}div#\:\$p>svg>foreignObject>section .hljs-keyword{color:#1111e2}div#\:\$p>svg>foreignObject>section .hljs-symbol{color:#ac1212}div#\:\$p>svg>foreignObject>section .hljs-variable{color:#fc5fa3}div#\:\$p>svg>foreignObject>section .hljs-built_in{color:#960ab9}div#\:\$p>svg>foreignObject>section .hljs-emphasis{font-style:italic}div#\:\$p>svg>foreignObject>section .hljs-meta{color:#2c2cff}div#\:\$p>svg>foreignObject>section .hljs-literal{color:#2c2cff}div#\:\$p>svg>foreignObject>section .hljs-name{color:#2c2cff}div#\:\$p>svg>foreignObject>section .in-prompt{color:#99bb88}div#\:\$p>svg>foreignObject>section .in-prompt-number{font-weight:bold}div#\:\$p>svg>foreignObject>section .out-prompt{color:#ff9090}div#\:\$p>svg>foreignObject>section .out-prompt-number{font-weight:bold}div#\:\$p>svg>foreignObject>section .inverted{background-color:white;color:#232629}div#\:\$p>svg>foreignObject>section.fixedtitleA{justify-content:start}div#\:\$p>svg>foreignObject>section.fixedtitleB{justify-content:start;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1.5);grid-template-rows:10% 90%;grid-template-areas:"slideheading" "content"}div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h3,marp-h3),div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h4,marp-h4),div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h5,marp-h5){grid-area:slideheading;position:absolute;padding:10px;background-color:var(--color-much);color:white;border-radius:8px;font-size:calc(var(--marpit-root-font-size, 1rem) * 1.25)}div#\:\$p>svg>foreignObject>section.fixedtitleB .div{grid-area:content}div#\:\$p>svg>foreignObject>section.fixedtitleB code{color:var(--color-much)}div#\:\$p>svg>foreignObject>section.footnote{display:grid;gap:0.7em;grid-template-rows:1fr auto;grid-template-areas:"content" "footnote"}div#\:\$p>svg>foreignObject>section.footnote .tdiv{grid-area:"content";justify-content:start}div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h3,marp-h3),div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h4,marp-h4),div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h5,marp-h5){margin-bottom:calc(var(--marpit-root-font-size, 1rem) * 1);margin-top:-calc(var(--marpit-root-font-size,1rem) * 1)}div#\:\$p>svg>foreignObject>section.footnote .bdiv{grid-area:"footnote";font-size:85%;bottom:5%}div#\:\$p>svg>foreignObject>section.footnote div#\:\$p>svg>foreignObject>section section.bdiv{--marpit-root-font-size:85%}div#\:\$p>svg>foreignObject>section.footnote .bdiv:before{border-top:1.8px dashed var(--color-coverbg);content:"";display:block;margin-bottom:1em}div#\:\$p>svg>foreignObject>section.tinytext>blockquote,div#\:\$p>svg>foreignObject>section.tinytext>ol,div#\:\$p>svg>foreignObject>section.tinytext>p,div#\:\$p>svg>foreignObject>section.tinytext>table,div#\:\$p>svg>foreignObject>section.tinytext>ul{font-size:80%}div#\:\$p>svg>foreignObject>section.tinytext code{font-size:90%}div#\:\$p>svg>foreignObject>section.tinytext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.tinytext em{font-size:90%}div#\:\$p>svg>foreignObject>section.tinytext :is(pre,marp-pre){font-size:70%}div#\:\$p>svg>foreignObject>section.smalltext>blockquote,div#\:\$p>svg>foreignObject>section.smalltext>ol,div#\:\$p>svg>foreignObject>section.smalltext>p,div#\:\$p>svg>foreignObject>section.smalltext>table,div#\:\$p>svg>foreignObject>section.smalltext>ul{font-size:90%}div#\:\$p>svg>foreignObject>section.smalltext code{font-size:90%}div#\:\$p>svg>foreignObject>section.smalltext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.smalltext em{font-size:90%}div#\:\$p>svg>foreignObject>section.smalltext :is(pre,marp-pre){font-size:80%}div#\:\$p>svg>foreignObject>section.largetext>blockquote,div#\:\$p>svg>foreignObject>section.largetext>ol,div#\:\$p>svg>foreignObject>section.largetext>p,div#\:\$p>svg>foreignObject>section.largetext>table,div#\:\$p>svg>foreignObject>section.largetext>ul{font-size:115%}div#\:\$p>svg>foreignObject>section.largetext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.largetext code{font-size:90%}div#\:\$p>svg>foreignObject>section.largetext em{font-size:90%}div#\:\$p>svg>foreignObject>section.largetext :is(pre,marp-pre){font-size:105%}div#\:\$p>svg>foreignObject>section.hugetext>blockquote,div#\:\$p>svg>foreignObject>section.hugetext>ol,div#\:\$p>svg>foreignObject>section.hugetext>p,div#\:\$p>svg>foreignObject>section.hugetext>table,div#\:\$p>svg>foreignObject>section.hugetext>ul{font-size:130%}div#\:\$p>svg>foreignObject>section.hugetext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.hugetext code{font-size:90%}div#\:\$p>svg>foreignObject>section.hugetext em{font-size:90%}div#\:\$p>svg>foreignObject>section.hugetext :is(pre,marp-pre){font-size:120%}div#\:\$p>svg>foreignObject>section .node rect{height:35px;rx:50%;ry:50%}div#\:\$p>svg>foreignObject>section[data-marpit-scope-kPVbOtFu] :is(pre,marp-pre){padding:20px}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure>figcaption{position:absolute;border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=content],div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#\:\$p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-footer="![](./img/GALLOS_black_rectangle_transparent.png)" data-class="cover_e" data-header="![](./img/GALLO.png)" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" class="cover_e" style="--footer:![](./img/GALLOS_black_rectangle_transparent.png);--class:cover_e;--header:![](./img/GALLO.png);--theme:am_nord;--heading-divider:2,3;">
+  /* content: ""; */border:none;color:white}div#\:\$p>svg>foreignObject>section.navbar header{background-color:var(--color-navbar-bg);width:100%;height:5%;padding:6px 0px 3px 0px;left:0px;top:0px;display:flex;justify-content:space-between;color:var(--color-navbar-font);white-space:pre}div#\:\$p>svg>foreignObject>section.navbar header>em,div#\:\$p>svg>foreignObject>section.navbar header>em>strong,div#\:\$p>svg>foreignObject>section.navbar header>strong{font-style:normal;font-size:calc(var(--marpit-root-font-size, 1rem) * 0.9);font-weight:normal;color:var(--color-navbar-font)}div#\:\$p>svg>foreignObject>section.navbar header>strong{border:1px solid white;border-radius:12px;padding:0px 15px 5px 15px;background-color:white}div#\:\$p>svg>foreignObject>section.navbar header:after,div#\:\$p>svg>foreignObject>section.navbar header:before{content:""}div#\:\$p>svg>foreignObject>section.navbar header>em>strong{display:block;width:400px;text-align:left;margin-left:-20px}div#\:\$p>svg>foreignObject>section.trans{background-color:var(--color-trans)}div#\:\$p>svg>foreignObject>section.trans :is(h2,marp-h2){text-align:center;color:var(--color-title);font-size:calc(var(--marpit-root-font-size, 1rem) * 2)}div#\:\$p>svg>foreignObject>section.caption .caption{padding-top:20px;text-align:center;font-size:smaller;color:var(--color-footer)}div#\:\$p>svg>foreignObject>section.caption div#\:\$p>svg>foreignObject>section section.caption{--marpit-root-font-size:smaller}div#\:\$p>svg>foreignObject>section table{border-collapse:collapse;text-align:center;word-break:initial;font-size:calc(var(--marpit-root-font-size, 1rem) * 0.8);margin:0 auto}div#\:\$p>svg>foreignObject>section table code{font-size:calc(var(--marpit-root-font-size, 1rem) * 0.7)}div#\:\$p>svg>foreignObject>section th,div#\:\$p>svg>foreignObject>section thead{height:40px;border-top:3px solid var(--color-main);font-size:105%;padding:6px}div#\:\$p>svg>foreignObject>section th,div#\:\$p>svg>foreignObject>section thead:first-child{border-bottom:3px solid var(--color-main)}div#\:\$p>svg>foreignObject>section table tr:nth-child(2n){background-color:white}div#\:\$p>svg>foreignObject>section tbody:last-child{border-bottom:3px solid var(--color-main)}div#\:\$p>svg>foreignObject>section table>tbody>tr>td,div#\:\$p>svg>foreignObject>section table>tbody>tr>th,div#\:\$p>svg>foreignObject>section table>tfoot>tr>td,div#\:\$p>svg>foreignObject>section table>tfoot>tr>th,div#\:\$p>svg>foreignObject>section table>thead>tr>td,div#\:\$p>svg>foreignObject>section table>thead>tr>th{border:0px solid white}div#\:\$p>svg>foreignObject>section .hljs{display:block;overflow-x:auto;padding:0.5em;font-size:small}div#\:\$p>svg>foreignObject>section section.hljs{--marpit-root-font-size:small}div#\:\$p>svg>foreignObject>section .hljs-comment{color:#28a828}div#\:\$p>svg>foreignObject>section .hljs-string{color:#fd8f3f}div#\:\$p>svg>foreignObject>section .hljs-number{color:rgb(158,158,62)}div#\:\$p>svg>foreignObject>section .hljs-keyword{color:#1111e2}div#\:\$p>svg>foreignObject>section .hljs-symbol{color:#ac1212}div#\:\$p>svg>foreignObject>section .hljs-variable{color:#fc5fa3}div#\:\$p>svg>foreignObject>section .hljs-built_in{color:#960ab9}div#\:\$p>svg>foreignObject>section .hljs-emphasis{font-style:italic}div#\:\$p>svg>foreignObject>section .hljs-meta{color:#2c2cff}div#\:\$p>svg>foreignObject>section .hljs-literal{color:#2c2cff}div#\:\$p>svg>foreignObject>section .hljs-name{color:#2c2cff}div#\:\$p>svg>foreignObject>section .in-prompt{color:#99bb88}div#\:\$p>svg>foreignObject>section .in-prompt-number{font-weight:bold}div#\:\$p>svg>foreignObject>section .out-prompt{color:#ff9090}div#\:\$p>svg>foreignObject>section .out-prompt-number{font-weight:bold}div#\:\$p>svg>foreignObject>section .inverted{background-color:white;color:#232629}div#\:\$p>svg>foreignObject>section.fixedtitleA{justify-content:start}div#\:\$p>svg>foreignObject>section.fixedtitleB{justify-content:start;display:grid;gap:calc(var(--marpit-root-font-size, 1rem) * 1.5);grid-template-rows:10% 90%;grid-template-areas:"slideheading" "content"}div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h3,marp-h3),div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h4,marp-h4),div#\:\$p>svg>foreignObject>section.fixedtitleB>:is(h5,marp-h5){grid-area:slideheading;position:absolute;padding:10px;background-color:var(--color-much);color:white;border-radius:8px;font-size:calc(var(--marpit-root-font-size, 1rem) * 1.25)}div#\:\$p>svg>foreignObject>section.fixedtitleB .div{grid-area:content}div#\:\$p>svg>foreignObject>section.fixedtitleB code{color:var(--color-much)}div#\:\$p>svg>foreignObject>section.footnote{display:grid;gap:0.7em;grid-template-rows:1fr auto;grid-template-areas:"content" "footnote"}div#\:\$p>svg>foreignObject>section.footnote .tdiv{grid-area:"content";justify-content:start}div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h2,marp-h2),div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h3,marp-h3),div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h4,marp-h4),div#\:\$p>svg>foreignObject>section.footnote .tdiv>:is(h5,marp-h5){margin-bottom:calc(var(--marpit-root-font-size, 1rem) * 1);margin-top:-calc(var(--marpit-root-font-size,1rem) * 1)}div#\:\$p>svg>foreignObject>section.footnote .bdiv{grid-area:"footnote";font-size:85%;bottom:5%}div#\:\$p>svg>foreignObject>section.footnote div#\:\$p>svg>foreignObject>section section.bdiv{--marpit-root-font-size:85%}div#\:\$p>svg>foreignObject>section.footnote .bdiv:before{border-top:1.8px dashed var(--color-coverbg);content:"";display:block;margin-bottom:1em}div#\:\$p>svg>foreignObject>section.tinytext>blockquote,div#\:\$p>svg>foreignObject>section.tinytext>ol,div#\:\$p>svg>foreignObject>section.tinytext>p,div#\:\$p>svg>foreignObject>section.tinytext>table,div#\:\$p>svg>foreignObject>section.tinytext>ul{font-size:80%}div#\:\$p>svg>foreignObject>section.tinytext code{font-size:90%}div#\:\$p>svg>foreignObject>section.tinytext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.tinytext em{font-size:90%}div#\:\$p>svg>foreignObject>section.tinytext :is(pre,marp-pre){font-size:70%}div#\:\$p>svg>foreignObject>section.smalltext>blockquote,div#\:\$p>svg>foreignObject>section.smalltext>ol,div#\:\$p>svg>foreignObject>section.smalltext>p,div#\:\$p>svg>foreignObject>section.smalltext>table,div#\:\$p>svg>foreignObject>section.smalltext>ul{font-size:90%}div#\:\$p>svg>foreignObject>section.smalltext code{font-size:90%}div#\:\$p>svg>foreignObject>section.smalltext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.smalltext em{font-size:90%}div#\:\$p>svg>foreignObject>section.smalltext :is(pre,marp-pre){font-size:80%}div#\:\$p>svg>foreignObject>section.largetext>blockquote,div#\:\$p>svg>foreignObject>section.largetext>ol,div#\:\$p>svg>foreignObject>section.largetext>p,div#\:\$p>svg>foreignObject>section.largetext>table,div#\:\$p>svg>foreignObject>section.largetext>ul{font-size:115%}div#\:\$p>svg>foreignObject>section.largetext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.largetext code{font-size:90%}div#\:\$p>svg>foreignObject>section.largetext em{font-size:90%}div#\:\$p>svg>foreignObject>section.largetext :is(pre,marp-pre){font-size:105%}div#\:\$p>svg>foreignObject>section.hugetext>blockquote,div#\:\$p>svg>foreignObject>section.hugetext>ol,div#\:\$p>svg>foreignObject>section.hugetext>p,div#\:\$p>svg>foreignObject>section.hugetext>table,div#\:\$p>svg>foreignObject>section.hugetext>ul{font-size:130%}div#\:\$p>svg>foreignObject>section.hugetext strong{font-size:100%}div#\:\$p>svg>foreignObject>section.hugetext code{font-size:90%}div#\:\$p>svg>foreignObject>section.hugetext em{font-size:90%}div#\:\$p>svg>foreignObject>section.hugetext :is(pre,marp-pre){font-size:120%}div#\:\$p>svg>foreignObject>section[data-marpit-scope-Zyn82hlH] :is(pre,marp-pre){margin:0;padding:4px;font-size:21px}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure>figcaption{position:absolute;border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;white-space:nowrap;width:1px}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=content],div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#\:\$p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#\:\$p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id=":$p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-footer="![](./img/GALLOS_black_rectangle_transparent.png)" data-class="cover_e" data-header="![](./img/GALLO.png)" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" class="cover_e" style="--footer:![](./img/GALLOS_black_rectangle_transparent.png);--class:cover_e;--header:![](./img/GALLO.png);--theme:am_nord;--heading-divider:2,3;">
 <header><img src="./img/GALLO.png" alt="" /></header>
 
-<h1 is="marp-h1" data-auto-scaling id="grafos"> Grafos</h1>
+<h1 is="marp-h1" data-auto-scaling id="minimum-spanning-trees-mst--floodfill"> Minimum spanning trees (MST) &amp; Floodfill</h1>
 <p>por Ariel Parra</p>
 <footer><img src="./img/GALLOS_black_rectangle_transparent.png" alt="" /></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="%C2%BFqu%C3%A9-es-un-grafo">¿Qué es un grafo?</h2>
-<p>Una estructura de datos de grafo es una estructura de datos no lineal que consiste en nodos (vértices) y aristas (edges).<br />
-Aquí tienes la traducción al español junto con el grafo en Mermaid:</p>
-<p>La mayoría de los problemas caen en al menos una de las siguientes dos categorías:</p>
-<ol>
-<li>La estructura del grafo es especial (es un árbol, un camino, o un ciclo).</li>
-<li>Para resolver el problema, solo necesitas iterar sobre la lista de adyacencia de cada vértice.</li>
-</ol>
-<p>Algunos problemas relacionados con los grafos son:</p>
-<ol>
-<li>¿Está la ciudad <code>A</code> conectada con la ciudad <code>B</code>? Imagina una región como un grupo de ciudades en el cual cada ciudad en el grupo puede alcanzar cualquier otra ciudad del mismo grupo, pero no puede alcanzar ciudades de otros grupos. ¿Cuántas regiones hay en este mapa, y cuáles ciudades pertenecen a cada región?</li>
-<li>¿Cuál es la distancia más corta que debo recorrer para llegar de la ciudad <code>A</code> a la ciudad <code>B</code>?</li>
-</ol>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="2" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<h2 id="algoritmo-de-kruskal-para-minimum-spanning-trees-mst">Algoritmo de Kruskal para Minimum spanning trees (MST)</h2>
+<p>En el algoritmo de Kruskal, el spanning tree inicial solo contiene los nodos del grafo y no contiene ninguna arista (vertices). Luego, el algoritmo recorre las aristas ordenadas por sus pesos y siempre agrega una arista al árbol si <strong>no crea un ciclo</strong>. El algoritmo mantiene los componentes del árbol. Inicialmente, cada nodo del grafo pertenece a un componente separado. Siempre que se agrega una arista al árbol, se unen dos componentes. Finalmente, todos los nodos pertenecen al mismo componente y se ha encontrado un árbol de expansión mínimo (Minimum spanning tree).</p>
+<p>Ahora apliquemos el algoritmo a este grafo:</p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20210727035309/UntitledDiagram92.png" alt="#c" /></p>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="3" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="terminolog%C3%ADa">Terminología</h2>
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-<div class="mermaid" style="text-align: center;">
-graph LR;
-  1 <--> 2
-  1 <--> 3
-  1 <--> 4
-  2 <--> 4
-  2 <--> 5
-  3 <--> 4
-  4 <--> 5
-</div>
-<h4 id="camino">Camino</h4>
-<p>Un camino lleva de un nodo <code>a</code> a un nodo <code>b</code> a través de las aristas del grafo. La longitud de un camino es el número de aristas en él. Por ejemplo, el grafo anterior contiene un camino de longitud 3 de nodo 1 a nodo 5: <code>1 → 3 → 4 → 5</code>.</p>
-<h4 id="ciclo">ciclo</h4>
-<p>Un camino es un ciclo si el primer y el último nodo son el mismo. Por ejemplo, el grafo anterior contiene un ciclo <code>1 → 3 → 4 → 1</code>. Un camino es simple si cada nodo aparece como máximo una vez en el camino.</p>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="4" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="grafo-dirigido">Grafo dirigido</h2>
-<p>Un grafo es dirigido si las aristas solo pueden ser recorridas en una dirección. Por ejemplo, el siguiente grafo es dirigido:</p>
-<div class="mermaid" style="text-align: center;">
-graph TD;
-  A --&gt; B
-  B --&gt; C
-  C --&gt; A
-  B --&gt; D
-</div>
-<p>El grafo anterior contiene una ruta 3 → 1 → 2 → 5 desde el nodo 3 al nodo 5, pero no hay ninguna ruta desde el nodo 5 al nodo 3.</p>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="5" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="pesos-de-los-aristas-weighted-edges">Pesos de los aristas (weighted edges)</h2>
-<p>En un grafo ponderado, a cada arco se le asigna un peso. Los pesos a menudo se interpretan como longitudes de arcos. Por ejemplo, el siguiente grafo es ponderado:</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1 --5--&gt; 2
-    1 --1--&gt; 3
-    1 --6--&gt; 4
-    2 --7--&gt; 5
-    3 --7--&gt; 4
-    4 --3--&gt; 5
-</div>
-<p>La longitud de un camino en un grafo ponderado es la suma de los pesos de los arcos en el camino. Por ejemplo, en el grafo anterior, la longitud del camino <code>1 → 2 → 5</code>. es 12, y la longitud del camino <code>1 → 3 → 4 → 5</code>. es 11. Este último camino es el <strong>camino más corto</strong> desde el nodo 1 hasta el nodo 5.</p>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="coloreo-de-grafos">Coloreo de grafos</h2>
-<p>En un <strong>coloreo</strong> de un grafo, a cada nodo se le asigna un color de manera que ningún par de nodos adyacentes tengan el mismo color.</p>
-<p>Un grafo es <strong>bipartito</strong> si es posible colorearlo usando dos colores. Resulta que un grafo es bipartito si y solo si no contiene un ciclo con un número impar de aristas. Por ejemplo, el grafo</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1<-->4
-    1<-->5
-    2<-->5
-    2<-->3
-    3<-->6
-    5<-->6
-</div>
-es bipartito, ya que se puede colorear de la siguiente forma:
-<ul>
-<li>Nodos <code>1 → 3 → 5</code>. en color rojo.</li>
-<li>Nodos <code>2 → 4 → 6 </code>. en color azul.</li>
-</ul>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="7" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1<-->4
-    1<-->5
-    2<-->5
-    2<-->3
-    3<-->6
-    5<-->6
-    classDef red fill:#FF6347,stroke:#000,stroke-width:2px;
-    classDef blue fill:#4682B4,stroke:#000,stroke-width:2px;
-    class 3,4,5 red;
-    class 1,2,6 blue;
-</div>
-<p>Sin embargo, el grafo</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1<-->4
-    1<-->5
-    1<-->2
-    2<-->5
-    2<-->3
-    3<-->6
-    5<-->6
-</div>
-<p>no es bipartito, ya que no es posible colorear el siguiente ciclo de tres nodos usando dos colores:</p>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="representaci%C3%B3n-de-grafos-con-una-lista-de-adyacencia">Representación de grafos con una lista de adyacencia</h2>
-<p>En la representación mediante listas de adyacencia, cada nodo <code>x</code> en el grafo tiene una lista de adyacencia que incluye los nodos a los que está conectado mediante una arista. Esta es una de las formas más populares de representar grafos, ya que permite implementar algoritmos de manera eficiente.</p>
-<p>Para almacenar las listas de adyacencia, se puede declarar un arreglo de vectores así:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-cpp">vector&lt;<span class="hljs-type">int</span>&gt; adj[N];
-</code></pre>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<p>Aquí, <code>N</code> es una constante que define el tamaño necesario para almacenar todas las listas de adyacencia. Por ejemplo, para el siguiente grafo:</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1--&gt;2
-    2--&gt;3
-    2--&gt;4
-    3--&gt;4
-    4--&gt;1
-</div>
-<p>se puede almacenar como:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-cpp">adj[<span class="hljs-number">1</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">2</span>);
-adj[<span class="hljs-number">2</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">3</span>);
-adj[<span class="hljs-number">2</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">4</span>);
-adj[<span class="hljs-number">3</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">4</span>);
-adj[<span class="hljs-number">4</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">1</span>);
-</code></pre>
-<blockquote>
-<p>Si el grafo no está dirigido es similar, pero cada arista (edge) se agrega en ambas direcciones.</p>
-</blockquote>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<p>Para un grafo ponderado, la estructura es:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">vector&lt;par&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&gt; adj[N];
-</code></pre>
-<p>En este caso, la lista de adyacencia del nodo a contiene el par (b, w) siempre que exista una arista (edge) del nodo a al nodo b con peso w. Por ejemplo, el grafo:</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1--5--&gt;2
-    2--7--&gt;3
-    2--6--&gt;4
-    3--5--&gt;4
-    4--2--&gt;1
-</div>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<p>se puede almacenar de la siguiente manera:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">adj[<span class="hljs-number">1</span>].<span class="hljs-built_in">push_back</span>({<span class="hljs-number">2</span>,<span class="hljs-number">5</span>});
-adj[<span class="hljs-number">2</span>].<span class="hljs-built_in">push_back</span>({<span class="hljs-number">3</span>,<span class="hljs-number">7</span>});
-adj[<span class="hljs-number">2</span>].<span class="hljs-built_in">push_back</span>({<span class="hljs-number">4</span>,<span class="hljs-number">6</span>});
-adj[<span class="hljs-number">3</span>].<span class="hljs-built_in">push_back</span>({<span class="hljs-number">4</span>,<span class="hljs-number">5</span>});
-adj[<span class="hljs-number">4</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">make_pair</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>));<span class="hljs-comment">//alternativa a {}</span>
-</code></pre>
-<p>La ventaja de usar listas de adyacencia es que podemos encontrar de manera eficiente los nodos a los que podemos movernos desde un nodo dado a través de una arista. Por ejemplo, el siguiente <code> for</code> pasa por todos los nodos a los que podemos movernos desde el nodo s:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> u : adj[s]) {
-  <span class="hljs-comment">// procesar nodo u</span>
-}
-</code></pre>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="representaci%C3%B3n-de-grafos-con-la-matriz-de-adyacencia">Representación de grafos con la matriz de adyacencia</h2>
-<p>Una <strong>matriz de adyacencia</strong> es un arreglo bidimensional que indica qué aristas están presentes en el grafo. Esta representación permite verificar de manera eficiente si existe una arista entre dos nodos.</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-cpp"><span class="hljs-type">int</span> adj[N][N]; <span class="hljs-comment">// declaracion simple de C</span>
-vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(N, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(N, <span class="hljs-number">0</span>));<span class="hljs-comment">//declaracion con std::vector de c++</span>
-</code></pre>
-<p>Cada valor <code>adj[a][b]</code> indica si existe una arista desde el nodo <code>a</code> al nodo <code>b</code>. Si la arista está en el grafo, entonces <code>adj[a][b] = 1</code>; si no, <code>adj[a][b] = 0</code>.</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1--&gt;2
-    2--&gt;3
-    2--&gt;4
-    3--&gt;4
-    4--&gt;1
-</div>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<p>esta matriz se ve como la siguiente tabla:</p>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="3" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<p>El grafo contiene 9 vértices y 14 aristas. Por lo tanto, el árbol de expansión mínima formado tendrá (9 - 1) = 8 aristas. Después de ordenar queda como:</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
+<th>Weight</th>
+<th>Source</th>
+<th>Destination</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>1</strong></td>
-<td>0</td>
 <td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td><strong>2</strong></td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td><strong>3</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td><strong>4</strong></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>y si el grafo es ponderado cambiamos los 1 por sus pesos</p>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1--5--&gt;2
-    2--7--&gt;3
-    2--6--&gt;4
-    3--5--&gt;4
-    4--2--&gt;1
-</div>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="14" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<p>dicha matriz ponderada se ve como la siguiente tabla:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>1</strong></td>
-<td>0</td>
-<td>5</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td><strong>2</strong></td>
-<td>0</td>
-<td>0</td>
 <td>7</td>
 <td>6</td>
 </tr>
 <tr>
-<td><strong>3</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
+<td>2</td>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
 <td>5</td>
 </tr>
 <tr>
-<td><strong>4</strong></td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
 <td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8</td>
+<td>6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>8</td>
+</tr>
+<tr>
+<td>8</td>
 <td>0</td>
-<td>0</td>
-<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1</td>
+<td>7</td>
+</tr>
+<tr>
+<td>14</td>
+<td>3</td>
+<td>5</td>
 </tr>
 </tbody>
 </table>
-<h5 id=""></h5>
-<blockquote>
-<p>La desventaja de la representación de la matriz de adyacencia es que la matriz contiene n^2 elementos y la mayoría de ellos son cero. Por este motivo, la representación no se puede utilizar si el grafo es grande.</p>
-</blockquote>
+<p>Ahora selecciona todas las aristas una por una de la lista ordenada de aristas.</p>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="representaci%C3%B3n-de-grafos-con-lista-de-aristas-edge-list">Representación de grafos con lista de aristas (Edge list)</h2>
-<p>An edge list contains all edges of a graph in some order. This is a convenient way to represent a graph if the algorithm processes all edges of the graph and it is not needed to find edges that start at a given node.</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">vector&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&gt; edges;<span class="hljs-comment">//aristas</span>
-</code></pre>
-<div class="mermaid" style="text-align: center;">
-graph LR
-    1--&gt;2
-    2--&gt;3
-    2--&gt;4
-    3--&gt;4
-    4--&gt;1
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-footer="CPC Γα=Ω5" data-class="cols-2" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" class="cols-2" data-marpit-pagination="4" style="--paginate:true;--footer:CPC Γα=Ω5;--class:cols-2;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15"><div class=ldiv>
+Paso 1: Seleccione la arista 7-6. No se forma ningún ciclo, incluirlo.
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306132726/img1drawio.png" alt="#c" /></p>
 </div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">edges.<span class="hljs-built_in">push_back</span>({<span class="hljs-number">1</span>,<span class="hljs-number">2</span>});   edges.<span class="hljs-built_in">push_back</span>({<span class="hljs-number">2</span>,<span class="hljs-number">3</span>});
-edges.<span class="hljs-built_in">push_back</span>({<span class="hljs-number">2</span>,<span class="hljs-number">4</span>});   edges.<span class="hljs-built_in">push_back</span>({<span class="hljs-number">3</span>,<span class="hljs-number">4</span>});   edges.<span class="hljs-built_in">push_back</span>({<span class="hljs-number">4</span>,<span class="hljs-number">1</span>});
-</code></pre>
+<div class=rdiv>
+<p>Paso 2: Seleccione el borde 8-2. No se forma ningún ciclo, incluirlo.</p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306132819/img2drawio.png" alt="#c" /></p>
+</div>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="16" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="search-traverse-algorithms-for-unweighted-graphs">Search (traverse) algorithms (for unweighted graphs)</h2>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-footer="CPC Γα=Ω5" data-class="cols-2" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" class="cols-2" data-marpit-pagination="5" style="--paginate:true;--footer:CPC Γα=Ω5;--class:cols-2;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15"><div class=ldiv>
+Paso 3: Seleccione la arista 6-5. No se forma ningún ciclo, incluirlo.
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306132901/img3drawio.png" alt="#c" /></p>
+</div>
+<div class=rdiv>
+<p>Paso 4: Seleccione la arista 0-1. No se forma ningún ciclo, incluirlo.</p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306132939/img4drawio.png" alt="#c" /></p>
+</div>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="17" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="b%C3%BAsqueda-en-profundidad--depth-first-search-dfs">Búsqueda en profundidad / Depth-first search (DFS)</h2>
-<p>La búsqueda en profundidad (DFS) es una técnica sencilla de recorrido de grafos. El algoritmo comienza en un nodo inicial y se extiende a todos los demás nodos accesibles desde ese nodo inicial, utilizando los bordes del grafo.</p>
-<p>La búsqueda en profundidad sigue siempre un único camino en el grafo mientras encuentra nuevos nodos. Una vez que llega a un punto sin salida (sin más nodos nuevos), regresa a los nodos anteriores y comienza a explorar otras partes del grafo. El algoritmo mantiene un registro de los nodos visitados para procesar cada nodo solo una vez.</p>
-<h4 id="caracter%C3%ADsticas-de-dfs">Características de DFS</h4>
-<ul>
-<li>Utiliza el principio de “último en entrar, primero en salir” (pila).</li>
-<li>No es óptimo y tiende a ser errático.</li>
-</ul>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-footer="CPC Γα=Ω5" data-class="cols-2" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" class="cols-2" data-marpit-pagination="6" style="--paginate:true;--footer:CPC Γα=Ω5;--class:cols-2;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15"><div class=ldiv>
+Paso 5: Seleccione el borde 2-5. No se forma ningún ciclo,  .
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306133028/img5drawio.png" alt="#c" /></p>
+</div>
+<div class=rdiv>
+<p>Paso 6: Seleccione la arista 8-6. Como incluir esta arista genera el ciclo, deséchela. Seleccione la arista 2-3: no se forma ningún ciclo, incluirlo.</p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306133247/img6drawio.png" alt="#c" /></p>
+</div>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="18" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="implementacion-de-dfs">Implementacion de DFS</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">vector&lt;<span class="hljs-type">int</span>&gt; adj[N];
-<span class="hljs-type">bool</span> visited[N];
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-footer="CPC Γα=Ω5" data-class="cols-2" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" class="cols-2" data-marpit-pagination="7" style="--paginate:true;--footer:CPC Γα=Ω5;--class:cols-2;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15"><div class=ldiv>
+<p>Paso 7: Seleccione la arista 7-8. Como incluir esta arista genera un ciclo, deséchela. Seleccione la arista 0-7. No se forma ningún ciclo, incluirlo.</p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306133618/img7drawio.png" alt="#c" /></p>
+</div>
+<div class=rdiv>
+<p>Paso 8: Seleccione la arista 1-2. Dado que incluir esta arista genera el ciclo, deséchela. Seleccione la arista 3-4. No se forma ningún ciclo, incluirlo.</p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230306133406/img8drawio.png" alt="#c" /></p>
+<p>El número de aristas en el MST es (V – 1), y sale.</p>
+</div>
+<footer>CPC Γα=Ω5</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-marpit-scope-Zyn82hlH="" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<h2 id="implementacion">Implementacion</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-comment">// Find function for DSU (Disjoint Set Union) with path compression</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> i, vector&lt;<span class="hljs-type">int</span>&gt;&amp; parent)</span> </span>{
+    <span class="hljs-keyword">if</span> (parent[i] == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> i;
+    <span class="hljs-keyword">return</span> parent[i] = <span class="hljs-built_in">find</span>(parent[i], parent);
+}<span class="hljs-comment">// complejidad amortizada O(α(n)) , casi constante O(1)</span>
+<span class="hljs-comment">// Union function for DSU (Disjoint Set Union) with union</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">unite</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, vector&lt;<span class="hljs-type">int</span>&gt;&amp; parent, vector&lt;<span class="hljs-type">int</span>&gt;&amp; rank)</span> </span>{
+    <span class="hljs-type">int</span> s1 = <span class="hljs-built_in">find</span>(x, parent); <span class="hljs-type">int</span> s2 = <span class="hljs-built_in">find</span>(y, parent);
 
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> s)</span> </span>{
-  <span class="hljs-keyword">if</span> (visited[s]) <span class="hljs-keyword">return</span>;
-  visited[s] = <span class="hljs-literal">true</span>;
-  <span class="hljs-comment">// process node s</span>
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> u: adj[s])
-    <span class="hljs-built_in">dfs</span>(u);
-}<span class="hljs-comment">//O(V + E)  (Vertices + Edges) </span>
-</code></pre>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="19" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="implementacion-de-dfs-con-contador-de-profundidad">Implementacion de DFS con contador de profundidad</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> s)</span> </span>{
-    <span class="hljs-type">static</span> <span class="hljs-type">int</span> depth = <span class="hljs-number">0</span>; 
-    <span class="hljs-keyword">if</span> (visited[s]) <span class="hljs-keyword">return</span>;
-    visited[s] = <span class="hljs-literal">true</span>;
-    cout &lt;&lt; <span class="hljs-string">&quot;Node: &quot;</span> &lt;&lt; s &lt;&lt; <span class="hljs-string">&quot;, depth: &quot;</span> &lt;&lt; depth &lt;&lt; endl;
-    ++depth;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> u : adj[s]) 
-        <span class="hljs-built_in">dfs</span>(u); 
-    --depth;
-}
-</code></pre>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="20" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="b%C3%BAsqueda-en-amplitud-breadth-first-search-bfs">Búsqueda en amplitud/ Breadth-first search (BFS)</h2>
-<p>La búsqueda en amplitud (BFS) visita los nodos en orden creciente de su distancia desde el nodo inicial. De esta manera, es posible calcular la distancia desde el nodo inicial hasta todos los demás nodos usando la búsqueda en amplitud. Sin embargo, la búsqueda en amplitud es más complicada de implementar que la búsqueda en profundidad.</p>
-<p>La búsqueda en amplitud recorre los nodos nivel por nivel. Primero explora los nodos cuya distancia desde el nodo inicial es 1, luego los nodos a distancia 2, y así sucesivamente. Este proceso continúa hasta que se hayan visitado todos los nodos.</p>
-<h4 id="caracter%C3%ADsticas-de-bfs">Características de BFS</h4>
-<ul>
-<li>Utiliza el principio de “primero en entrar, primero en salir” (cola).</li>
-<li>Es óptima, pero lenta.</li>
-</ul>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-marpit-scope-kPVbOtFu="" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="21" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="implementacion-de-bfs">Implementacion de BFS</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">queue&lt;<span class="hljs-type">int</span>&gt; q;
-<span class="hljs-type">bool</span> visited[N];
-<span class="hljs-type">int</span> distance[N];
-
-visited[x] = <span class="hljs-literal">true</span>;
-distance[x] = <span class="hljs-number">0</span>;
-q.<span class="hljs-built_in">push</span>(x);
-<span class="hljs-keyword">while</span> (!q.<span class="hljs-built_in">empty</span>()) {
-  <span class="hljs-type">int</span> s = q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();
-    <span class="hljs-comment">// process node s</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> u : adj[s]) {
-      <span class="hljs-keyword">if</span> (visited[u]) <span class="hljs-keyword">continue</span>;
-      visited[u] = <span class="hljs-literal">true</span>;
-      distance[u] = distance[s]+<span class="hljs-number">1</span>;
-      q.<span class="hljs-built_in">push</span>(u);
-  }
-}<span class="hljs-comment">//O(V + E)  (Vertices + Edges) </span>
-</code></pre>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="22" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="dfs-vs-bfs">DFS vs BFS</h2>
-<table>
-<thead>
-<tr>
-<th>Característica</th>
-<th>DFS (Depth-First Search)</th>
-<th>BFS (Breadth-First Search)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Orden de exploración</strong></td>
-<td>Profundidad primero, explora completamente una rama antes de retroceder</td>
-<td>Anchura primero, explora todos los nodos en el nivel actual antes de pasar al siguiente nivel</td>
-</tr>
-<tr>
-<td><strong>Recorrido</strong></td>
-<td>Recursivo, sigue cada camino hasta su fin antes de retroceder</td>
-<td>Utiliza una cola para recorrer nivel por nivel</td>
-</tr>
-<tr>
-<td><strong>Aplicaciones</strong></td>
-<td>Ideal para explorar caminos completos y laberintos, útil en algoritmos de backtracking</td>
-<td>Ideal para encontrar la ruta más corta en gráficos no ponderados y niveles de árbol</td>
-</tr>
-<tr>
-<td><strong>Uso típico</strong></td>
-<td>Problemas de profundidad máxima, laberintos, problemas de conexión</td>
-<td>Búsqueda de ruta más corta, recorrido por niveles en árboles</td>
-</tr>
-<tr>
-<td><strong>Ejemplo de uso</strong></td>
-<td>Cálculo de profundidad máxima en un árbol</td>
-<td>Nivel de recorrido en árboles, distancia mínima en redes sin peso</td>
-</tr>
-<tr>
-<td><strong>Implementación típica</strong></td>
-<td>Recursiva o con pila explícita</td>
-<td>Con una cola</td>
-</tr>
-</tbody>
-</table>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="23" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="caminos-m%C3%A1s-cortos-para-grafos-ponderados">Caminos más cortos (para grafos ponderados)</h2>
-<p>El algoritmo de Dijkstra encuentra los caminos más cortos desde el nodo inicial hasta todos los nodos del grafo, al igual que el algoritmo de Bellman–Ford. La ventaja del algoritmo de Dijkstra es que es más eficiente y se puede utilizar para procesar grafos grandes. Sin embargo, este algoritmo requiere que el grafo no contenga aristas con pesos negativos.</p>
-<p>Al igual que el algoritmo de Bellman–Ford, el algoritmo de Dijkstra mantiene las distancias a los nodos y las reduce a medida que realiza la búsqueda. El algoritmo de Dijkstra es eficiente porque solo procesa cada arista del grafo una vez, aprovechando la condición de que no hay aristas de peso negativo.</p>
-<h4 id="caracter%C3%ADsticas-del-algoritmo-de-dijkstra">Características del algoritmo de Dijkstra</h4>
-<ul>
-<li>Explora en orden de costo creciente.</li>
-<li>Procesa cada arista una única vez (sin aristas de peso negativo).</li>
-<li>Es óptimo y adecuado para grafos grandes, aunque puede ser lento.</li>
-</ul>
-<footer>CPC Γα=Ω5</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="24" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="implementacion-de-dijkstra-para-una-de-lista-de-adyacencia">Implementacion de Dijkstra para una de lista de adyacencia</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> INF = numeric_limits&lt;<span class="hljs-type">int</span>&gt;::<span class="hljs-built_in">max</span>();
-<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">distance</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, INF)</span></span>;
-<span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">processed</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>)</span></span>;
-priority_queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;, vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;, greater&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;&gt; q;
-distance[x] = <span class="hljs-number">0</span>;
-q.<span class="hljs-built_in">push</span>({<span class="hljs-number">0</span>, x});
-<span class="hljs-keyword">while</span> (!q.<span class="hljs-built_in">empty</span>()) {
-    <span class="hljs-type">int</span> a = q.<span class="hljs-built_in">top</span>().second; q.<span class="hljs-built_in">pop</span>();
-    <span class="hljs-keyword">if</span> (processed[a]) <span class="hljs-keyword">continue</span>;
-    processed[a] = <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> u : adj[a]) {
-        <span class="hljs-type">int</span> b = u.first, w = u.second;
-        <span class="hljs-keyword">if</span> (distance[a] + w &lt; distance[b]) {
-            distance[b] = distance[a] + w;
-            q.<span class="hljs-built_in">push</span>({distance[b], b}); 
+    <span class="hljs-keyword">if</span> (s1 != s2) {
+        <span class="hljs-keyword">if</span> (rank[s1] &lt; rank[s2]) {
+            parent[s1] = s2;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rank[s1] &gt; rank[s2]) {
+            parent[s2] = s1;
+        } <span class="hljs-keyword">else</span> {
+            parent[s2] = s1;
+            rank[s1]++;
         }
     }
-}<span class="hljs-comment">//O(V^2) </span>
+}<span class="hljs-comment">// complejidad amortizada O(α(n)) , casi constante O(1)</span>
 </code></pre>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="25" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<iframe height="480" src="https://www.youtube-nocookie.com/embed/_lHSawdgXpI?si=3-iLy7GBMQi3_2Ki" frameborder="0" allowfullscreen></iframe>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">kruskals_mst</span><span class="hljs-params">(<span class="hljs-type">int</span> V, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edgelist)</span> </span>{
+    <span class="hljs-comment">// Sort all edges by weight</span>
+    <span class="hljs-built_in">sort</span>(edgelist.<span class="hljs-built_in">begin</span>(), edgelist.<span class="hljs-built_in">end</span>()); <span class="hljs-comment">// O(E log E)</span>
+
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">parent</span><span class="hljs-params">(V, <span class="hljs-number">-1</span>)</span></span>;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">rank</span><span class="hljs-params">(V, <span class="hljs-number">1</span>)</span></span>;
+    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+
+    cout &lt;&lt; <span class="hljs-string">&quot;Following are the edges in the constructed MST&quot;</span> &lt;&lt; endl;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; edge : edgelist) {
+        <span class="hljs-type">int</span> w = edge[<span class="hljs-number">0</span>];
+        <span class="hljs-type">int</span> x = edge[<span class="hljs-number">1</span>];
+        <span class="hljs-type">int</span> y = edge[<span class="hljs-number">2</span>];
+
+        <span class="hljs-comment">// Take this edge in MST if it does not form a cycle</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">find</span>(x, parent) != <span class="hljs-built_in">find</span>(y, parent)) {
+            <span class="hljs-built_in">unite</span>(x, y, parent, rank);
+            ans += w;
+            cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; -- &quot;</span> &lt;&lt; y &lt;&lt; <span class="hljs-string">&quot; == &quot;</span> &lt;&lt; w &lt;&lt; endl;
+        }
+    }
+    cout &lt;&lt; <span class="hljs-string">&quot;Minimum Cost Spanning Tree: &quot;</span> &lt;&lt; ans &lt;&lt; endl;
+}<span class="hljs-comment">//O(E log E) ≈ O(E log V)</span>
+</code></pre>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="26" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
-<h2 id="problema">Problema</h2>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<h2 id="floodfill">Floodfill</h2>
+<p>es un algoritmo que identifica y etiqueta el componente conectado al que pertenece una celda en particular, en una matriz multidimensional. Básicamente, es DFS o BFS, pero en una cuadrícula, y queremos encontrar el componente conectado de todas las celdas conectadas con el mismo número.</p>
+<p><img src="https://images.vexels.com/content/131256/preview/live-paint-bucket-tool-4629ad.png" alt="#c" style="height:400px;" /></p>
+<footer>CPC Γα=Ω5</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<h2 id="implementacion-con-bfs">Implementacion con BFS</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++"><span class="hljs-comment">// Fill the image img[x][y] and all its same colored</span>
+<span class="hljs-comment">// adjacent with the given new color</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">floodFill</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; img, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> newClr)</span></span>{                    
+    queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; q;
+
+    <span class="hljs-comment">// Rows and columns of the display</span>
+    <span class="hljs-type">int</span> m = img.<span class="hljs-built_in">size</span>();
+    <span class="hljs-type">int</span> n = img[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+   
+    <span class="hljs-comment">//save some unnecessary recursive calls for the adjacent of the last nodes</span>
+    <span class="hljs-type">int</span> prevClr = img[x][y];
+    <span class="hljs-keyword">if</span> (prevClr == newClr) <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-comment">// Append the position of starting pixel</span>
+    <span class="hljs-comment">// of the component</span>
+    q.<span class="hljs-built_in">push</span>({x, y});
+    img[x][y] = newClr;
+
+</code></pre>
+<footer>CPC Γα=Ω5</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-c++">    <span class="hljs-comment">// While the queue is not empty i.e. the </span>
+    <span class="hljs-comment">// whole component having prevClr color</span>
+    <span class="hljs-comment">// is not colored with newClr color</span>
+    <span class="hljs-keyword">while</span> (!q.<span class="hljs-built_in">empty</span>()) {
+        <span class="hljs-comment">// Dequeue the front node</span>
+        x = q.<span class="hljs-built_in">front</span>().first;
+        y = q.<span class="hljs-built_in">front</span>().second;
+        q.<span class="hljs-built_in">pop</span>();
+        <span class="hljs-comment">// Check if the adjacent pixels are valid </span>
+        <span class="hljs-comment">// and enqueue</span>
+        <span class="hljs-keyword">if</span> (x + <span class="hljs-number">1</span> &lt; m &amp;&amp; img[x + <span class="hljs-number">1</span>][y] == prevClr) {
+            img[x + <span class="hljs-number">1</span>][y] = newClr;
+            q.<span class="hljs-built_in">push</span>({x + <span class="hljs-number">1</span>, y});
+        }
+        <span class="hljs-keyword">if</span> (x - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; img[x - <span class="hljs-number">1</span>][y] == prevClr) {
+            img[x - <span class="hljs-number">1</span>][y] = newClr;
+            q.<span class="hljs-built_in">push</span>({x - <span class="hljs-number">1</span>, y});
+        }
+        <span class="hljs-keyword">if</span> (y + <span class="hljs-number">1</span> &lt; n &amp;&amp; img[x][y + <span class="hljs-number">1</span>] == prevClr) {
+            img[x][y + <span class="hljs-number">1</span>] = newClr;
+            q.<span class="hljs-built_in">push</span>({x, y + <span class="hljs-number">1</span>});
+        }
+        <span class="hljs-keyword">if</span> (y - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; img[x][y - <span class="hljs-number">1</span>] == prevClr) {
+            img[x][y - <span class="hljs-number">1</span>] = newClr;
+            q.<span class="hljs-built_in">push</span>({x, y - <span class="hljs-number">1</span>});
+        }
+    }
+} <span class="hljs-comment">//O(m * n)</span>
+</code></pre>
+<footer>CPC Γα=Ω5</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<iframe height="480" src="https://www.youtube-nocookie.com/embed/VuiXOc81UDM?si=OBNx8vv4bdoCANgV" frameborder="0" allowfullscreen></iframe>
+<footer>CPC Γα=Ω5</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="14" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
+<h2 id="problemas">Problemas</h2>
 <ul>
-<li><a href="https://codeforces.com/problemset/problem/1360/E"><strong>1360E</strong> Polygon</a></li>
+<li><a href="https://codeforces.com/contest/472/problem/D"><strong>472D</strong> Design Tutorial: Inverse the Problem</a></li>
+<li><a href="https://codeforces.com/contest/1365/problem/D"><strong>1365D</strong> Solve The Maze</a></li>
 </ul>
 <footer>CPC Γα=Ω5</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="27" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="27">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-footer="CPC Γα=Ω5" data-theme="am_nord" data-heading-divider="2,3" lang="en-US" data-marpit-pagination="15" style="--paginate:true;--footer:CPC Γα=Ω5;--theme:am_nord;--heading-divider:2,3;" data-marpit-pagination-total="15">
 <h2 id="referencias">Referencias</h2>
 <ul>
-<li>GeeksforGeeks. (2024). <em>Introduction to Graph Data Structure</em>. Recuperado de <a href="https://www.geeksforgeeks.org/introduction-to-graphs-data-structure-and-algorithm-tutorials/">https://www.geeksforgeeks.org/introduction-to-graphs-data-structure-and-algorithm-tutorials/</a></li>
-<li>Huang, S. et al (s.f.). <em>Graph Traversal</em>. Recuperado de <a href="https://usaco.guide/silver/graph-traversal?lang=cpp">https://usaco.guide/silver/graph-traversal?lang=cpp</a></li>
+<li>Choudhary, A. (2024). <em>Flood Fill Algorithm</em>. Recuperado de <a href="https://www.geeksforgeeks.org/flood-fill-algorithm/">https://www.geeksforgeeks.org/flood-fill-algorithm/</a></li>
+<li>GeeksforGeeks. <em>Kruskal’s Minimum Spanning Tree (MST) Algorithm</em>. Recuperado de <a href="https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/">https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/</a></li>
+<li>Inside Code.(2021). <em>This is how Paint's bucket fill works (Flood fill algorithm)</em> [video]. Recuperado de <a href="https://youtu.be/VuiXOc81UDM?si=cWO6C1N8-eVAbNxt">https://youtu.be/VuiXOc81UDM?si=cWO6C1N8-eVAbNxt</a></li>
 <li>Laaksonen, A. (2018). <em>Competitive Programmer’s Handbook</em>. Recuperado de <a href="https://cses.fi/book/book.pdf">https://cses.fi/book/book.pdf</a></li>
-<li>Mussmann, S. &amp; See, A. (s.f.). <em>Graph Search Algorithms</em>. Recuperado de <a href="https://cs.stanford.edu/people/abisee/gs.pdf">https://cs.stanford.edu/people/abisee/gs.pdf</a></li>
-<li>Yao, D. &amp; Qi, B. (s.f.). <em>Introduction to Graphs</em>. Recuperado de <a href="https://usaco.guide/bronze/intro-graphs">https://usaco.guide/bronze/intro-graphs</a></li>
+<li>Michael Sambol. (2012). <em>Kruskal's Algorithm in 2 minuts</em> [video]. Recuperado de <a href="https://youtu.be/71UQH7Pr9kU?si=xjBdbCXTxw-fMO6A">https://youtu.be/71UQH7Pr9kU?si=xjBdbCXTxw-fMO6A</a></li>
+<li>Qi,B. et al. (s.f.). <em>Minimum Spanning Trees</em>. Recuperado de  <a href="https://usaco.guide/gold/mst?lang=cpp">https://usaco.guide/gold/mst?lang=cpp</a></li>
+<li>Yao, D. (2020). <em>AN INTRODUCTION TO THE USA COMPUTING OLYMPIAD</em>. Recuperado de <a href="https://darrenyao.com/usacobook/cpp.pdf">https://darrenyao.com/usacobook/cpp.pdf</a></li>
+<li>Yao, D. (s.f.) <em>Flood Fill</em>. Recuperado de <a href="https://usaco.guide/silver/flood-fill?lang=cpp">https://usaco.guide/silver/flood-fill?lang=cpp</a></li>
 </ul>
 <footer>CPC Γα=Ω5</footer>
 </section>

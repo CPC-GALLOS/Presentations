@@ -64,7 +64,7 @@ Ejemplos de operaciones bitwise:
 
 ---
 
-<iframe height="720" src="https://www.youtube.com/embed/Ew2QnDeTCCE" frameborder="0" allowfullscreen></iframe>
+<iframe height="720" src="https://www.youtube-nocookie.com/embed/Ew2QnDeTCCE" frameborder="0" allowfullscreen></iframe>
 
 ## Tabla de verdad
 

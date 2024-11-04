@@ -13,17 +13,22 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit -->
+# <!-- fit -->  Geometría computacional
 
 
 
-https://usaco.guide/adv/game-theory?lang=cpp
 
-https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/
-  
- 
-Minimax Algorithm
-Game states  
-Nim game  
-Sprague–Grundy theorem
+https://activities.tjhsst.edu/sct/lectures/2021/2021_03_26_Computational_Geometry.pdf
+https://pierre.senellart.com/enseignement/2012-2013/acm_icpc/6-geometry.pdf
+
+
+
+
+
+Binomial coefficients 
+Catalan numbers 
+Inclusion-exclusion
+Burnside’s lemma 
+Cayley’s formula 
+
 - Laaksonen, A. (2018). *Competitive Programmer’s Handbook*. Recuperado de <https://cses.fi/book/book.pdf>

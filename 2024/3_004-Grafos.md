@@ -416,7 +416,7 @@ while (!q.empty()) {
 
 ---
 
-<iframe height="480" src="https://www.youtube.com/embed/_lHSawdgXpI?si=3-iLy7GBMQi3_2Ki" frameborder="0" allowfullscreen></iframe>
+<iframe height="480" src="https://www.youtube-nocookie.com/embed/_lHSawdgXpI?si=3-iLy7GBMQi3_2Ki" frameborder="0" allowfullscreen></iframe>
 
 ## Problema
 

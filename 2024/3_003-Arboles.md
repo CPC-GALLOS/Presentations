@@ -288,7 +288,11 @@ int main() {
     return 0; 
 }
 ```
-  
+
+## Problema
+
+- [**839C** Journey](https://codeforces.com/contest/839/problem/C)
+
 ## Referencias
 - GeeksforGeeks. (2024). *Introduction to Tree Data Structure*. Recuperado de <https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/>
 - GeeksforGeeks. (2024). *Tree Data Structure*. Recuperado de <https://www.geeksforgeeks.org/tree-data-structure/>
