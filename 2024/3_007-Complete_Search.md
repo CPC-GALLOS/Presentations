@@ -6,6 +6,7 @@ paginate: true
 headingDivider: [2,3]
 author: Ariel Parra
 footer: CPC Γα=Ω5
+math: latex
 ---
 
 <!-- _class: cover_e -->
@@ -63,24 +64,75 @@ for (int b = 0; b < (1 << n); b++) {
 
 ## Meet in the middle
 
-La técnica **meet in the middle** (o "encuentro en el medio") divide el espacio de búsqueda en dos partes de tamaño aproximadamente igual. Se realiza una búsqueda separada en cada una de estas partes y, finalmente, se combinan los resultados.
+La técnica **meet in the middle** (o "encuentro en el medio") divide el espacio de búsqueda en dos partes de tamaño aproximadamente igual. Se realiza una búsqueda separada en cada una de estas partes y, finalmente, se combinan los resultados.Esta técnica es útil si se puede combinar los resultados de las búsquedas de manera eficiente. 
 
-Esta técnica es útil si se puede combinar los resultados de las búsquedas de manera eficiente. En esos casos, las dos búsquedas pueden requerir menos tiempo que una única búsqueda extensa. Usualmente, esto permite reducir un factor de 2^n a un factor de 2^ { n/2 } , logrando una mayor eficiencia.
+#### Ejemplo
 
-### Ejemplo
-Supongamos un problema en el que se tiene una lista de *n* números y un número *x*, y se desea saber si es posible elegir algunos números de la lista de modo que su suma sea *x*. Por ejemplo, con la lista `[2, 4, 5, 9]` y `x = 15`, podemos seleccionar los números `[2, 4, 9]` para obtener `2 + 4 + 9 = 15`. Sin embargo, si `x = 10` con la misma lista, no es posible formar dicha suma.
+Supongamos un problema en el que se tiene una lista de *n* números y un número *x*, y se desea saber si es posible elegir algunos números de la lista de modo que su suma sea *x*. Por ejemplo, con la lista $[2, 4, 5, 9]$ y $x = 15$, podemos seleccionar los números $[2, 4, 9]$ para obtener $2 + 4 + 9 = 15$. Sin embargo, si $x = 10$ con la misma lista, no es posible formar dicha suma.
 
-Un algoritmo simple para resolver este problema es recorrer todos los subconjuntos de los elementos y verificar si la suma de alguno de ellos es *x*. Este enfoque tiene una complejidad de `O(2^n)`, ya que existen `2^n` subconjuntos. Sin embargo, usando la técnica **meet in the middle**, se puede reducir la complejidad a `O(2^(n/2))`.
+Un algoritmo simple para resolver este problema es recorrer todos los subconjuntos de los elementos y verificar si la suma de alguno de ellos es *x*. Este enfoque tiene una complejidad de $O(2^n)$, ya que existen $2^n$ subconjuntos. Sin embargo, usando la técnica **meet in the middle**, se puede reducir la complejidad a $O(2^{n/2})$.
 
-### Algoritmo
-La idea es dividir la lista original en dos listas, *A* y *B*, de modo que ambas contengan aproximadamente la mitad de los números. La primera búsqueda genera todos los subconjuntos de *A* y almacena sus sumas en una lista `SA`. De forma similar, la segunda búsqueda crea una lista `SB` con las sumas de los subconjuntos de *B*. Para encontrar una combinación que dé la suma *x*, basta con verificar si es posible elegir un elemento de `SA` y otro de `SB` cuya suma sea igual a *x*.
+### Algoritmo de solucion al ejemplo
 
-Por ejemplo, con la lista `[2, 4, 5, 9]` y `x = 15`:
-1. Dividimos la lista en `A = [2, 4]` y `B = [5, 9]`.
-2. Generamos las listas `SA = [0, 2, 4, 6]` y `SB = [0, 5, 9, 14]`.
-3. Notamos que la suma `x = 15` se puede formar, ya que en `SA` se encuentra la suma 6, en `SB` la suma 9, y `6 + 9 = 15`, lo que corresponde a la solución `[2, 4, 9]`.
+La idea es dividir la lista original en dos listas, *A* y *B*, de modo que ambas contengan aproximadamente la mitad de los números. La primera búsqueda genera todos los subconjuntos de *A* y almacena sus sumas en una lista $SA$. De forma similar, la segunda búsqueda crea una lista $SB$ con las sumas de los subconjuntos de *B*. Para encontrar una combinación que dé la suma *x*, basta con verificar si es posible elegir un elemento de $SA$ y otro de $SB$ cuya suma sea igual a *x*.
 
-> Con una complejidad de O(2^(n/2))  
+Por ejemplo, con la lista $[2, 4, 5, 9]$ y $x = 15$:
+1. Dividimos la lista en $A = [2, 4]$ y $B = [5, 9]$.
+2. Generamos las listas $SA = [0, 2, 4, 6]$ y $SB = [0, 5, 9, 14]$.
+3. Notamos que la suma $x = 15$ se puede formar, ya que en $SA$ se encuentra la suma 6, en $SB$ la suma 9, y $6 + 9 = 15$, lo que corresponde a la solución $[2, 4, 9]$.
+
+## Algoritmo que calcula la mayor suma posible de un subconjunto que sea menor o igual a un valor dado S
+
+<style scoped>
+pre {
+    padding: 8px;
+}
+</style>
+
+```c++
+ll X[2000005],Y[2000005];// global vectors
+// Find all possible sum of elements of a[] and store in x[]
+void calcsubarray(vector<ll> a, int n, int c) {
+    for (int i=0; i<(1<<n); ++i) {
+        ll s = 0;
+        for (int j=0; j<n; ++j)  if (i & (1<<j)) s += a[j+c];
+        x[i] = s;
+    }
+}
+```
+```c++
+int main() {
+    vector<ll> a = {3, 34, 4, 12, 5, 2};
+    int n=a.size();
+    ll S = 10;
+    cout<<"Largest value smaller than or equal to given sum is"<< solveSubsetSum(a,n,S);
+}
+```
+
+---
+
+```c++
+ll solveSubsetSum(vector<ll> a, int n, ll S) {
+    // Compute all subset sums of first and second halves
+    calcsubarray(a, X, n/2, 0);    calcsubarray(a, Y, n-n/2, n/2);
+    int size_X = 1<<(n/2);    int size_Y = 1<<(n-n/2);
+    // Sort Y (we need to do doing binary search in it)
+    sort(Y, Y+size_Y);
+    // To keep track of the maximum sum of a subset such that the maximum sum is less than S
+    ll max = 0;
+    // Traverse all elements of X and do Binary Search for a pair in Y with maximum sum less than S.
+    for (int i=0; i<size_X; ++i) {
+        if (X[i] <= S) {
+            // lower_bound() returns the first address which has value greater than or equal to S-X[i].
+            int p = lower_bound(Y, Y+size_Y, S-X[i]) - Y;
+            // If S-X[i] was not in array Y then decrease p by 1
+            if (p == size_Y || Y[p] != (S-X[i]))    p--;
+            if ((Y[p]+X[i]) > max)  max = Y[p]+X[i];
+        }
+    }
+    return max;
+}// O(2^(n/2))  
+```
 
 ## Problema
 

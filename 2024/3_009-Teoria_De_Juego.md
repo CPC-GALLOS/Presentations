@@ -13,10 +13,7 @@ footer: CPC Γα=Ω5
 <!-- _footer: ![](./img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![](./img/GALLO.png) -->
 
-# <!-- fit -->
-
-
-
+# <!-- fit --> Teoria de Juego
 
  
 ## Minimax Algorithm
