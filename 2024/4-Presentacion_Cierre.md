@@ -186,8 +186,8 @@ Por Ariel Parra
 <div class=ldiv>
 
 ![#c](https://i.ytimg.com/vi/TPtgeFzQTrk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB91LD_tKRbwxAoOLgkMMiT7pB7UA)
-![](https://static.wikia.nocookie.net/logopedia/images/e/e2/Linux_%28text%29.png/revision/latest?cb=20230228024820&path-prefix=es)
-![#c h:200](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE1Pj27QezXPn2hEAcGOvuEqUOR9vfq36T1g&s)
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ1rqhTBgG1GPoM9_lum6Vtvr_C12iO8vSQ6sghDtFAhIQiBxbzYwIQvspgCkP8o3PDX0&usqp=CAU)
+![#c h:150](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE1Pj27QezXPn2hEAcGOvuEqUOR9vfq36T1g&s)
 
 </div>
 
