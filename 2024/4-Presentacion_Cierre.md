@@ -115,7 +115,7 @@ Por Ariel Parra
 
 ## 4. Aprender más lenguajes de programación
 
-![#c](https://media.licdn.com/dms/image/D5612AQEoA2ckFkDlpQ/article-cover_image-shrink_720_1280/0/1710521610109?e=2147483647&v=beta&t=3USeTLinvoe_W488x-z4K8MDqhoha5-SJua-gM2jcp0)
+![#c h:500](https://hackster.imgix.net/uploads/attachments/1751284/image_nRX4PDnzA4.png?auto=compress%2Cformat&w=740&h=555&fit=max)
 >Tambien recomiendo aprender a usar Markdown! 
 
 ## 5. Aprender nuevos paradigmas
