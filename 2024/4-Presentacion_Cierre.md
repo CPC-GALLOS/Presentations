@@ -165,18 +165,18 @@ Por Ariel Parra
 
 <div class=mdiv>
 
-![#c](https://arielparra.github.io/achievements/img/HackerRank-problem_solving_basic.webp)
+![#c](https://arielparra.github.io/credentials/img/HackerRank-problem_solving_basic.webp)
 
 
-![#c](https://arielparra.github.io/achievements/img/Oracle_One_Programa.png)
+![#c](https://arielparra.github.io/credentials/img/Oracle_One_Programa.png)
 
 </div>
 
 <div class=rdiv>
 
-![#c](https://arielparra.github.io/achievements/img/Oracle_Cloud_Infrastructure_2024_Generative_AI_Certified_Professional.png)
+![#c](https://arielparra.github.io/credentials/img/Oracle_Cloud_Infrastructure_2024_Generative_AI_Certified_Professional.png)
 
-![#c](https://arielparra.github.io/achievements/img/Career_Essentials_in_Generative_AI_by_Microsoft_and_LinkedIn.png)
+![#c](https://arielparra.github.io/credentials/img/Career_Essentials_in_Generative_AI_by_Microsoft_and_LinkedIn.png)
 </div>
 
 ## 8. Aprender Linux y Servidores
