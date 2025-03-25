@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Presentacion de Cierre
+title: Entrevistas Técnicas de Trabajo
 theme: am_nord
 paginate: true
 headingDivider: [2,3]
@@ -14,7 +14,8 @@ math: latex
 <!-- _footer: ![#c](../2024/img/GALLOS_black_rectangle_transparent.png) -->
 <!-- _header: ![#c](../2024/img/GALLO.png) -->
 
-# <!-- fit -->  Entrevistas Tecnicas de Trabajo
+# <!-- fit -->  Entrevistas Técnicas de Trabajo
+
 
 
 ![h:320](./img/Clock.png)
@@ -33,6 +34,12 @@ Mostrar Oferta de Trabajo en Amazon, requisitos
 
 ## Introducción 
 
+<style>
+section {
+    font-size: 22px;
+}
+</style>
+
 Al menos en nuestro estado, cada año se gradúan cientos de estudiantes en áreas de tecnología como informática, sistemas, computación inteligente e ingeniería de software, provenientes de múltiples universidades. El problema surge al analizar la oferta y la demanda a nivel nacional e internacional. El propósito de este taller es proporcionar las herramientas y habilidades necesarias para conseguir un empleo en el área STEM.
 
 ![#c h:300](img/ENE_obstaculos.png)
@@ -41,7 +48,7 @@ Fuente: ENCUESTA NACIONAL DE EGRESADOS 2023 UVM
 ## Tipos de empresas a las cuales aplicar
 
 - Empresas **chicas** (Locales): Negocios con una infraestructura de TI básica o inexistente, como escuelas, pequeños comercios, restaurantes y startups locales.
-- Empresas **Medianas** (Nacional o internacional): Softtek, C3AI, Inegi, Sensata Tech, kuona, epam, wizeline.
+- Empresas **Medianas** (Nacional o internacional): Softtek, C3AI, Inegi, Sensata Tech, Kuona, Epam, Wizeline.
 - Empresas **Grandes** (Internacionales): Tiktok, Huawei, Intel, Dell, HP, Uber, Nissan, Cisco, IBM, BBVA.
 
 - Empresas **Big Tech**:  
@@ -51,7 +58,7 @@ Fuente: ENCUESTA NACIONAL DE EGRESADOS 2023 UVM
     - **Magnificent Seven**: Alphabet, Apple, Amazon, Meta, Microsoft, Nvidia y Tesla.  
 ![#c h:200](https://itamargilad.com/wp-content/uploads/2022/08/FAANG-small.jpg)
 
-<!-- Las Empresas Chicas nunca hacen entrevista tecnica, las medianas pueden o no hacer, y las grandes casi siempre hacen  -->
+<!-- Las Empresas Chicas nunca hacen entrevista técnica, las medianas pueden o no hacer, y las grandes casi siempre hacen,-->
 
 ## Etapas de una Entrevista  
 
@@ -81,8 +88,8 @@ Las habilidades blandas son aquellas que reflejan cómo te relacionas, trabajas 
 ## Hard Skills
 
 Las habilidades duras se adquieren a través de la educación y/o la experiencia. Son conocimientos técnicos específicos que pueden ser evaluados mediante títulos, diplomas o certificados.
-- Velocidad de tecleo y/o uso de una distrubución americana de teclado
-- Conocimiento de idiomas (por ejemplo, inglés, aleman, frances, etc.)
+- Velocidad de tecleo y/o uso de una distribución americana de teclado
+- Conocimiento de idiomas (por ejemplo, inglés, alemán, francés, etc.)
 - Dominio de la sintaxis de varios lenguajes de programación (Python, Java, C++, etc.)
 - Conocimiento de DSA.
 <!-- DSA = Data Structures and Algorithms -->
@@ -133,7 +140,7 @@ Existen diversas formas de validar y demostrar conocimientos o habilidades adqui
 
 </div>
 
-<!-- La certificatión de TOEFL en la UAA cuesta $970, pero requieren 20 aspirantes para hacerlo  -->
+<!-- La certificación de TOEFL en la UAA cuesta $970, pero requieren 20 aspirantes para hacerlo  -->
 
 ## Ser embajador (ambassador)
 
@@ -164,7 +171,7 @@ Existen diversas formas de validar y demostrar conocimientos o habilidades adqui
 
 <!-- Un embajador es una persona que representa, habla por o anuncia a una organización, grupo de personas, actividad o marca en particular. 
 Estos reconocimientos son muy útiles si quieres aplicar para un trabajo en dicha empresa o empresas relacionadas,
- ya que aparte de poder tener una red de socios expertos en los temas de interes, también te destaca como una persona interesada en esa empresa y tecnologías -->
+ ya que aparte de poder tener una red de socios expertos en los temas de interés, también te destaca como una persona interesada en esa empresa y tecnologías -->
 
 ## Networking y Marca Personal
 
@@ -172,7 +179,7 @@ Estos reconocimientos son muy útiles si quieres aplicar para un trabajo en dich
 
 El **networking** es la habilidad de crear y mantener redes de contactos profesionales que fomentan oportunidades y crecimiento en tu carrera laboral. Este proceso puede iniciarse en etapas educativas, como el bachillerato o la universidad, y debe considerarse una actividad continua. 
 
-<!-- La universidad no siempre es la mejor opción para adquirir conocimientos, pero es una excelente oportunidad para hacer networking y establecer conexiones valiosas. En EE.UU., muchas empresas no requieren un título universitario, pero almenos en México sigue siendo un requisito común contar con un título y cédula profesional. -->
+<!-- La universidad no siempre es la mejor opción para adquirir conocimientos, pero es una excelente oportunidad para hacer networking y establecer conexiones valiosas. En EE.UU., muchas empresas no requieren un título universitario, pero al menos en México sigue siendo un requisito común contar con un título y cédula profesional. -->
 
 Para la **marca personal** debes tener una presencia activa en línea; Mantener perfiles actualizados en plataformas como LinkedIn, GitHub, y un **portafolio web**. 
 
@@ -205,7 +212,7 @@ También si estan urgidos de trabajo hay muchas oportunidades como computrabajo.
 | **Extensión**      | Límite estricto de 2 páginas Maximo (1 hoja de papel). | 2-3 páginas para un estudiante de posgrado; se alarga con la carrera. |
 | **Secciones típicas** | - Nombre e información de contacto  <br> - Educación  <br> - Experiencia laboral  <br> - Habilidades | - Nombre e información de contacto  <br> - Educación  <br> - Experiencia en investigación  <br> - Objetivos profesionales/intereses de investigación  <br> - Publicaciones y presentaciones  <br> - Premios y becas  <br> - Sociedades profesionales  <br> - Experiencia docente  <br> - Referencias |
 
-<!-- Especial para trabajos de investigación, academicos y posgrados -->
+<!-- Especial para trabajos de investigación, académicos y posgrados -->
 
 ## Formatos
 
@@ -234,11 +241,11 @@ También si estan urgidos de trabajo hay muchas oportunidades como computrabajo.
 
 ![bg opacity:.2](./img/RESUME-CV.png)
 
-> Para revisar tu CV y/o resume recomiendo visitar la [el subreddit r/resumes](https://www.reddit.com/r/resumes/) y el Simulador de Applicant Tracking System[resumatic.rezi.ai](https://resumatic.rezi.ai/)
+> Para revisar tu CV y/o resume recomiendo visitar la [el subreddit r/resumes](https://www.reddit.com/r/resumes/) y el Simulador de Applicant Tracking System (ATS)[resumatic.rezi.ai](https://resumatic.rezi.ai/)
 
 <!--
-El formato Europeo (conocido como moderno o simple), en palabras de un reclutador "hace que tu CV Respire y no se vea aglomerado". Sea cual sea el formato, tu CV tiene que tener algo unico y especial que lo destaque de los demas.
-Alfinal del dia no es una ciencia exacta y dependera del empleador, pero siempre hay que recordar: " ¿Que diferencia un villano de un super villano?". 
+El formato Europeo (conocido como moderno o simple), en palabras de un reclutador "hace que tu CV Respire y no se vea aglomerado". Sea cual sea el formato, tu CV tiene que tener algo único y especial que lo destaque de los demás.
+Al final del dia no es una ciencia exacta y dependerá del empleador, nunca es bueno retacar tu cv, si tienes varias certificaciones piensa cuales se alinean con el puesto o empresa a la que aplicas, pero siempre hay que recordar: " ¿Que diferencia un villano de un súper villano?". 
 
 -->
 
@@ -289,12 +296,11 @@ Es una pregunta algo esteriotipica de las entrevistas de trabajo
 -->
 
 Una **Technical Interview** es un tipo de entrevista utilizada para evaluar las habilidades técnicas y conocimientos del candidato. Generalmente incluyen 1 o 2 problemas algorítmicos, con una duración entre 30 - 60 min  por problema. También suelen realizarse en inglés y pueden llevarse a cabo de manera presencial o remota. En el caso de entrevistas en línea, es común el uso de proctoring.
- <!--
+<!--
 virtuales donde hacen llamada por zoom, teams, skype, o su propio software (Dato curioso skype desaparecera el 5 de mayo de 2025).
  
 Proctor: bloqueo de la página, no puedes salirte o si puedes, se te descalifica, revisan tu cuarto, graban tu pantalla, cámara y micrófono.
--->-->
-
+-->
 #### Objetivos
 - **Verificación de habilidades**: Confirmar que se posea las habilidades técnicas mencionadas en el CV.
 - **Habilidad para resolver problemas**: Evaluar el enfoque para resolver problemas complejos y la capacidad de proporcionar soluciones prácticas.
@@ -323,11 +329,12 @@ Proctor: bloqueo de la página, no puedes salirte o si puedes, se te descalifica
 
 ### Estrategia para Resolver Problemas en una Technical Interview
 1. **Comprender el problema**: Preguntar clarificaciones si es necesario.
-2. **Definir el enfoque** (Aproach): Explicar la estrategia antes de escribir código.
+2. **Definir el enfoque (Aproach)**: Explicar la estrategia antes de escribir código.
 3. **Escribir pseudocódigo**: Planificar la solución antes de codificarla.
 4. **Implementar la solución**: Escribir código limpio y estructurado.
 5. **Optimizar y verificar**: Revisar errores, optimizar y mejorar la solución.
-
+<!-- Mucha gente siempre se complica eligiendo un lenguaje para programar ya sea python, C++, Java, etc. pero hay que recordar que los lenguajes no son la programacion. Es esta tambien la razon por la cual muchos reclutadores piden PSEUDOCODIGO antes que el codigo en un lenguaje
+ -->
 ![bg opacity:0.1](https://opendigital.es/wp-content/uploads/2020/09/strategy-and-tactics-pro-.png)
 
 ### Pregunta Final
@@ -351,8 +358,8 @@ window.addEventListener('vscode.markdown.updateContent', function() { mermaid.in
 
 <pre class="mermaid" style="text-align: center;">
 graph LR;
-    A[PROBLEMA: Datos]
-    B[SOLUCIÓN: Resultados esperados]
+    A[PROBLEMA: Datos.]
+    B[SOLUCIÓN: Resultado esperado.]
     A --> B
 </pre>
 
@@ -536,10 +543,8 @@ DP: 10.8
 
 ## Algoritmos Adhoc
 <!-- 
-Mucha gente siempre se complica eligiendo un lenguaje para programar, pero hay que recordar que los lenguajes no son la programacion. Es esta tambien la razon por la cual muchos reclutadores piden PSEUDOCODIGO antes que el codigo en un lenguaje
 
-
-PROGRAMA: Cálculo del Factorial de un Número
+PROGRAMA: Cálculo del Factorial de un Número en Pseudo
 Inicio
     Escribir "Ingrese un número:"
     Leer n
@@ -642,7 +647,6 @@ heap: memoria dinámica para que la asigne el programador -->
 void bfs(int start, const vector<vector<int>>& adj, vector<bool>& visited) {
   queue<int> q; // nodos por explorar
   int distance[n]; //distancia de cada nodo desde el nodo inicial
-
   visited[start] = true;
   distance[start] = 0;
   q.push(start); // nodo inicial a la cola
@@ -658,8 +662,11 @@ void bfs(int start, const vector<vector<int>>& adj, vector<bool>& visited) {
 }//O(V + E)
 ```
 <!-- x es el inicio  -->
+
+> Recomiendo visualizar estos algoritmos en: https://algorithm-visualizer.org/brute-force/breadth-first-search
+
 ## Algoritmos de Dynamic Programming
-<!-- Similar a greedy pero aqui el resultado actual depende del resultado anterior y se utiliza la tecnica de memoization y/o tabulación para guardar los resultados.
+<!-- Similar a greedy pero aqui el resultado actual depende del resultado anterior y se utiliza la técnica de memoization y/o tabulación para guardar los resultados.
 Cuando haya problemas que tengan que ver con numeros primos, mayormente seran DP debido a que utiliaras el algoritmo de la criba de eratostenes (sieve)  -->
 - [Leetcode - Count Primes](https://leetcode.com/problems/count-primes/)  
 - [Leetcode - Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/description/)
@@ -689,6 +696,7 @@ for (ull i = 2; i <= n; ++i)  // O(n)
 - [algomonster](https://algo.monster/problems/stats)
 - [algomap.io](https://algomap.io/)
 
+<!-- Abrir handbook -->
 
 ![#c bg opacity:0.1](https://media.licdn.com/dms/image/v2/C4E12AQEEMyHlaf9CbA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1647366877662?e=2147483647&v=beta&t=fXwZd9lVGmDFOGivvEkkGR0uCPXbRLjCRN7E8GX1Ha8)
 
@@ -701,6 +709,27 @@ for (ull i = 2; i <= n; ++i)  // O(n)
 - [pramp.com](https://www.pramp.com/#/)
 
 ![bg  opacity:0.2](https://www.jobsoid.com/wp-content/uploads/2020/12/blog-1-640x428.jpg)
+
+## Lenguajes de Programación populares
+
+<!-- _class: cols-2 -->
+
+
+<div class=ldiv>
+
+![h:500](https://github.blog/wp-content/uploads/2024/10/GitHub-Octoverse-2024-top-programming-languages.png?w=1400)
+
+- Fuente: [Octoverse 2024](https://github.blog/wp-content/uploads/2024/10/GitHub-Octoverse-2024-top-programming-languages.png?w=1400)
+
+</div>
+
+<div class=rdiv>
+
+![h:400](img/TIOBE_march.png)
+
+- Fuente: https://www.tiobe.com/tiobe-index/
+
+</div>
 
 ## Lecturas Recomendadas
 
@@ -731,7 +760,7 @@ for (ull i = 2; i <= n; ++i)  // O(n)
 </div>
 
 <!-- 
-algorithms design manual Steven Skiena
+Algorithms design manual - Steven Skiena
 Competitive Programming 4 - Steven Halim y Felix Halim
 Cracking the Coding Interview - Gayle Laakmann McDowell
 Coding Interview Patterns - Kamran Ahmed
@@ -747,6 +776,12 @@ ALgoritmica - Sergey Slotin
 5.SOLID: SRP (Single Responsibility Principle), OCP (Open/Closed Principle) a extension, LSP (Liskov Substitution Principle), ISP (Interface Segregation Principle), DIP (Dependency Inversion Principle)
 
 **Pilares de POO:**
+Abstracción: Permite omitir detalles que no son necesarios y mostrar solo lo relevante. 
+Encapsulamiento: Permite controlar quién puede ver y utilizar los datos de un objeto. 
+Herencia: Las clases secundarias heredan datos y comportamientos de la clase principal. 
+Polimorfismo: Permite realizar una acción de múltiples o diferentes formas
+
+https://www.tiobe.com/tiobe-index/
 
 -->
 
