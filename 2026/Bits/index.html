@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bits · Clase 23</title>
+<!-- Controls: arrows, Space, PageUp/PageDown or click to advance. F for fullscreen. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<style>
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+
+/* ===========================================
+   THEME
+   Change these to change the whole deck.
+   Three colors only, as the content spec asks:
+   amber (accent), green (correct), red (incorrect).
+   =========================================== */
+:root {
+    color-scheme: dark;
+    --stage-bg: #05070a;
+    --slide-bg: transparent;
+    --ink: #f2ede4;
+    --ink-soft: #d9d4ca;
+    --dim: #a09b92;
+    --line: rgba(242, 237, 228, 0.34);
+    --accent: #e9b15a;
+    --accent-ink: #17110a;
+    --accent-tint: rgba(233, 177, 90, 0.16);
+    --green: #8fd3a8;
+    --red: #ef7767;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
+    --mono: 'IBM Plex Mono', Menlo, Consolas, monospace;
+    --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); color: var(--ink); font-weight: 300; }
+.deck-stage { background: var(--stage-bg); }
+sup, sub { font-size: 0.62em; line-height: 0; }
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: var(--accent); }
+ol, ul { list-style: none; }
+
+/* ===========================================
+   BACKDROP
+   One image layer shared by every slide, behind the content:
+   - same image on the next slide  -> the camera pans slowly
+   - new image                     -> depth push: the old plate grows and fades,
+                                      the new one settles from slightly closer
+   The veil is what dims the image after the first click.
+   =========================================== */
+.backdrop { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.plate { position: absolute; inset: 0; background-size: cover; opacity: 0; will-change: transform, opacity; }
+.shade, .veil { position: absolute; inset: 0; transition: opacity 1s ease, background-color 1s ease; }
+.shade { opacity: 0; }
+.shade.left { background: linear-gradient(90deg, rgba(5, 7, 10, 0.92) 0%, rgba(5, 7, 10, 0.78) 38%, rgba(5, 7, 10, 0.12) 68%, transparent 100%); }
+.shade.right { background: linear-gradient(270deg, rgba(5, 7, 10, 0.92) 0%, rgba(5, 7, 10, 0.78) 38%, rgba(5, 7, 10, 0.12) 68%, transparent 100%); }
+.shade.hero-amber { background: linear-gradient(90deg, transparent 45%, rgba(5, 7, 10, 0.72) 70%, rgba(5, 7, 10, 0.92) 100%); }
+.veil { background-color: #05070a; opacity: 0; }
+.backdrop.light .veil { background-color: #e9f1f2; }
+
+/* ===========================================
+   SLIDE TRANSITION
+   Content dissolves while the backdrop moves.
+   =========================================== */
+.slide { z-index: 1; transition: opacity 0.55s ease, visibility 0s linear 0.55s; }
+.slide.active { transition: opacity 0.8s ease 0.2s, visibility 0s; }
+.print-bg { display: none; }
+
+/* ===========================================
+   SLIDE CHROME AND HEADINGS
+   =========================================== */
+.part, .page { position: absolute; top: 52px; font-family: var(--mono); font-size: 24px; color: var(--ink-soft); z-index: 2; font-weight: 400; }
+.part { left: 96px; }
+.page { right: 96px; }
+.q { position: absolute; left: 96px; top: 112px; width: 1728px; font-family: var(--serif); font-weight: 500; font-size: 56px; line-height: 1.14; transition: opacity 0.6s ease; z-index: 2; font-feature-settings: "lnum" 1; }
+.q-hero { position: absolute; top: 50%; transform: translateY(-50%); width: 980px; font-family: var(--serif); font-weight: 500; font-size: 88px; line-height: 1.08; opacity: 0; transition: opacity 0.6s ease; pointer-events: none; z-index: 2; font-feature-settings: "lnum" 1; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5); }
+.side-left .q-hero { left: 96px; }
+.side-right .q-hero { right: 96px; text-align: right; }
+.slide.at-start .q-hero { opacity: 1; }
+.slide.at-start .q:not(.q-static) { opacity: 0; }
+.q .q-sub { font-size: 0.62em; }
+.q-sub { display: block; font-family: var(--sans); font-weight: 300; font-size: 0.44em; line-height: 1.35; margin-top: 0.4em; }
+.q .m, .q-hero .m { font-size: 0.8em; color: var(--accent); }
+.m.title-mono { font-size: 1.3em; }
+
+.body { position: absolute; left: 96px; right: 96px; top: 262px; bottom: 56px; display: flex; flex-direction: column; gap: 34px; z-index: 2; }
+
+/* ===========================================
+   CLICK REVEALS
+   "Aparecer o disolver, corta": a short dissolve, nothing else.
+   =========================================== */
+.st { opacity: 0; transition: opacity 0.45s ease; }
+.st.on { opacity: 1; }
+tr.st { transition: opacity 0.45s ease; }
+
+/* ===========================================
+   TEXT ROLES
+   =========================================== */
+.say { font-size: 40px; line-height: 1.32; }
+.small { font-size: 32px; line-height: 1.35; color: var(--ink-soft); }
+.ask { font-family: var(--serif); font-weight: 500; font-size: 50px; line-height: 1.14; font-feature-settings: "lnum" 1; }
+.ask .m { font-size: 0.8em; color: var(--accent); }
+.statement { font-family: var(--serif); font-weight: 500; font-size: 56px; line-height: 1.14; font-feature-settings: "lnum" 1; }
+.statement .m { font-size: 0.78em; }
+.formula { font-family: var(--mono); font-size: 54px; font-weight: 400; }
+.formula.xl { font-size: 70px; }
+.mono { font-family: var(--mono); font-size: 34px; font-weight: 400; }
+.mono.large, .m.large { font-size: 40px; }
+.mono.huge, .m.huge { font-size: 110px; }
+.m { font-family: var(--mono); font-size: 0.9em; font-weight: 400; }
+.acc, .acc .m { color: var(--accent); }
+.red, .red .m { color: var(--red); }
+.green, .green .m { color: var(--green); }
+.dim { color: var(--dim); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.cols.code-output { grid-template-columns: 1.25fr 1fr; }
+.cols.code-output.wide-code { grid-template-columns: auto 1fr; }
+.stacked { display: flex; flex-direction: column; gap: 30px; }
+.stacked.tight { gap: 18px; }
+.stacked.center { justify-content: center; align-self: center; }
+.note-box { padding: 20px 30px; border: 1px solid var(--line); background: rgba(5, 7, 10, 0.45); }
+
+.ico { width: 0.92em; height: 0.92em; vertical-align: -0.1em; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ico.ok { color: var(--green); }
+.ico.no { color: var(--red); }
+
+/* ===========================================
+   THE BIT ROW
+   The central element of the class: bordered square cells,
+   a filled 1 in the accent, an empty 0, the power above in gray.
+   =========================================== */
+.bitrow { display: flex; gap: 8px; justify-content: flex-start; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.pw { font-family: var(--mono); font-size: 26px; color: var(--ink-soft); font-weight: 400; }
+.cell { width: var(--c, 88px); height: var(--c, 88px); display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); font-family: var(--mono); font-size: calc(var(--c, 88px) * 0.42); font-weight: 400; transition: background-color 0.4s ease, border-color 0.4s ease, opacity 0.5s ease; flex: none; background: rgba(5, 7, 10, 0.35); }
+.cell i { font-style: normal; transition: opacity 0.4s ease; }
+.cell.blank { border-color: transparent; background: none; }
+.cell.v1:not(.pend), .cell.v1.pend.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.cell.pend i { opacity: 0; }
+.cell.pend.on i { opacity: 1; }
+.cell.hl { outline: 3px solid var(--ink); outline-offset: 3px; }
+.cell.off { opacity: 0; transition-delay: 0.7s; }
+.bitrow.mini { gap: 6px; }
+.bitrow.mini .cell { font-size: calc(var(--c) * 0.5); }
+.bitrow.signed .col:first-child .cell { background: rgba(160, 155, 146, 0.25); color: var(--ink-soft); border-color: var(--dim); }
+.sign-row { display: flex; flex-direction: column; gap: 10px; }
+.sign-label { font-family: var(--mono); font-size: 26px; color: var(--ink-soft); font-weight: 400; }
+
+/* ===========================================
+   COLUMN BY COLUMN
+   Two rows over a rule; the result enters right to left
+   under a vertical strip. This is the signature gesture of the class.
+   =========================================== */
+.stack { --lab: 130px; --g: 8px; position: relative; display: inline-flex; flex-direction: column; gap: 8px; align-self: start; }
+.stack .row { display: flex; gap: var(--g); align-items: center; position: relative; z-index: 1; }
+.stack .lab { width: calc(var(--lab) - var(--g)); font-family: var(--mono); font-size: 34px; font-weight: 400; text-align: right; padding-right: 14px; flex: none; }
+.cellw { width: var(--c); text-align: center; flex: none; }
+.stack .rule { height: 1px; background: var(--ink); margin: 8px 0 8px var(--lab); width: calc(var(--n) * var(--c) + (var(--n) - 1) * var(--g)); }
+.strip { position: absolute; top: -10px; bottom: -10px; left: calc(var(--lab) + var(--i, 0) * (var(--c) + var(--g)) - 4px); width: calc(var(--c) + 8px); background: var(--accent-tint); opacity: 0; transition: opacity 0.25s ease, left 0.3s var(--ease); }
+.strip.on { opacity: 1; }
+.carry { font-family: var(--mono); font-size: 28px; color: var(--accent); font-weight: 400; height: 38px; line-height: 38px; }
+.carry.sw { opacity: 0; transition: opacity 0.3s ease; }
+.carry.sw.on { opacity: 1; }
+
+/* The staircase of doubles on slide 3 */
+.stairs { display: flex; align-items: flex-end; height: 230px; }
+.tread { position: relative; flex: 1; height: calc(44px + var(--i) * 24px); border-top: 1px solid var(--ink); border-right: 1px solid var(--line); font-family: var(--mono); font-size: 34px; font-weight: 400; padding: 8px 14px; }
+.tread b { font-weight: 400; }
+.tread em { position: absolute; right: 12px; top: 10px; font-style: normal; font-size: 22px; color: var(--ink-soft); }
+.tread:last-child { color: var(--accent); border-top-color: var(--accent); }
+
+/* Sliding rows on slide 23 */
+.shift { --c: 104px; display: flex; gap: 8px; width: calc(5 * var(--c) + 4 * 8px); }
+.shift .slider { display: flex; gap: 8px; transition: transform 0.7s var(--ease) 0.7s; }
+.shift .cell { --c: 104px; }
+.shift-left .slider { transform: translateX(calc(var(--c) + 8px)); }
+.st.on .shift-left .slider { transform: translateX(0); }
+.shift-left .enter { opacity: 0; transition: opacity 0.5s ease 1.2s; }
+.st.on .shift-left .enter { opacity: 1; }
+.st.on .shift-right .slider { transform: translateX(calc(var(--c) + 8px)); }
+.shift-right .fall { transition: transform 0.6s ease 0.7s, opacity 0.6s ease 0.7s; }
+.st.on .shift-right .fall { transform: translateY(70px); opacity: 0; }
+
+/* Crossing out the pairs on slide 28 */
+.pairs-strike { display: flex; gap: 72px; align-items: center; }
+.num { position: relative; font-family: var(--mono); font-size: 92px; font-weight: 400; width: 90px; text-align: center; transition: color 0.4s ease, opacity 0.4s ease 0.3s; }
+.num.lone { color: var(--accent); }
+.num.strike::after { content: ""; position: absolute; left: -6px; right: -6px; top: 52%; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; transition-delay: var(--d); }
+.st.on .num.strike::after { transform: scaleX(1); }
+.st.on .num.strike { color: var(--dim); }
+
+/* The lowest 1 switching off on slide 32 */
+.lowbit { display: flex; align-items: center; gap: 30px; }
+.lowbit > .m { width: 220px; }
+.lowbit .arrow { font-family: var(--mono); font-size: 34px; }
+.switch .cell.hl { outline: none; animation: none; }
+.st.on .switch .cell.hl { background: transparent; border-color: var(--line); color: var(--dim); transition: background-color 0.8s ease 0.8s, border-color 0.8s ease 0.8s, color 0.8s ease 0.8s; }
+
+.pairs { display: flex; align-items: center; gap: 34px; }
+.pair { display: flex; flex-direction: column; gap: 6px; }
+
+/* ===========================================
+   CODE AND CONSOLE
+   One color only; keywords are simply heavier.
+   =========================================== */
+.code { font-family: var(--mono); font-size: 34px; line-height: 1.5; font-weight: 300; color: var(--ink); white-space: pre; }
+.code b { font-weight: 500; }
+.code .cmt { color: var(--dim); }
+.code.good { color: var(--green); }
+.ln.insert { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease 0.2s; }
+.ln.insert.on { max-height: 80px; opacity: 1; }
+.ln.ok { color: var(--green); }
+.console { font-family: var(--mono); font-size: 40px; line-height: 1.5; font-weight: 400; padding: 22px 32px; background: rgba(0, 0, 0, 0.62); border-left: 2px solid var(--line); min-height: 96px; width: fit-content; min-width: 420px; }
+.console .m { font-size: 1em; }
+.console.bad { border: 1px solid var(--red); }
+.verdicts { font-size: 34px; display: flex; flex-direction: column; gap: 14px; }
+.v-line { display: flex; align-items: center; gap: 18px; }
+.v-line .m { font-size: 36px; }
+.v-gap { height: 22px; }
+.cmt-red { color: var(--red); font-size: 28px; }
+
+/* ===========================================
+   TABLES (hairlines only)
+   =========================================== */
+.tbl { border-collapse: collapse; font-family: var(--mono); font-size: 34px; font-weight: 400; }
+.tbl th { font-size: 26px; font-weight: 400; color: var(--ink-soft); text-align: left; padding: 8px 56px 10px 0; border-bottom: 1px solid var(--ink); }
+.tbl td { padding: 10px 56px 10px 0; border-bottom: 1px solid var(--line); }
+.tbl.plain thead { display: none; }
+.tbl.plain td { font-family: var(--sans); font-weight: 300; font-size: 34px; }
+.tbl.plain .m { font-size: 34px; }
+.tbl.fill { width: 1500px; }
+.tbl.fill th, .tbl.fill td { padding-right: 30px; }
+.tbl.fill td { font-size: 36px; padding-top: 8px; padding-bottom: 8px; }
+.contrast { width: 100%; }
+.contrast td { font-size: 34px !important; padding: 28px 40px 28px 0; vertical-align: top; }
+.contrast td:first-child { font-family: var(--serif); font-weight: 500; font-size: 42px !important; width: 38%; font-feature-settings: "lnum" 1; }
+.contrast td:first-child .m { font-size: 0.8em; color: var(--accent); }
+.errors { width: 100%; }
+.errors td { padding: 9px 40px 9px 0; width: 50%; }
+.errors .ico { margin-right: 20px; }
+.errors .m { font-size: 33px; }
+
+/* ===========================================
+   LISTS AND ANSWERS
+   =========================================== */
+.answers { counter-reset: n; display: flex; flex-direction: column; gap: 30px; }
+.answers[start="4"] { counter-reset: n 3; }
+.answers > li { counter-increment: n; position: relative; padding-left: 74px; font-size: 38px; line-height: 1.34; }
+.answers > li::before { content: counter(n); position: absolute; left: 0; top: -6px; font-family: var(--serif); font-size: 52px; font-weight: 500; color: var(--accent); font-feature-settings: "lnum" 1; }
+.answers .m { font-size: 35px; }
+.answer-cols { grid-template-columns: auto 1fr; gap: 56px; margin-bottom: 18px; }
+.answers .console, .answers .console .m { font-size: 32px; }
+.answers .say .m { font-size: 34px; }
+.problems h3 { font-family: var(--serif); font-weight: 500; font-size: 50px; font-feature-settings: "lnum" 1; }
+.problems .url { font-size: 26px; color: var(--ink-soft); margin-top: -14px; }
+.problems .stacked { gap: 22px; }
+.problems .say { font-size: 32px; }
+.problems .st .st { margin-top: 4px; }
+.quiet li { font-size: 38px; line-height: 1.3; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.closing { grid-template-columns: 1.1fr 1fr; }
+
+/* Tools, homework */
+.tools { gap: 64px; grid-template-columns: 1fr 1fr; }
+.tools h3, .homework h3 { font-family: var(--mono); font-weight: 400; font-size: 26px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 12px; border-bottom: 1px solid var(--accent); margin-bottom: 8px; }
+.tools li { font-size: 33px; padding: 13px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+.tools .m { font-size: 31px; }
+.homework { display: grid; grid-template-columns: 0.9fr 1.3fr 1fr; gap: 56px; }
+.homework ol { counter-reset: n; }
+.homework > div:nth-child(2) ol { counter-reset: n 3; }
+.homework > div:nth-child(3) ol { counter-reset: n 8; }
+.homework li { counter-increment: n; position: relative; padding: 18px 0 18px 54px; font-size: 32px; line-height: 1.26; font-weight: 400; }
+.homework li::before { content: counter(n); position: absolute; left: 0; top: 16px; font-family: var(--mono); font-size: 28px; color: var(--ink-soft); }
+.homework .m { font-size: 28px; }
+
+/* ===========================================
+   GRUPAL: inverted, over Flynn's safehouse
+   =========================================== */
+.slide.light { color: #10181d; --ink: #10181d; --ink-soft: #3b464c; --dim: #5d686e; --line: rgba(16, 24, 29, 0.28); }
+.slide.light .part, .slide.light .page { color: #3b464c; }
+.slide.light .body { top: 130px; }
+.grupal { display: grid; grid-template-columns: 340px 1fr; gap: 72px; align-items: start; }
+.grupal-mark span { display: block; font-family: var(--mono); font-size: 32px; letter-spacing: 0.2em; font-weight: 400; }
+.grupal-mark b { display: block; font-family: var(--serif); font-weight: 300; font-size: 420px; line-height: 0.95; font-feature-settings: "lnum" 1; }
+.grupal-mark em { display: block; font-family: var(--serif); font-size: 58px; }
+.list { counter-reset: n; display: flex; flex-direction: column; gap: 34px; }
+.list li { counter-increment: n; position: relative; padding-left: 74px; font-size: 44px; line-height: 1.26; font-weight: 400; }
+.list li::before { content: counter(n); position: absolute; left: 0; top: -6px; font-family: var(--serif); font-size: 54px; font-weight: 600; font-feature-settings: "lnum" 1; }
+.list .m { font-size: 40px; }
+.grupal.two { grid-template-columns: 250px 1fr; grid-template-rows: auto auto; gap: 26px 56px; }
+.grupal.two .grupal-mark b { font-size: 300px; }
+.grupal.two .grupal-mark { grid-row: 1 / 3; }
+.list.compact { gap: 19px; }
+.list.compact li { font-size: 37px; padding-left: 62px; line-height: 1.24; }
+.list.compact li::before { font-size: 46px; }
+.list.compact .m { font-size: 34px; }
+.aside { border-top: 1px solid var(--line); padding-top: 16px; display: flex; gap: 40px; align-items: flex-start; }
+.aside .small { width: 300px; flex: none; }
+
+/* ===========================================
+   SLIDE 1: cover, composed on the dark wall of Flynn's room
+   =========================================== */
+.cover-veil { position: absolute; inset: 0; background: radial-gradient(ellipse at 22% 50%, rgba(4, 8, 12, 0.55), transparent 42%); }
+.cover-block { position: absolute; left: 215px; top: 290px; width: 430px; z-index: 2; }
+.cover-block h1 { font-family: var(--serif); font-weight: 300; font-size: 230px; line-height: 0.9; }
+.cover-block p { font-size: 26px; margin: 26px 0 56px; line-height: 1.4; color: #e6eff1; font-weight: 400; }
+.cover-bits { display: flex; gap: 10px; }
+.cover-bits .cell { --c: 92px; font-size: 36px; color: var(--ink); background: rgba(4, 8, 12, 0.4); border-color: rgba(242, 247, 248, 0.5); }
+.cover-bits .cell.v1 { background: #f2f7f8; border-color: #f2f7f8; color: #06141a; }
+
+/* Staggered entrance, used on the cover and on slide 17 */
+.rv { opacity: 0; transform: translateY(16px); transition: opacity 1.1s ease, transform 1.1s ease; }
+.slide.visible .rv { opacity: 1; transform: none; }
+.slide.visible .rv.d1 { transition-delay: 0.7s; }
+.slide.visible .rv.d2 { transition-delay: 1.1s; }
+.slide.visible .rv.d3 { transition-delay: 1.5s; }
+
+/* ===========================================
+   SLIDE 17: the light cycle with depth, and a row of bits
+   that parts into columns
+   =========================================== */
+.section-block { position: absolute; right: 96px; top: 280px; width: 640px; z-index: 2; }
+.section-block h2 { font-family: var(--serif); font-weight: 400; font-size: 84px; line-height: 1.04; font-feature-settings: "lnum" 1; }
+.split { display: flex; align-items: flex-start; margin-top: 64px; height: 280px; }
+.split .bit { position: relative; flex: none; margin-right: 0; transition: margin-right 1.3s var(--ease) 1.5s; }
+.slide.visible .split .bit { margin-right: 44px; }
+.split .bit::after { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 170px; background: rgba(242, 237, 228, 0.5); transform: scaleY(0); transform-origin: top; transition: transform 1.2s ease 2s; }
+.slide.visible .split .bit::after { transform: scaleY(1); }
+.split .cell { --c: 88px; }
+
+/* ===========================================
+   EDIT MODE (press E)
+   =========================================== */
+.edit-hotzone { position: fixed; top: 0; left: 0; width: 80px; height: 80px; z-index: 10000; }
+.edit-toggle { position: fixed; top: 18px; left: 18px; z-index: 10001; font-family: var(--mono); font-size: 13px; color: var(--ink); background: rgba(5, 7, 10, 0.8); border: 1px solid var(--line); padding: 8px 12px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.edit-toggle.show, .edit-toggle.active { opacity: 1; pointer-events: auto; }
+body.editing [contenteditable="true"] { outline: 1px dashed rgba(233, 177, 90, 0.6); outline-offset: 4px; }
+
+/* ===========================================
+   PRINT / PDF
+   Every slide in its final state, each with its own image.
+   =========================================== */
+@media print {
+    @page { size: 1920px 1080px; margin: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .backdrop, .q-hero, .edit-hotzone, .edit-toggle { display: none !important; }
+    .slide { transition: none !important; background: #05070a; }
+    .print-bg { display: block; position: absolute; inset: 0; background-size: cover; }
+    .print-veil { position: absolute; inset: 0; background: #05070a; }
+    .slide.light .print-veil { background: #e9f1f2; }
+    .st, .rv, .carry.sw, .ln.insert { opacity: 1 !important; transform: none !important; max-height: none !important; }
+    .q { opacity: 1 !important; }
+    .cell.pend i { opacity: 1 !important; }
+    .cell.v1.pend { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .cell.off { opacity: 0; }
+    .split .bit { margin-right: 44px !important; }
+    .split .bit::after { transform: scaleY(1) !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+<div class="backdrop"><div class="plate"></div><div class="plate"></div><div class="shade"></div><div class="veil"></div></div>
+
+<!-- ===== Diapositiva 1: Portada ===== -->
+<section class="slide cover" data-bg="assets/safehouse.jpg" data-pos="50% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0" data-shade="none" data-drift="1">
+<div class="print-bg" style="background-image:url(assets/safehouse.jpg)"></div>
+<div class="cover-veil"></div>
+<div class="cover-block">
+  <h1 class="rv">Bits</h1>
+  <p class="rv d1">Clase 23 · Martes 3 de noviembre</p>
+  <div class="cover-bits rv d2">
+    <span class="cell v1"><i>1</i></span><span class="cell v1"><i>1</i></span><span class="cell v0"><i>0</i></span><span class="cell v1"><i>1</i></span>
+  </div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 2 ===== -->
+<!-- Nota: guion §1, min 0–5. -->
+<section class="slide  side-left" data-bg="assets/lightcycle-smoke.jpg" data-pos="0% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/lightcycle-smoke.jpg);background-position:0% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">2</div>
+<h2 class="q">En la clase 2 vimos que 7 = 111. ¿Cómo se escribe 13 en bits?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="st " data-step="1"><div class="bitrow " style="--c:120px"><div class="col"><span class="pw">8</span><span class="cell v1 pend" data-step="2"><i>1</i></span></div><div class="col"><span class="pw">4</span><span class="cell v1 pend" data-step="2"><i>1</i></span></div><div class="col"><span class="pw">2</span><span class="cell v0 pend" data-step="2"><i>0</i></span></div><div class="col"><span class="pw">1</span><span class="cell v1 pend" data-step="2"><i>1</i></span></div></div></div><div class="st " data-step="2"><span class="mono large">13 = 8 + 4 + 1</span></div></div><div class="stacked"><div class="st ask" data-step="3">¿Cómo decidiste que el 8 entra y el 2 no?</div><div class="st stacked" data-step="4"><p class="say">Tomo la más grande que cabe, la resto y sigo hacia abajo.</p><p class="mono large acc">100 = 64 + 32 + 4 = 1100100</p></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 3 ===== -->
+<!-- Nota: guion §1, min 5–9. Es heurística: error menor al 15%. -->
+<section class="slide  side-left" data-bg="assets/lightcycle-smoke.jpg" data-pos="0% 50%" data-z="1.06" data-x="-1" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/lightcycle-smoke.jpg);background-position:0% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">3</div>
+<h2 class="q">¿Cuál es la potencia de 2 más grande que cabe en 1 000 000 000? ¿Cómo la encuentras?</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="stairs"><span class="tread" style="--i:0"><b>1</b><em>×2</em></span><span class="tread" style="--i:1"><b>2</b><em>×2</em></span><span class="tread" style="--i:2"><b>4</b><em>×2</em></span><span class="tread" style="--i:3"><b>8</b><em>×2</em></span><span class="tread" style="--i:4"><b>16</b><em>×2</em></span><span class="tread" style="--i:5"><b>32</b><em>×2</em></span><span class="tread" style="--i:6"><b>…</b><em>×2</em></span><span class="tread" style="--i:7"><b>2<sup>30</sup></b></span></div></div><div class="st " data-step="2"><span class="mono large">2<sup>29</sup> = 536 870 912 &nbsp;≤&nbsp; 10<sup>9</sup> &nbsp;&lt;&nbsp; 2<sup>30</sup> = 1 073 741 824</span></div><div class="st statement acc" data-step="3">subir 30 veces, bajar 30 veces</div><div class="st " data-step="4"><div class="note-box mono">2<sup>10</sup> ≈ 10<sup>3</sup> &nbsp;→&nbsp; 2<sup>20</sup> ≈ 10<sup>6</sup> &nbsp;→&nbsp; 2<sup>30</sup> ≈ 10<sup>9</sup> &nbsp;→&nbsp; 2<sup>60</sup> ≈ 10<sup>18</sup></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 4 ===== -->
+<!-- Nota: guion §2. -->
+<section class="slide  side-left" data-bg="assets/lightcycle-smoke.jpg" data-pos="0% 50%" data-z="1.1" data-x="-2" data-y="1" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/lightcycle-smoke.jpg);background-position:0% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">4</div>
+<h2 class="q">¿Hay algún bit que puedas saber sin subir hasta la potencia más grande?</h2>
+<div class="body">
+<div class="cols"><div class="st " data-step="1"><div class="bitrow " style="--c:120px"><div class="col"><span class="pw">8</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">4</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">2</span><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="pw">1</span><span class="cell v1 hl" ><i>1</i></span></div></div></div><div class="st " data-step="2"><code class="m huge acc">n % 2</code></div></div><div class="st stacked" data-step="3"><p class="say">Todas las demás potencias (2, 4, 8…) son pares.</p><p class="mono large">13 % 2 = 1 <svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg> &nbsp;&nbsp;&nbsp; 100 % 2 = 0 <svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg></p></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 5 ===== -->
+<!-- Nota: guion §2. Si dicen "resto 1 y queda 12": "¿y 1100 qué tiene a la derecha que sobra?". Comprueban 1100100. -->
+<section class="slide  side-left" data-bg="assets/lightcycle-smoke.jpg" data-pos="0% 50%" data-z="1.14" data-x="-3" data-y="2" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/lightcycle-smoke.jpg);background-position:0% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">5</div>
+<h2 class="q">13 = 1101 termina en 1 porque es impar. ¿Cómo sacas el bit que sigue? ¿Qué número se escribe 110?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="st " data-step="1"><div class="bitrow delayed-off" style="--c:104px"><div class="col"><span class="pw">8</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">4</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">2</span><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="pw">1</span><span class="cell v1 "  data-off="1"><i>1</i></span></div></div></div><div class="st " data-step="1"><code class="m large">13 / 2 = 6 = 110</code></div><div class="st say" data-step="2">La división entera borra el bit de la derecha.</div></div><div class="stacked"><div class="st ask" data-step="3">¿Cómo sacas todos los bits de 13?</div><table class="tbl "><thead><tr class="st" data-step="3"><th>n</th><th>n % 2</th><th>n / 2</th></tr></thead><tbody><tr class="st" data-step="4"><td>13</td><td>1</td><td>6</td></tr><tr class="st" data-step="5"><td>6</td><td>0</td><td>3</td></tr><tr class="st" data-step="6"><td>3</td><td>1</td><td>1</td></tr><tr class="st" data-step="7"><td>1</td><td>1</td><td>0</td></tr></tbody></table><div class="st statement acc" data-step="8">Ahora ustedes: 100.</div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 6 ===== -->
+<!-- Nota: guion §3, min 20. Pasan a la computadora. -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">6</div>
+<h2 class="q">Cambio de base<span class="q-sub">Sacar la última cifra con <code class="m ">% 2</code> y borrarla con <code class="m ">/ 2</code>, hasta que no quede nada.</span></h2>
+<div class="body">
+<div class="st ask" data-step="1">¿Cómo lo escriben en C++, imprimiendo cada bit?</div><div class="st " data-step="2"><div class="code " style="font-size:44px"><div class="ln"><b>int</b> n; <b>cin</b> &gt;&gt; n;</div><div class="ln"><b>while</b> (n &gt; 0) { <b>cout</b> &lt;&lt; n % 2; n /= 2; }</div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 7 ===== -->
+<!-- Nota: Casi todos dicen 1101. Que lo escriban antes del clic. -->
+<section class="slide  side-left" data-bg="assets/duel.jpg" data-pos="50% 50%" data-z="1" data-x="0" data-y="0" data-low="0.6" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/duel.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">7</div>
+<h2 class="q q-static">¿Qué imprime con n = 13?</h2>
+<div class="body">
+<div class="code " style="font-size:48px"><div class="ln"><b>int</b> n; <b>cin</b> &gt;&gt; n;</div><div class="ln"><b>while</b> (n &gt; 0) { <b>cout</b> &lt;&lt; n % 2; n /= 2; }</div></div><div class="st " data-step="1"><div class="console wide"><span class="red">1011</span></div></div><div class="st say" data-step="2">Sale al revés: el primer bit que sale es el de las unidades.</div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 8 ===== -->
+<!-- Nota: guion §3. Que lo corran entre el clic 2 y el 3. -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1.06" data-x="-1" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">8</div>
+<h2 class="q">Si salen de las unidades hacia arriba, ¿cómo los imprimes de izquierda a derecha?</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="code " style="font-size:38px"><div class="ln"><b>int</b> b[64], cnt = 0;</div><div class="ln"><b>while</b> (n &gt; 0) { b[cnt] = n % 2; n /= 2; cnt++; }</div><div class="ln insert ok" data-step="4"><b>if</b> (cnt == 0) <b>cout</b> &lt;&lt; 0;</div><div class="ln"><b>for</b> (<b>int</b> k = cnt - 1; k &gt;= 0; k--) <b>cout</b> &lt;&lt; b[k];</div></div></div><div class="st statement acc" data-step="2">Pruébenlo con n = 0.</div><div class="cols"><div class="st stacked tight" data-step="3"><div class="console bad">&nbsp;</div><p class="say red">Salida vacía = <code class="m ">Wrong Answer</code></p></div><div class="st " data-step="5"><div class="console ">13 → 1101<br>100 → 1100100<br>0 → 0</div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 9 ===== -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1.1" data-x="-2" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">9</div>
+<h2 class="q">¿Cuántas vueltas da el while con n = 10<sup>9</sup>? ¿Y con 10<sup>18</sup>?</h2>
+<div class="body">
+<div class="st stacked" data-step="1"><div class="bitrow mini" style="--c:48px"><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div><p class="statement">30 vueltas</p></div><div class="st " data-step="2"><span class="mono large">10<sup>18</sup> → 60 vueltas</span></div><div class="st stacked" data-step="3"><p class="formula acc">⌊log<sub>2</sub> n⌋ + 1 &nbsp;·&nbsp; O(log n)</p><p class="small">Una sola pasada, sin conocer potencias. <code class="m ">int b[64]</code> alcanza para <code class="m ">long long</code>.</p></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 10 ===== -->
+<!-- Nota: guion §4. Si hay prisa, se recorta la base 3. -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1.14" data-x="-3" data-y="1" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">10</div>
+<h2 class="q">¿Qué saldría con <code class="m ">n % 10</code> y <code class="m ">n /= 10</code>? ¿Y con 3?</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="code " style="font-size:42px"><div class="ln"><b>while</b> (n &gt; 0) { b[cnt] = n % base; n /= base; cnt++; }</div></div></div><div class="st " data-step="2"><div class="console wide">1234, base 10 → 1234<br>13, base 3 → 111 &nbsp;&nbsp;(9 + 3 + 1)</div></div><div class="st say" data-step="3"><code class="m ">n % b</code> es la última cifra, <code class="m ">n / b</code> la borra.</div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 11 ===== -->
+<!-- Nota: guion §5, min 33. -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.1" data-x="3" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">11</div>
+<h2 class="q">Con solo 4 bits, ¿cuál es el número más grande que puedes escribir?</h2>
+<div class="body">
+<div class="cols"><div class="st stacked" data-step="1"><div class="bitrow " style="--c:120px"><div class="col"><span class="pw">8</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">4</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">2</span><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="pw">1</span><span class="cell v1 " ><i>1</i></span></div></div><p class="mono large">1111 = 15</p></div><div class="stacked"><div class="st ask" data-step="2">¿A qué es igual 1 + 2 + 4 + … + 2<sup>k−1</sup>? Con k = 5, 6 y 10.</div><table class="tbl "><thead><tr class="st" data-step="2"><th>k</th><th>suma</th><th></th></tr></thead><tbody><tr class="st" data-step="3"><td>k = 5</td><td>31</td><td>= 32 − 1</td></tr><tr class="st" data-step="4"><td>k = 6</td><td>63</td><td>= 64 − 1</td></tr><tr class="st" data-step="5"><td>k = 10</td><td>1023</td><td>= 1024 − 1</td></tr></tbody></table></div></div><div class="st formula acc" data-step="6">1 + 2 + … + 2<sup>k−1</sup> = 2<sup>k</sup> − 1</div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 12 ===== -->
+<!-- Nota: Cerrar con: por eso funcionaba "la más grande que cabe". -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.14" data-x="1" data-y="0" data-low="0.6" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">12</div>
+<h2 class="q q-static">¿Por qué 11111 + 1 = 100000?</h2>
+<div class="body">
+<div class="cols"><div class="stack" style="--c:104px;--n:6" data-sweep="1"><div class="strip"></div><div class="row carries"><span class="lab"></span><span class="carry cellw sw" data-col="1">1</span><span class="carry cellw sw" data-col="2">1</span><span class="carry cellw sw" data-col="3">1</span><span class="carry cellw sw" data-col="4">1</span><span class="carry cellw sw" data-col="5">1</span><span class="carry cellw"></span></div><div class="row"><span class="lab"></span><span class="cell blank " ></span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span></div><div class="row"><span class="lab">+</span><span class="cell blank " ></span><span class="cell blank " ></span><span class="cell blank " ></span><span class="cell blank " ></span><span class="cell blank " ></span><span class="cell v1 " ><i>1</i></span></div><div class="rule"></div><div class="row"><span class="lab st" data-step="1"></span><span class="cell v1 pend sw" data-col="0"><i>1</i></span><span class="cell v0 pend sw" data-col="1"><i>0</i></span><span class="cell v0 pend sw" data-col="2"><i>0</i></span><span class="cell v0 pend sw" data-col="3"><i>0</i></span><span class="cell v0 pend sw" data-col="4"><i>0</i></span><span class="cell v0 pend sw" data-col="5"><i>0</i></span></div></div><div class="stacked center"><div class="st " data-step="2"><span class="mono huge">100000</span></div><div class="st statement acc" data-step="3">El bit 2<sup>k</sup> pesa más que todos los de abajo juntos.</div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 13 ===== -->
+<!-- Nota: "Para el signo" se guarda para la GRUPAL 2. -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.18" data-x="-1" data-y="1" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">13</div>
+<h2 class="q"><code class="m ">int</code> tiene 32 bits y su máximo es unos 2×10<sup>9</sup>. Si con k bits el máximo es 2<sup>k</sup> − 1, ¿de dónde sale ese número?</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="sign-row"><span class="sign-label">signo</span><div class="bitrow mini signed" style="--c:46px"><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div></div></div></div><div class="st " data-step="2"><div class="console wide"><code class="m ">int</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ &nbsp;2<sup>31</sup> − 1 = 2147483647<br><code class="m ">long long</code> &nbsp;→ &nbsp;2<sup>63</sup> − 1 = 9223372036854775807</div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 14 ===== -->
+<!-- Nota: GRUPAL · sin animación · se queda en pantalla 8 minutos. min 41–49. -->
+<section class="slide light side-left" data-bg="assets/safehouse.jpg" data-pos="50% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0.9" data-shade="none" data-auto="1">
+<div class="print-bg" style="background-image:url(assets/safehouse.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.9"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">14</div>
+
+<div class="body">
+<div class="st " data-step="1"><div class="grupal"><div class="grupal-mark"><span>GRUPAL</span><b>1</b></div><ol class="list"><li>¿Qué número es 101101? Leyendo con <code class="m ">n = n * 2 + bit</code>, ¿sale lo mismo con 1101? ¿Cuánto cuesta leer L bits?</li><li>¿Cuántos números distintos se escriben con 3 bits? ¿Con k?</li><li>¿Quién es más grande: 10000 o 01111? ¿1011010 o 1010111?</li><li>Escriban <code class="m ">int cuentaUnos(int n)</code>. ¿Cuánto cuesta? Si la llaman para cada i de 1 a 10<sup>6</sup>, ¿son 10<sup>12</sup> pasos?</li><li>¿Cuántos bits tiene 10<sup>18</sup>?</li></ol></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 15 ===== -->
+<section class="slide  side-right" data-bg="assets/fireworks.jpg" data-pos="0% 40%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0.86" data-shade="right">
+<div class="print-bg" style="background-image:url(assets/fireworks.jpg);background-position:0% 40%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">15</div>
+<h2 class="q">GRUPAL 1: respuestas</h2>
+<div class="body">
+<ol class="answers"><li class="st " data-step="1"><code class="m ">101101 → 1 → 2 → 5 → 11 → 22 → 45</code> &nbsp;·&nbsp; <code class="m ">1101 → 1 → 3 → 6 → 13</code> &nbsp;·&nbsp; L vueltas</li><li class="st " data-step="2">2 · 2 · 2 = 8 &nbsp;·&nbsp; con k bits, 2<sup>k</sup></li><li class="st " data-step="3"><div class="pairs"><div class="pair"><div class="bitrow mini" style="--c:46px"><div class="col"><span class="cell v1 hl" ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div><div class="bitrow mini" style="--c:46px"><div class="col"><span class="cell v0 hl" ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div></div></div><code class="m large">16 &gt; 15</code><div class="pair"><div class="bitrow mini" style="--c:46px"><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 hl" ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div><div class="bitrow mini" style="--c:46px"><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 hl" ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div></div></div><code class="m large">90 &gt; 87</code></div></li><li class="st " data-step="4">No son 10<sup>12</sup>. Adentro son a lo más 20 vueltas: unas 2×10<sup>7</sup>. Pasa.</li><li class="st " data-step="5">60 &nbsp;·&nbsp; 2<sup>60</sup> ≈ 1.15×10<sup>18</sup></li></ol>
+</div>
+</section>
+
+<!-- ===== Diapositiva 16 ===== -->
+<!-- Nota: La trampa: parece n². Que cuenten las vueltas de adentro antes de pasar a la 15, punto 4. -->
+<section class="slide  side-left" data-bg="assets/fireworks.jpg" data-pos="0% 40%" data-z="1.08" data-x="2" data-y="0" data-low="0.62" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/fireworks.jpg);background-position:0% 40%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 1 · Cambio de base</div><div class="page">16</div>
+<h2 class="q q-static">GRUPAL 1: <code class="m ">cuentaUnos</code></h2>
+<div class="body">
+<div class="cols code-output"><div class="code " style="font-size:36px"><div class="ln"><b>int</b> cuentaUnos(<b>int</b> n) {</div><div class="ln">    <b>int</b> c = 0;</div><div class="ln">    <b>while</b> (n &gt; 0) { c += n % 2; n /= 2; }</div><div class="ln">    <b>return</b> c;</div><div class="ln">}</div></div><div class="st " data-step="1"><div class="console ">cuentaUnos(13) → 3<br>cuentaUnos(1000000000) → 13</div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 17: Parte 2 ===== -->
+<!-- La unica diapositiva de transicion: la moto con profundidad y una fila de bits que se parte por columnas. -->
+<section class="slide section" data-bg="assets/lightcycle-amber.jpg" data-pos="50% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0" data-shade="hero-amber" data-drift="1">
+<div class="print-bg" style="background-image:url(assets/lightcycle-amber.jpg)"></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">17</div>
+<div class="section-block">
+  <h2 class="rv d1">¿Qué más se puede hacer con una fila de bits?</h2>
+  <div class="split rv d2">
+    <span class="bit"><span class="cell v1"><i>1</i></span></span><span class="bit"><span class="cell v1"><i>1</i></span></span><span class="bit"><span class="cell v0"><i>0</i></span></span><span class="bit"><span class="cell v1"><i>1</i></span></span>
+  </div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 18 ===== -->
+<!-- Nota: guion §6, min 49. -->
+<section class="slide  side-left" data-bg="assets/disc-arena.jpg" data-pos="50% 50%" data-z="1" data-x="0" data-y="0" data-low="0.62" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/disc-arena.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">18</div>
+<h2 class="q q-static">Un número es una fila de bits, cada uno como un <code class="m ">true</code> o <code class="m ">false</code>. Con 12 y 10, si aplican <code class="m ">&amp;&amp;</code> columna por columna, ¿qué sale?</h2>
+<div class="body">
+<div class="cols"><div class="stack" style="--c:112px;--n:4" data-sweep="1"><div class="strip"></div><div class="row"><span class="lab"></span><span class="pw cellw">8</span><span class="pw cellw">4</span><span class="pw cellw">2</span><span class="pw cellw">1</span></div><div class="row"><span class="lab">12</span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v0 " ><i>0</i></span></div><div class="row"><span class="lab">10</span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span></div><div class="rule"></div><div class="row"><span class="lab st" data-step="2">= 8</span><span class="cell v1 pend sw" data-col="0"><i>1</i></span><span class="cell v0 pend sw" data-col="1"><i>0</i></span><span class="cell v0 pend sw" data-col="2"><i>0</i></span><span class="cell v0 pend sw" data-col="3"><i>0</i></span></div></div><div class="stacked center"><div class="st stacked" data-step="2"><p class="mono huge acc">= 8</p><p class="say">1 solo donde los dos tienen 1.</p></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 19 ===== -->
+<section class="slide  side-left" data-bg="assets/disc-arena.jpg" data-pos="50% 50%" data-z="1.06" data-x="-1" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/disc-arena.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">19</div>
+<h2 class="q">¿Cómo calculas ese columna por columna para dos números cualesquiera?</h2>
+<div class="body">
+<div class="cols code-output"><div class="st " data-step="1"><div class="code " style="font-size:33px"><div class="ln"><b>int</b> yColumnas(<b>int</b> a, <b>int</b> b) {</div><div class="ln">    <b>int</b> r = 0, p = 1;</div><div class="ln">    <b>while</b> (a &gt; 0 &amp;&amp; b &gt; 0) {</div><div class="ln">        <b>if</b> (a % 2 == 1 &amp;&amp; b % 2 == 1) r += p;</div><div class="ln">        a /= 2; b /= 2; p *= 2;</div><div class="ln">    }</div><div class="ln">    <b>return</b> r;</div><div class="ln">}</div></div></div><div class="stacked"><div class="st " data-step="2"><div class="console ">yColumnas(12, 10) → 8</div></div><div class="st ask" data-step="3">¿Cuántas vueltas, si a, b ≤ 10<sup>9</sup>? ¿Y para 10<sup>6</sup> parejas?</div><div class="st stacked tight" data-step="4"><p class="say">30 por pareja · 3×10<sup>7</sup> · pasa.</p><p class="small dim">mucho código para algo tan simple</p></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 20 ===== -->
+<!-- Nota: guion §7. ~ se prueba en la GRUPAL 2, no aquí. -->
+<section class="slide  side-left" data-bg="assets/disc-arena.jpg" data-pos="50% 50%" data-z="1.1" data-x="-2" data-y="0" data-low="0.5" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/disc-arena.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">20</div>
+<h2 class="q q-static"><code class="m title-mono">a &amp; b</code><span class="q-sub">La computadora lo hace en un paso.</span></h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="console ">12 &amp; 10 → 8</div><div class="st ask" data-step="1">Con <code class="m ">||</code> y <code class="m ">!</code> de la clase 4, ¿qué sale con 12 y 10?</div><div class="st " data-step="3"><p class="say"><code class="m large">~a</code> &nbsp;voltea todos los bits.</p></div></div><div class="st stacked tight" data-step="2"><div class="stack" style="--c:84px;--n:4" data-sweep="2"><div class="strip"></div><div class="row"><span class="lab">12</span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v0 " ><i>0</i></span></div><div class="row"><span class="lab">10</span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span></div><div class="rule"></div><div class="row"><span class="lab st" data-step="2">= 14</span><span class="cell v1 pend sw" data-col="0"><i>1</i></span><span class="cell v1 pend sw" data-col="1"><i>1</i></span><span class="cell v1 pend sw" data-col="2"><i>1</i></span><span class="cell v0 pend sw" data-col="3"><i>0</i></span></div></div><p class="say"><code class="m ">a | b</code>: 1 si alguno tiene 1.</p></div></div><div class="st statement acc" data-step="4">Las operaciones de bits son O(1), como +. Lo que cuesta es el ciclo.</div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 21 ===== -->
+<!-- Nota: Si dicen "es el ||": "¿con 1 y 1 qué da ||?". -->
+<section class="slide  side-left" data-bg="assets/disc-arena.jpg" data-pos="50% 50%" data-z="1.14" data-x="-3" data-y="1" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/disc-arena.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">21</div>
+<h2 class="q"><code class="m ">|</code> da 1 aunque sean los dos. ¿Qué regla darían para uno u otro, pero no los dos? ¿Qué sale con 12 y 10?</h2>
+<div class="body">
+<div class="cols"><div class="st stacked tight" data-step="1"><div class="stack" style="--c:88px;--n:4" data-sweep="1"><div class="strip"></div><div class="row"><span class="lab">12</span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v0 " ><i>0</i></span></div><div class="row"><span class="lab">10</span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span></div><div class="rule"></div><div class="row"><span class="lab st" data-step="1">= 6</span><span class="cell v0 pend sw" data-col="0"><i>0</i></span><span class="cell v1 pend sw" data-col="1"><i>1</i></span><span class="cell v1 pend sw" data-col="2"><i>1</i></span><span class="cell v0 pend sw" data-col="3"><i>0</i></span></div></div><p class="say"><code class="m ">a ^ b</code>: 1 donde son distintos.</p></div><div class="st " data-step="2"><table class="tbl plain"><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><code class="m ">a &amp; b</code></td><td>1 si los dos tienen 1</td></tr><tr><td><code class="m ">a | b</code></td><td>1 si alguno tiene 1</td></tr><tr><td><code class="m ">a ^ b</code></td><td>1 si son distintos</td></tr><tr><td><code class="m ">~a</code></td><td>voltea cada bit</td></tr></tbody></table></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 22 ===== -->
+<!-- Nota: guion §8. Casi todos dicen 8. Antes del clic 2: "¿qué hace ^ columna por columna con 2 y 3?". g++ da un warning, pero compila. -->
+<section class="slide  side-left" data-bg="assets/duel.jpg" data-pos="50% 50%" data-z="1.08" data-x="1" data-y="0" data-low="0.6" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/duel.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">22</div>
+<h2 class="q q-static">¿Qué imprime?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="code " style="font-size:52px"><div class="ln"><b>int</b> p = 2 ^ 3;</div><div class="ln"><b>cout</b> &lt;&lt; p;</div></div><div class="st " data-step="1"><div class="console "><span class="red">1</span></div></div><div class="st statement red" data-step="3"><code class="m red">^</code> no es potencia.</div></div><div class="st " data-step="2"><div class="stack" style="--c:96px;--n:3" data-sweep="2"><div class="strip"></div><div class="row"><span class="lab">2</span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span></div><div class="row"><span class="lab">3</span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v1 " ><i>1</i></span></div><div class="rule"></div><div class="row"><span class="lab st" data-step="2">= 1</span><span class="cell v0 pend sw" data-col="0"><i>0</i></span><span class="cell v0 pend sw" data-col="1"><i>0</i></span><span class="cell v1 pend sw" data-col="2"><i>1</i></span></div></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 23 ===== -->
+<!-- Nota: guion §9, min 60. -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">23</div>
+<h2 class="q"><code class="m ">&amp;</code>, <code class="m ">|</code>, <code class="m ">^</code>, <code class="m ">~</code> no mueven las columnas. <code class="m ">n / 2</code> sí movía la fila. ¿Qué le pasa a la fila si multiplicas por 2?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="st stacked tight" data-step="1"><div class="shift shift-left"><div class="slider"><span class="cell v1"><i>1</i></span><span class="cell v1"><i>1</i></span><span class="cell v0"><i>0</i></span><span class="cell v0 enter"><i>0</i></span></div></div><p class="mono large"><code class="m ">x &lt;&lt; 1</code> &nbsp;·&nbsp; 6 → 12</p></div><div class="st stacked tight" data-step="2"><div class="shift shift-right"><div class="slider"><span class="cell v1"><i>1</i></span><span class="cell v1"><i>1</i></span><span class="cell v0"><i>0</i></span><span class="cell v1 fall"><i>1</i></span></div></div><p class="mono large"><code class="m ">x &gt;&gt; 1</code> &nbsp;·&nbsp; 13 → 6</p></div></div><div class="stacked"><div class="st ask" data-step="3">¿Cuánto vale <code class="m ">x &lt;&lt; k</code>? ¿Y <code class="m ">1 &lt;&lt; k</code>?</div><div class="st " data-step="4"><table class="tbl plain"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><code class="m ">x &lt;&lt; k</code></td><td>= x · 2<sup>k</sup></td><td><code class="m ">3 &lt;&lt; 4 → 48</code></td></tr><tr><td><code class="m ">x &gt;&gt; k</code></td><td>= x / 2<sup>k</sup></td><td><code class="m ">100 &gt;&gt; 3 → 12</code></td></tr><tr><td><code class="m ">1 &lt;&lt; k</code></td><td>= 2<sup>k</sup></td><td></td></tr></tbody></table></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 24 ===== -->
+<!-- Nota: Que lo corran antes del clic 1. -->
+<section class="slide  side-left" data-bg="assets/duel.jpg" data-pos="50% 50%" data-z="1.12" data-x="-1" data-y="0" data-low="0.6" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/duel.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">24</div>
+<h2 class="q q-static">¿Qué imprime?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="code " style="font-size:48px"><div class="ln"><b>cout</b> &lt;&lt; (1 &lt;&lt; 31);</div><div class="ln"><b>cout</b> &lt;&lt; (1 &lt;&lt; 40);</div></div><div class="st " data-step="1"><div class="console "><span class="red">-2147483648<br>0</span></div></div><div class="st say" data-step="2">El <code class="m ">1</code> es <code class="m ">int</code>: 31 bits de valor.</div></div><div class="st stacked" data-step="3"><div class="code good" style="font-size:42px"><div class="ln"><b>long</b> <b>long</b> p = 1LL &lt;&lt; 40;</div></div><div class="console ">1099511627776</div><p class="say"><code class="m ">1LL</code>: un 1 de tipo <code class="m ">long long</code>.</p></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 25 ===== -->
+<!-- Nota: "Es lo mismo que % 2" se guarda: se retoma en la GRUPAL 2. -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1.08" data-x="-1" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">25</div>
+<h2 class="q">¿Cómo reescriben el cambio de base con <code class="m ">&amp;</code> y <code class="m ">&gt;&gt;</code>?</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="code " style="font-size:42px"><div class="ln"><b>while</b> (n &gt; 0) { b[cnt] = n &amp; 1; n &gt;&gt;= 1; cnt++; }</div><div class="ln"><b>int</b> bitK = (x &gt;&gt; k) &amp; 1;</div></div></div><div class="cols"><div class="st stacked tight" data-step="2"><div class="console ">n = 13 → 1101<br>x = 13, k = 2 → 1</div><p class="say">Mismo costo: O(log n).</p></div><div class="st " data-step="3"><div class="console ">13 &amp; 7 → 5<br>13 % 8 → 5</div></div></div><div class="st formula acc" data-step="3">x &amp; (2<sup>k</sup> − 1) = x % 2<sup>k</sup></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 26 ===== -->
+<!-- Nota: guion §10. "¿Qué se calcula primero, el & o el ==?". La regla la das tú. -->
+<section class="slide  side-left" data-bg="assets/duel.jpg" data-pos="50% 50%" data-z="1.16" data-x="2" data-y="0" data-low="0.6" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/duel.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">26</div>
+<h2 class="q q-static">¿Entra?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="code " style="font-size:40px"><div class="ln"><b>int</b> x = 4;</div><div class="ln"><b>if</b> (x &amp; 1 == 0) <b>cout</b> &lt;&lt; "par";</div></div><div class="st stacked tight" data-step="1"><div class="console bad">&nbsp;</div><p class="say"><code class="m ">==</code> va primero: <code class="m ">x &amp; (1 == 0)</code> = <code class="m ">x &amp; 0</code> = 0.</p></div></div><div class="st " data-step="2"><div class="verdicts"><div class="v-line"><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m ">if (x &amp; 1 == 0)</code><span class="cmt-red">nunca entra</span></div><div class="v-line"><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m ">if ((x &amp; 1) == 0)</code></div><div class="v-gap"></div><div class="v-line"><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m ">cout &lt;&lt; a ^ b;</code><span class="cmt-red">no compila</span></div><div class="v-line"><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m ">cout &lt;&lt; (a ^ b);</code></div></div></div></div><div class="st statement acc" data-step="3">Paréntesis siempre que haya <code class="m ">&amp;</code>, <code class="m ">|</code>, <code class="m ">^</code>, <code class="m ">&lt;&lt;</code>, <code class="m ">&gt;&gt;</code>.</div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 27 ===== -->
+<!-- Nota: guion §11, min 70. -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.1" data-x="3" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">27</div>
+<h2 class="q">¿Cuánto da 13 ^ 13? ¿Y 13 ^ 0?</h2>
+<div class="body">
+<div class="cols"><div class="stacked"><div class="st " data-step="1"><div class="console ">13 ^ 13 → 0<br>13 ^ 0 &nbsp;→ 13</div></div><div class="st ask" data-step="2">¿Y si no están juntos? ¿Cuánto da 5 ^ 9 ^ 5?</div><div class="st say" data-step="4">Cada columna es 1 si tiene una cantidad impar de unos. El orden no importa.</div></div><div class="st " data-step="3"><div class="stack" style="--c:84px;--n:4" data-sweep="3"><div class="strip"></div><div class="row"><span class="lab">5</span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span></div><div class="row"><span class="lab">9</span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span></div><div class="row"><span class="lab">5</span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span><span class="cell v0 " ><i>0</i></span><span class="cell v1 " ><i>1</i></span></div><div class="rule"></div><div class="row"><span class="lab st" data-step="3">= 9</span><span class="cell v1 pend sw" data-col="0"><i>1</i></span><span class="cell v0 pend sw" data-col="1"><i>0</i></span><span class="cell v0 pend sw" data-col="2"><i>0</i></span><span class="cell v1 pend sw" data-col="3"><i>1</i></span></div></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 28 ===== -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.14" data-x="1" data-y="1" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">28</div>
+<h2 class="q">7 3 9 3 7: todos aparecen dos veces menos uno. ¿Cómo encuentras el solitario con n = 10<sup>6</sup>? ¿Cuánto cuesta?</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="pairs-strike"><span class="num strike" style="--d:.5s">7</span><span class="num strike" style="--d:1s">3</span><span class="num lone">9</span><span class="num strike" style="--d:1s">3</span><span class="num strike" style="--d:.5s">7</span></div></div><div class="cols code-output wide-code"><div class="st " data-step="2"><div class="code " style="font-size:34px"><div class="ln"><b>int</b> r = 0;</div><div class="ln"><b>for</b> (<b>int</b> i = 0; i &lt; n; i++) { <b>int</b> a; <b>cin</b> &gt;&gt; a; r ^= a; }</div><div class="ln"><b>cout</b> &lt;&lt; r;</div></div></div><div class="st " data-step="2"><div class="console ">9</div></div></div><div class="st " data-step="3"><span class="mono large">xor: O(n), 10<sup>6</sup> &nbsp;&nbsp;&nbsp;&nbsp; map: O(n log n), 2×10<sup>7</sup></span></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 29 ===== -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.18" data-x="-1" data-y="2" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">29</div>
+<h2 class="q">a ^ b = x. Conoces a y x. ¿Quién es b?</h2>
+<div class="body">
+<div class="st " data-step="1"><span class="mono large">a ^ b = x &nbsp;⇔&nbsp; b = a ^ x &nbsp;&nbsp;·&nbsp;&nbsp; 5 ^ b = 6 ⇒ b = 5 ^ 6 = 3 <svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg></span></div><div class="st ask" data-step="2">¿Cómo decides si hay dos números cuyo xor sea x, sin probar todas las parejas? ¿Con n = 2×10<sup>5</sup>?</div><div class="cols code-output"><div class="st " data-step="3"><div class="code " style="font-size:33px"><div class="ln"><b>set</b>&lt;<b>int</b>&gt; s; <b>bool</b> hay = false;</div><div class="ln"><b>for</b> (<b>int</b> i = 0; i &lt; n; i++) {</div><div class="ln">    <b>if</b> (s.count(a[i] ^ x)) hay = true;</div><div class="ln">    s.insert(a[i]);</div><div class="ln">}</div></div></div><div class="st stacked tight" data-step="4"><div class="console ">a = 1 5 8 3, x = 6 → hay = 1</div><p class="mono">set: 3.6×10<sup>6</sup></p><p class="mono">todas las parejas: 2×10<sup>10</sup>, TLE</p></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 30 ===== -->
+<!-- Nota: guion §12, min 82–88. El momento más importante de la clase. Ellos llenan; no se da el clic 1 hasta que tengan sus números. -->
+<section class="slide  side-left" data-bg="assets/fireworks.jpg" data-pos="60% 30%" data-z="1" data-x="0" data-y="0" data-low="0.62" data-high="0.86" data-shade="none">
+<div class="print-bg" style="background-image:url(assets/fireworks.jpg);background-position:60% 30%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">30</div>
+<h2 class="q q-static"><code class="m ">^</code> es sumar sin llevar. ¿Será que a ^ b = a + b? Prueben con 4 y 3, 5 y 3, 6 y 6, 7 y 5.</h2>
+<div class="body">
+<table class="tbl fill"><thead><tr><th>a</th><th>b</th><th>a + b</th><th>a ^ b</th><th>diferencia</th><th>a &amp; b</th></tr></thead><tbody><tr><td>4</td><td>3</td><td><span class="st" data-step="1">7</span></td><td><span class="st" data-step="1">7</span></td><td><span class="st" data-step="3">0</span> <span class="st" data-step="4">= 2·0</span></td><td><span class="st" data-step="4">0</span></td></tr><tr><td>5</td><td>3</td><td><span class="st" data-step="1">8</span></td><td><span class="st" data-step="1">6</span></td><td><span class="st" data-step="3">2</span> <span class="st" data-step="4">= 2·1</span></td><td><span class="st" data-step="4">1</span></td></tr><tr><td>6</td><td>6</td><td><span class="st" data-step="1">12</span></td><td><span class="st" data-step="1">0</span></td><td><span class="st" data-step="3">12</span> <span class="st" data-step="4">= 2·6</span></td><td><span class="st" data-step="4">6</span></td></tr><tr><td>7</td><td>5</td><td><span class="st" data-step="1">12</span></td><td><span class="st" data-step="1">2</span></td><td><span class="st" data-step="3">10</span> <span class="st" data-step="4">= 2·5</span></td><td><span class="st" data-step="4">5</span></td></tr></tbody></table><div class="cols tight-cols"><div class="st statement red" data-step="2"><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg> a ^ b = a + b</div><div class="st ask" data-step="3">¿De dónde sale? ¿Qué está ignorando el xor?</div></div><div class="st stacked tight" data-step="5"><p class="formula acc xl">a + b = (a ^ b) + 2·(a &amp; b)</p><p class="small">Si <code class="m ">a &amp; b == 0</code>: <code class="m ">a + b = a ^ b = a | b</code>.</p></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 31 ===== -->
+<!-- Nota: GRUPAL · sin animación · 10 minutos. min 88–98. El 6 es lo primero que se recorta. -->
+<section class="slide light side-left" data-bg="assets/safehouse.jpg" data-pos="50% 50%" data-z="1" data-x="0" data-y="0" data-low="0" data-high="0.9" data-shade="none" data-auto="1">
+<div class="print-bg" style="background-image:url(assets/safehouse.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.9"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">31</div>
+
+<div class="body">
+<div class="st " data-step="1"><div class="grupal two"><div class="grupal-mark"><span>GRUPAL</span><b>2</b><em>¿sí o no?</em></div><ol class="list compact"><li>¿<code class="m ">a &amp; b ≤ min(a, b)</code>? ¿<code class="m ">a &amp; b = min(a, b)</code>? ¿El AND de muchos puede subir?</li><li>¿<code class="m ">a | b ≥ max(a, b)</code>? ¿<code class="m ">a | b ≤ a + b</code>? ¿<code class="m ">a + b = (a | b) + (a &amp; b)</code>?</li><li>¿Qué hace <code class="m ">x &amp; (x − 1)</code> con 12, 8 y 7? ¿Cómo pruebas que x es potencia de 2?</li><li><code class="m ">px[i] = px[i−1] ^ a[i]</code>: ¿el xor de a[l..r] es <code class="m ">px[r] ^ px[l−1]</code>? Con 3 5 6, l = 2, r = 3.</li><li>Predigan <code class="m ">~5</code>, <code class="m ">-7 &amp; 1</code> contra <code class="m ">-7 % 2</code>, <code class="m ">-7 &gt;&gt; 1</code> contra <code class="m ">-7 / 2</code>.</li><li>¿Qué da <code class="m ">x &amp; −x</code> con 12 y 10?</li></ol><div class="aside"><p class="small">Primero con números chicos. Luego verifíquenlo:</p><div class="code " style="font-size:30px"><div class="ln"><b>for</b> (<b>int</b> a = 0; a &lt; 16; a++)</div><div class="ln">  <b>for</b> (<b>int</b> b = 0; b &lt; 16; b++)</div><div class="ln">    <b>if</b> ((a &amp; b) &gt; a || (a &amp; b) &gt; b)</div><div class="ln">      <b>cout</b> &lt;&lt; "falla " &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; "\n";</div></div></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 32 ===== -->
+<section class="slide  side-right" data-bg="assets/fireworks.jpg" data-pos="0% 40%" data-z="1.04" data-x="0" data-y="0" data-low="0" data-high="0.86" data-shade="right">
+<div class="print-bg" style="background-image:url(assets/fireworks.jpg);background-position:0% 40%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">32</div>
+<h2 class="q">GRUPAL 2: respuestas (1–3)</h2>
+<div class="body">
+<ol class="answers"><li class="st " data-step="1"><code class="m ">a &amp; b ≤ min</code>: <b>sí</b> <svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg> &nbsp;·&nbsp; <code class="m ">a &amp; b = min</code>: <b>no</b> <svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg> (<code class="m ">5 &amp; 3 = 1</code>) &nbsp;·&nbsp; El AND de muchos nunca sube: cada <code class="m ">&amp;</code> solo apaga bits.</li><li class="st " data-step="2">Sí, sí y sí <svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg></li><li class="st " data-step="3"><div class="stacked tight"><div class="lowbit"><code class="m large">12 &amp; 11</code><div class="bitrow mini switch" style="--c:52px"><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 hl" ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div><span class="arrow">→</span><div class="bitrow mini" style="--c:52px"><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div></div><div class="lowbit"><code class="m large">8 &amp; 7</code><div class="bitrow mini switch" style="--c:52px"><div class="col"><span class="cell v1 hl" ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div><span class="arrow">→</span><div class="bitrow mini" style="--c:52px"><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div></div><div class="lowbit"><code class="m large">7 &amp; 6</code><div class="bitrow mini switch" style="--c:52px"><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 hl" ><i>1</i></span></div></div><span class="arrow">→</span><div class="bitrow mini" style="--c:52px"><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v0 " ><i>0</i></span></div></div></div><p class="say">Potencia de 2 ⇔ <code class="m acc">x &gt; 0 &amp;&amp; (x &amp; (x − 1)) == 0</code></p></div></li></ol>
+</div>
+</section>
+
+<!-- ===== Diapositiva 33 ===== -->
+<section class="slide  side-right" data-bg="assets/fireworks.jpg" data-pos="0% 40%" data-z="1.08" data-x="-1" data-y="0" data-low="0" data-high="0.86" data-shade="right">
+<div class="print-bg" style="background-image:url(assets/fireworks.jpg);background-position:0% 40%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">33</div>
+<h2 class="q">GRUPAL 2: respuestas (4–6)</h2>
+<div class="body">
+<ol class="answers" start="4"><li class="st " data-step="1">Sí <svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg> &nbsp;·&nbsp; <code class="m ">px = 3 6 0</code> &nbsp;·&nbsp; <code class="m ">px[3] ^ px[1] = 0 ^ 3 = 3 = 5 ^ 6</code> &nbsp;·&nbsp; O(n + q)</li><li class="st " data-step="2"><div class="cols answer-cols"><div class="console ">~5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ &nbsp;−6<br>-7 &amp; 1 &nbsp;→ &nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-7 % 2 &nbsp;→ &nbsp;−1<br>-7 &gt;&gt; 1 → &nbsp;−4 &nbsp;&nbsp;&nbsp;&nbsp;-7 / 2 &nbsp;→ &nbsp;−3</div><p class="say"><code class="m ">~x = −x − 1</code><br><code class="m ">x &amp; 1 = x % 2</code> solo con x ≥ 0</p></div><div class="sign-row"><span class="sign-label">−2<sup>31</sup></span><div class="bitrow mini signed" style="--c:42px"><div class="col"><span class="cell v0 " ><i>0</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div><div class="col"><span class="cell v1 " ><i>1</i></span></div></div></div></li><li class="st " data-step="3"><code class="m ">12 &amp; −12 → 4 (0100)</code> &nbsp;&nbsp; <code class="m ">10 &amp; −10 → 2 (0010)</code> &nbsp;·&nbsp; deja solo el 1 más bajo</li></ol>
+</div>
+</section>
+
+<!-- ===== Diapositiva 34 ===== -->
+<!-- Nota: Sin animación hasta que terminen. guion §13, min 98–110. -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1.04" data-x="0" data-y="0" data-low="0.5" data-high="0.86" data-shade="none" data-auto="1">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">34</div>
+<h2 class="q q-static">Práctica</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="cols problems"><div class="stacked"><h3><a href="https://codeforces.com/problemset/problem/579/A" target="_blank" rel="noopener">CF 579A Raising Bacteria</a></h3><p class="mono">x ≤ 10<sup>9</sup></p><p class="mono url">codeforces.com/problemset/problem/579/A</p><div class="st stacked tight" data-step="2"><p class="say">Es contar los 1 de x. O(log x) = 30.</p><div class="code " style="font-size:32px"><div class="ln"><b>while</b> (x &gt; 0) { ans += x &amp; 1; x &gt;&gt;= 1; }</div></div></div></div><div class="stacked"><h3><a href="https://codeforces.com/problemset/problem/1421/A" target="_blank" rel="noopener">CF 1421A XORwice</a></h3><p class="mono">t ≤ 10<sup>4</sup>; a, b ≤ 10<sup>9</sup></p><p class="mono url">codeforces.com/problemset/problem/1421/A</p><div class="st " data-step="3"><p class="say red"><code class="m ">for</code> de x = 0 a 10<sup>9</sup> por caso: 10<sup>13</sup>, TLE.</p></div><div class="st stacked tight" data-step="4"><p class="say green">Mismo bit: x lo apaga. Distintos: siempre queda un 1.</p><p class="say"><code class="m large">cout &lt;&lt; (a ^ b)</code> &nbsp;·&nbsp; O(1) por caso.</p></div></div></div></div><div class="st statement acc" data-step="1">¿Cómo se ve esto columna por columna? ¿Cuánto cuesta?</div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 35 ===== -->
+<section class="slide  side-left" data-bg="assets/recognizer.jpg" data-pos="15% 50%" data-z="1.1" data-x="-2" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/recognizer.jpg);background-position:15% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">35</div>
+<h2 class="q">Par de contraste</h2>
+<div class="body">
+<table class="tbl plain contrast"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><span class="st" data-step="1">¿Qué pasa en una columna con 1 y 1?</span></td><td><span class="st" data-step="2"><code class="m ">+</code> da 0 y lleva 1</span></td><td><span class="st" data-step="2"><code class="m ">^</code> da 0 y no lleva</span></td></tr><tr><td><span class="st" data-step="3">¿<code class="m ">12 &amp;&amp; 10</code> y <code class="m ">12 &amp; 10</code> dan lo mismo?</span></td><td><span class="st" data-step="4"><code class="m ">&amp;&amp;</code> → 1</span></td><td><span class="st" data-step="4"><code class="m ">&amp;</code> → 8</span></td></tr><tr><td><span class="st" data-step="5">¿Qué te da el <code class="m ">map</code> que el xor no?</span></td><td><span class="st" data-step="6"><code class="m ">map</code>: repetidos 3 veces, O(n log n)</span></td><td><span class="st" data-step="6">xor: solo pares, O(n)</span></td></tr><tr><td><span class="st" data-step="7">¿Cuándo difieren <code class="m ">x &gt;&gt; 1</code> y <code class="m ">x / 2</code>?</span></td><td><span class="st" data-step="8">negativos impares:</span></td><td><span class="st" data-step="8"><code class="m ">−7 &gt;&gt; 1 = −4</code>, <code class="m ">−7 / 2 = −3</code></span></td></tr></tbody></table>
+</div>
+</section>
+
+<!-- ===== Diapositiva 36 ===== -->
+<!-- Nota: Sin animación. -->
+<section class="slide  side-left" data-bg="assets/duel.jpg" data-pos="50% 50%" data-z="1.2" data-x="0" data-y="0" data-low="0.5" data-high="0.86" data-shade="none" data-auto="1">
+<div class="print-bg" style="background-image:url(assets/duel.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">36</div>
+<h2 class="q q-static">Errores frecuentes</h2>
+<div class="body">
+<div class="st " data-step="1"><table class="tbl plain errors"><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">cout &lt;&lt; n % 2 en el while</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">arreglo, recorrer al revés</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">n = 0 no imprime</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">if (cnt == 0) cout &lt;&lt; 0;</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">2 ^ 3 como potencia</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">1 &lt;&lt; 3</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">if (x &amp; 1 == 0)</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">if ((x &amp; 1) == 0)</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">cout &lt;&lt; a ^ b;</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">cout &lt;&lt; (a ^ b);</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">1 &lt;&lt; 40</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">1LL &lt;&lt; 40</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">-7 &amp; 1 igual a -7 % 2</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">solo con x ≥ 0</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">a &amp; b == min(a, b)</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">a &amp; b ≤ min(a, b)</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">a ^ b == a + b</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">(a ^ b) + 2(a &amp; b)</code></td></tr><tr><td><svg class="ico no" viewBox="0 0 16 16" aria-label="incorrecto"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg><code class="m red">parejas con dos for</code></td><td><svg class="ico ok" viewBox="0 0 16 16" aria-label="correcto"><path d="M2.5 8.5l3.6 3.6 7.4-8"/></svg><code class="m green">map de conteo</code></td></tr></tbody></table></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 37 ===== -->
+<!-- Nota: Sin animación. Es la diapositiva para tomarle foto. -->
+<section class="slide  side-left" data-bg="assets/disc-arena.jpg" data-pos="50% 50%" data-z="1.04" data-x="0" data-y="0" data-low="0.5" data-high="0.9" data-shade="none" data-auto="1">
+<div class="print-bg" style="background-image:url(assets/disc-arena.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.9"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">37</div>
+<h2 class="q q-static">Herramientas de hoy</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="cols tools"><div><h3>Cambio de base</h3><ul><li><code class="m ">n % 2</code> último bit; <code class="m ">n / 2</code> lo borra</li><li>vueltas ⌊log<sub>2</sub> n⌋ + 1</li><li>binario → número: <code class="m ">n * 2 + bit</code></li><li>k bits → 2<sup>k</sup> valores, máx 2<sup>k</sup> − 1</li><li>2<sup>k</sup> &gt; todos los de abajo juntos</li><li><code class="m ">int</code> 2<sup>31</sup> − 1, <code class="m ">long long</code> 2<sup>63</sup> − 1</li><li><code class="m ">x &lt;&lt; k</code> = x·2<sup>k</sup>, <code class="m ">x &gt;&gt; k</code> = x / 2<sup>k</sup></li><li>bit k = <code class="m ">(x &gt;&gt; k) &amp; 1</code></li><li>x &amp; (2<sup>k</sup> − 1) = x % 2<sup>k</sup></li></ul></div><div><h3>Operaciones</h3><ul><li><code class="m ">a ^ a = 0,  a ^ 0 = a</code></li><li><code class="m ">a ^ b = x  ⇔  b = a ^ x</code></li><li><code class="m ">a + b = (a ^ b) + 2(a &amp; b)</code></li><li><code class="m ">a &amp; b ≤ min</code>; AND nunca sube</li><li><code class="m ">a | b ≥ max</code></li><li><code class="m ">x &amp; (x − 1)</code> quita el 1 más bajo</li><li><code class="m ">xor(l..r) = px[r] ^ px[l−1]</code></li><li><code class="m ">~x = −x − 1</code></li><li><code class="m ">x &amp; −x</code> = el 1 más bajo</li></ul></div></div></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 38 ===== -->
+<!-- Nota: min 110–115. Las pistas de cada problema están en guion.md, sección Tarea. -->
+<section class="slide  side-left" data-bg="assets/lightcycle-smoke.jpg" data-pos="0% 50%" data-z="1.02" data-x="0" data-y="0" data-low="0" data-high="0.86" data-shade="left">
+<div class="print-bg" style="background-image:url(assets/lightcycle-smoke.jpg);background-position:0% 50%"><div class="print-veil" style="opacity:0.86"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">38</div>
+<h2 class="q">¿Qué te preguntarías la próxima vez que veas un <code class="m ">^</code> en un enunciado?</h2>
+<div class="body">
+<div class="cols closing"><div class="stacked"><div class="st " data-step="1"><ul class="quiet"><li>¿Cómo se ven dos o tres casos en binario?</li><li>¿Qué le pasa a una sola columna?</li><li>¿Ya probé la fórmula con números chicos?</li><li>¿Cuánto cuesta mi idea con estas restricciones?</li></ul></div></div><div class="st statement acc" data-step="2">Un número es una fila de bits. Se piensa columna por columna. El xor es una suma sin llevar que se deshace a sí misma.</div></div><div class="st " data-step="3"><div class="note-box mono">13 = 8 + 4 + 1 &nbsp;⇒&nbsp; a<sup>13</sup> = a<sup>8</sup> · a<sup>4</sup> · a<sup>1</sup> &nbsp;&nbsp;·&nbsp;&nbsp; <b>Clase 27: exponenciación binaria</b></div></div><div class="st " data-step="4"><p class="say">Tarea: <a href="https://codeforces.com/problemset/problem/579/A" target="_blank" rel="noopener">CF 579A</a> · <a href="https://codeforces.com/problemset/problem/1421/A" target="_blank" rel="noopener">CF 1421A</a> · <a href="https://cses.fi/problemset/task/1083" target="_blank" rel="noopener">CSES 1083</a> · 9 más entre recomendados y reto (siguiente diapositiva)</p></div>
+</div>
+</section>
+
+<!-- ===== Diapositiva 39 ===== -->
+<!-- Nota: Sin animación. Se deja proyectada al final y se comparte el PDF. El 12 todavía no tiene problema: el borrador dice "buscar" (idea de AtCoder ABC147 D). Hasta que alguien lo consiga y lo verifique, queda sin link. -->
+<section class="slide  side-left" data-bg="assets/light-jet.jpg" data-pos="50% 50%" data-z="1.06" data-x="0" data-y="0" data-low="0.5" data-high="0.88" data-shade="none" data-auto="1">
+<div class="print-bg" style="background-image:url(assets/light-jet.jpg);background-position:50% 50%"><div class="print-veil" style="opacity:0.88"></div></div>
+<div class="part">Parte 2 · Operaciones</div><div class="page">39</div>
+<h2 class="q q-static">Tarea: links</h2>
+<div class="body">
+<div class="st " data-step="1"><div class="homework"><div><h3>Obligatorios</h3><ol><li><a href="https://codeforces.com/problemset/problem/579/A" target="_blank" rel="noopener">CF 579A Raising Bacteria</a></li><li><a href="https://codeforces.com/problemset/problem/1421/A" target="_blank" rel="noopener">CF 1421A XORwice</a></li><li><a href="https://cses.fi/problemset/task/1083" target="_blank" rel="noopener">CSES 1083 Missing Number</a>, con xor</li></ol></div><div><h3>Recomendados</h3><ol start="4"><li><a href="https://codeforces.com/problemset/problem/742/B" target="_blank" rel="noopener">CF 742B Arpa&#39;s obvious problem and Mehrdad&#39;s terrible solution</a></li><li><a href="https://cses.fi/problemset/task/1650" target="_blank" rel="noopener">CSES 1650 Range Xor Queries</a></li><li><a href="https://codeforces.com/problemset/problem/1559/A" target="_blank" rel="noopener">CF 1559A Mocha and Math</a></li><li><a href="https://codeforces.com/problemset/problem/1362/A" target="_blank" rel="noopener">CF 1362A Johnny and Ancient Computer</a></li><li>Binario → número con <code class="m ">n = n * 2 + bit</code> (sin juez)</li></ol></div><div><h3>Reto</h3><ol start="9"><li><a href="https://codeforces.com/problemset/problem/1527/A" target="_blank" rel="noopener">CF 1527A And Then There Were K</a></li><li><a href="https://codeforces.com/problemset/problem/1688/A" target="_blank" rel="noopener">CF 1688A Cirno&#39;s Perfect Bitmasks Classroom</a></li><li><a href="https://codeforces.com/problemset/problem/1325/D" target="_blank" rel="noopener">CF 1325D Ehab the Xorcist</a></li><li>Suma de <code class="m ">a_i ^ a_j</code> sobre todas las parejas</li></ol></div></div></div>
+</div>
+</section>
+
+</main>
+</div>
+<script>
+/* ===========================================
+   SLIDE PRESENTATION CONTROLLER
+   Each slide has click steps (data-step). "Next" reveals the next step,
+   and moves on to the next slide only when none are left.
+   =========================================== */
+const SWEEP_COLUMN_MS = 520;   // Time per column in the column-by-column reveal
+const AUTO_START_MS = 1100;    // How long a no-click slide shows its image first
+const STORAGE_KEY = 'bits-clase-23-v1';
+const EDITING_ENABLED = false;   // The shared online copy is built with this set to false
+
+class SlidePresentation {
+    constructor() {
+        this.stage = document.getElementById('deckStage');
+        if (EDITING_ENABLED) this.restoreSavedEdits();
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.plates = [...document.querySelectorAll('.plate')];
+        this.backdrop = document.querySelector('.backdrop');
+        this.shade = document.querySelector('.shade');
+        this.veil = document.querySelector('.veil');
+        this.activePlate = 0;
+        this.currentImage = null;
+        this.index = 0;
+        this.step = 0;
+        this.timers = [];
+        this.sweeping = null;
+        this.editing = false;
+
+        this.slides.forEach(slide => {
+            this.addHeroQuestion(slide);
+            slide.maxStep = this.countSteps(slide);
+        });
+        this.preloadImages();
+        this.setupStageScale();
+        this.setupNavigation();
+        if (EDITING_ENABLED) this.setupEditing();
+        this.setupPrinting();
+
+        const [slideFromHash, stepFromHash] = location.hash.slice(1).split('.').map(Number);
+        this.goTo(slideFromHash ? slideFromHash - 1 : 0, stepFromHash || 0, true);
+    }
+
+    /* The question is shown large over the image, then small at the top once content arrives. */
+    addHeroQuestion(slide) {
+        const question = slide.querySelector('.q:not(.q-static)');
+        if (!question) return;
+        const hero = document.createElement('div');
+        hero.className = 'q-hero';
+        hero.innerHTML = question.innerHTML;
+        question.after(hero);
+    }
+
+    countSteps(slide) {
+        const steps = [...slide.querySelectorAll('[data-step],[data-off],[data-sweep]')].map(el =>
+            Math.max(+el.dataset.step || 0, +el.dataset.off || 0, +el.dataset.sweep || 0));
+        return Math.max(0, ...steps);
+    }
+
+    preloadImages() {
+        new Set(this.slides.map(s => s.dataset.bg)).forEach(src => { new Image().src = src; });
+    }
+
+    setupStageScale() {
+        const scale = () => {
+            const factor = Math.min(innerWidth / 1920, innerHeight / 1080);
+            const x = (innerWidth - 1920 * factor) / 2;
+            const y = (innerHeight - 1080 * factor) / 2;
+            this.stage.style.transform = `translate(${x}px, ${y}px) scale(${factor})`;
+        };
+        scale();
+        addEventListener('resize', scale);
+    }
+
+    setupNavigation() {
+        addEventListener('keydown', e => {
+            if (this.editing && e.key !== 'Escape' && !((e.ctrlKey || e.metaKey) && e.key === 's')) return;
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.next(); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.prev(); }
+            if (e.key === 'Home') this.goTo(0, 0);
+            if (e.key === 'End') this.goTo(this.slides.length - 1, this.slides[this.slides.length - 1].maxStep);
+            if (e.key === 'f' || e.key === 'F') this.toggleFullscreen();
+        });
+
+        this.stage.addEventListener('click', e => {
+            if (this.editing || e.target.closest('a')) return;
+            this.next();
+        });
+
+        let wheelLocked = false;
+        addEventListener('wheel', e => {
+            if (this.editing || wheelLocked || Math.abs(e.deltaY) < 20) return;
+            wheelLocked = true;
+            setTimeout(() => { wheelLocked = false; }, 600);
+            e.deltaY > 0 ? this.next() : this.prev();
+        }, { passive: true });
+
+        let touchStartX = 0;
+        addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) dx < 0 ? this.next() : this.prev();
+        }, { passive: true });
+    }
+
+    toggleFullscreen() {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else document.documentElement.requestFullscreen().catch(err => console.warn('Fullscreen unavailable:', err));
+    }
+
+    next() {
+        const slide = this.slides[this.index];
+        if (this.step < slide.maxStep) this.setStep(this.step + 1, true);
+        else if (this.index < this.slides.length - 1) this.goTo(this.index + 1, 0);
+    }
+
+    prev() {
+        if (this.step > 0) this.setStep(this.step - 1, false);
+        else if (this.index > 0) this.goTo(this.index - 1, this.slides[this.index - 1].maxStep);
+    }
+
+    goTo(index, step, firstLoad = false) {
+        this.clearTimers();
+        this.index = Math.max(0, Math.min(index, this.slides.length - 1));
+        const slide = this.slides[this.index];
+        this.slides.forEach((s, i) => {
+            s.classList.toggle('active', i === this.index);
+            s.classList.toggle('visible', i === this.index);
+        });
+        this.setStep(Math.min(step, slide.maxStep), false, firstLoad);
+
+        // Slides with no click animation show the image first, then their content on their own.
+        if (slide.dataset.auto && this.step === 0) {
+            this.timers.push(setTimeout(() => this.setStep(1, false), AUTO_START_MS));
+        }
+    }
+
+    setStep(step, animate, firstLoad = false) {
+        this.clearTimers();
+        this.step = step;
+        const slide = this.slides[this.index];
+        slide.classList.toggle('at-start', step === 0);
+        slide.querySelectorAll('[data-step]').forEach(el => el.classList.toggle('on', step >= +el.dataset.step));
+        slide.querySelectorAll('[data-off]').forEach(el => el.classList.toggle('off', step >= +el.dataset.off));
+        slide.querySelectorAll('[data-sweep]').forEach(stack => this.applySweep(stack, step, animate));
+        this.updateBackdrop(slide, firstLoad);
+        try { history.replaceState(null, '', `#${this.index + 1}.${step}`); }
+        catch (err) { /* The slide number in the URL is only a convenience */ }
+    }
+
+    /* The column-by-column reveal: right to left, with the strip on the column being computed. */
+    applySweep(stack, step, animate) {
+        const start = +stack.dataset.sweep;
+        const cells = [...stack.querySelectorAll('.sw')];
+        const strip = stack.querySelector('.strip');
+        const columns = Math.max(...cells.map(c => +c.dataset.col)) + 1;
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        strip.classList.remove('on');
+
+        if (step < start) { cells.forEach(c => c.classList.remove('on')); return; }
+        if (!(animate && step === start) || reduceMotion) { cells.forEach(c => c.classList.add('on')); return; }
+
+        cells.forEach(c => c.classList.remove('on'));
+        strip.style.setProperty('--i', columns - 1);
+        for (let column = columns - 1; column >= 0; column--) {
+            const delay = (columns - 1 - column) * SWEEP_COLUMN_MS + 200;
+            this.timers.push(setTimeout(() => {
+                strip.classList.add('on');
+                strip.style.setProperty('--i', column);
+                cells.filter(c => +c.dataset.col === column).forEach(c => c.classList.add('on'));
+            }, delay));
+        }
+        this.timers.push(setTimeout(() => strip.classList.remove('on'), columns * SWEEP_COLUMN_MS + 300));
+    }
+
+    updateBackdrop(slide, firstLoad) {
+        const { bg, pos, shade } = slide.dataset;
+        const zoom = +slide.dataset.z, x = +slide.dataset.x, y = +slide.dataset.y;
+        const target = `translate(${x}%, ${y}%) scale(${zoom})`;
+        const image = `${bg}|${pos}`;
+        const drift = !!slide.dataset.drift;
+
+        if (image !== this.currentImage) {
+            // A new image: push through. The old plate grows and fades, the new one settles.
+            const outgoing = this.plates[this.activePlate];
+            this.activePlate = 1 - this.activePlate;
+            const incoming = this.plates[this.activePlate];
+            incoming.style.transition = 'none';
+            incoming.style.backgroundImage = `url("${bg}")`;
+            incoming.style.backgroundPosition = pos;
+            incoming.style.transform = `translate(${x}%, ${y}%) scale(${zoom * (drift ? 1.06 : 1.09)})`;
+            incoming.style.opacity = 0;
+            void incoming.offsetWidth;
+            incoming.style.transition = drift
+                ? 'opacity 1.3s ease, transform 14s cubic-bezier(0.16, 0.6, 0.3, 1)'
+                : 'opacity 1.3s ease, transform 2.2s cubic-bezier(0.16, 0.6, 0.3, 1)';
+            incoming.style.opacity = 1;
+            incoming.style.transform = target;
+            if (!firstLoad) {
+                outgoing.style.transition = 'opacity 1.3s ease, transform 1.8s ease-in';
+                outgoing.style.transform += ' scale(1.05)';
+            }
+            outgoing.style.opacity = 0;
+            this.currentImage = image;
+        } else {
+            // The same image: the camera pans slowly.
+            const plate = this.plates[this.activePlate];
+            if (plate.style.transform !== target && !drift) {
+                plate.style.transition = 'opacity 1.3s ease, transform 2.4s cubic-bezier(0.3, 0.1, 0.2, 1)';
+                plate.style.transform = target;
+            }
+        }
+
+        // Few things on screen: the image is visible. Content on screen: it dims.
+        const atStart = this.step === 0;
+        this.veil.style.opacity = atStart ? +slide.dataset.low : +slide.dataset.high;
+        this.backdrop.classList.toggle('light', slide.classList.contains('light'));
+        this.shade.className = `shade ${shade}`;
+        this.shade.style.opacity = shade !== 'none' && (atStart || slide.dataset.keepShade) ? 1 : 0;
+    }
+
+    clearTimers() {
+        this.timers.forEach(clearTimeout);
+        this.timers = [];
+    }
+
+    /* For print and PDF: every slide in its final state. */
+    setupPrinting() {
+        addEventListener('beforeprint', () => {
+            this.clearTimers();
+            this.slides.forEach(slide => {
+                slide.querySelectorAll('[data-step]').forEach(el => el.classList.add('on'));
+                slide.querySelectorAll('[data-off]').forEach(el => el.classList.add('off'));
+                slide.querySelectorAll('.sw').forEach(el => el.classList.add('on'));
+                slide.querySelectorAll('.strip').forEach(el => el.classList.remove('on'));
+            });
+        });
+        addEventListener('afterprint', () => {
+            this.slides.forEach((slide, i) => {
+                if (i === this.index) return;
+                slide.querySelectorAll('.on, .off').forEach(el => el.classList.remove('on', 'off'));
+            });
+            this.goTo(this.index, this.step);
+        });
+    }
+
+    /* ===========================================
+       INLINE EDITING
+       E or the top-left corner toggles it. Text edits are kept in this browser;
+       Ctrl/Cmd+S downloads a copy of the deck with them.
+       =========================================== */
+    setupEditing() {
+        const toggle = document.getElementById('editToggle');
+        const hotzone = document.querySelector('.edit-hotzone');
+        let hideTimeout = null;
+        const scheduleHide = () => {
+            hideTimeout = setTimeout(() => { if (!this.editing) toggle.classList.remove('show'); }, 400);
+        };
+        hotzone.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); toggle.classList.add('show'); });
+        hotzone.addEventListener('mouseleave', scheduleHide);
+        toggle.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+        toggle.addEventListener('mouseleave', scheduleHide);
+        toggle.addEventListener('click', () => this.toggleEditing());
+        hotzone.addEventListener('click', () => this.toggleEditing());
+
+        addEventListener('keydown', e => {
+            const inText = e.target.getAttribute && e.target.getAttribute('contenteditable');
+            if ((e.key === 'e' || e.key === 'E') && !inText) this.toggleEditing();
+            if (e.key === 'Escape' && this.editing) this.toggleEditing();
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); this.downloadDeck(); }
+        });
+        this.stage.addEventListener('input', () => {
+            const slide = this.slides[this.index];
+            const question = slide.querySelector('.q:not(.q-static)');
+            if (question) slide.querySelector('.q-hero').innerHTML = question.innerHTML;
+            this.saveEdits();
+        });
+    }
+
+    editableElements() {
+        return this.stage.querySelectorAll('h1, h2, h3, p, li, td, th, .ln, .console, .ask, .statement, .say');
+    }
+
+    toggleEditing() {
+        this.editing = !this.editing;
+        document.body.classList.toggle('editing', this.editing);
+        document.getElementById('editToggle').classList.toggle('active', this.editing);
+        this.editableElements().forEach(el => {
+            if (this.editing) el.setAttribute('contenteditable', 'true');
+            else el.removeAttribute('contenteditable');
+        });
+        if (this.editing) this.goTo(this.index, this.slides[this.index].maxStep);
+    }
+
+    /* A clean copy of the slides: no reveal state, no generated hero questions. */
+    cleanStageHtml() {
+        const copy = this.stage.cloneNode(true);
+        copy.querySelectorAll('.q-hero').forEach(el => el.remove());
+        copy.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        copy.querySelectorAll('.on, .off').forEach(el => el.classList.remove('on', 'off'));
+        copy.querySelectorAll('.slide').forEach(el => el.classList.remove('active', 'visible', 'at-start'));
+        copy.querySelectorAll('.plate').forEach(el => el.removeAttribute('style'));
+        return copy.innerHTML;
+    }
+
+    saveEdits() {
+        try { localStorage.setItem(STORAGE_KEY, this.cleanStageHtml()); }
+        catch (err) { console.warn('Could not keep edits in this browser:', err); }
+    }
+
+    restoreSavedEdits() {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) this.stage.innerHTML = saved;
+        } catch (err) { console.warn('Could not read saved edits:', err); }
+    }
+
+    downloadDeck() {
+        const page = document.documentElement.cloneNode(true);
+        page.querySelector('#deckStage').innerHTML = this.cleanStageHtml();
+        page.querySelector('#deckStage').removeAttribute('style');
+        const blob = new Blob(['<!DOCTYPE html>\n' + page.outerHTML], { type: 'text/html' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'clase-23-bits-editada.html';
+        link.click();
+        URL.revokeObjectURL(link.href);
+    }
+}
+
+window.deck = new SlidePresentation();
+
+</script>
+</body>
+</html>
